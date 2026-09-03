@@ -13,8 +13,6 @@
   <link rel="manifest" href="/site.webmanifest">
   <meta name="msapplication-TileColor" content="#1F4C8F">
   <meta name="theme-color" content="#1F4C8F">
-
-  <meta name="google-site-verification" content="Lwq-kedvs4hQRwTCOsm5EehwT1cIiVZ-10E4beUAG9U" />
   
   <!-- In your <head> section -->
   <link rel="canonical" href="https://duc21striker.github.io/dmad-website/" />
@@ -137,7 +135,7 @@
       100% { transform:translateY(-10vh) rotate(720deg); opacity:0; }
     }
     .hero .container { position:relative; z-index:2; }
-    .hero h1 { font-size:3.8rem; line-height:1.15; max-width:800px; margin-bottom:1rem; }
+    .hero h1 { font-size:3.2rem; line-height:1.2; max-width:800px; margin-bottom:1rem; }
     .hero h1 .cursor-blink { display:inline-block; width:3px; height:1.1em; background:#FF6B4A; margin-left:2px; vertical-align:text-bottom; animation:blink .8s step-end infinite; }
     @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
     .hero p { font-size:1.25rem; opacity:.9; max-width:600px; margin-bottom:2.5rem; }
@@ -366,7 +364,7 @@
       .about-grid,.mission-vision,.contact-section .container { grid-template-columns:1fr; }
       .feature-cards { grid-template-columns:1fr 1fr; }
       .steps-grid { grid-template-columns:1fr 1fr; }
-      .hero h1 { font-size:2.8rem; }
+      .hero h1 { font-size:2.4rem; }
       .section-title { font-size:2.2rem; }
       .blog-grid { grid-template-columns:1fr 1fr; }
     }
@@ -376,7 +374,7 @@
       .nav-toggle { display:block; }
       .navbar .container { flex-wrap:wrap; }
       .hero { padding:7rem 0 4rem; }
-      .hero h1 { font-size:2.2rem; }
+      .hero h1 { font-size:2rem; }
       .pricing-grid,.steps-grid,.blog-grid { grid-template-columns:1fr; max-width:400px; margin-left:auto; margin-right:auto; }
       .contact-section .container { gap:2.5rem; }
       .footer .container { flex-direction:column; text-align:center; }
@@ -387,7 +385,7 @@
     }
     @media (max-width:480px) {
       .problem-grid,.services-grid,.proof-grid,.feature-cards { grid-template-columns:1fr; }
-      .hero h1 { font-size:1.8rem; }
+      .hero h1 { font-size:1.6rem; }
       .hero p { font-size:1rem; }
       .section-title { font-size:1.8rem; }
       .partner-banner h2,.contact-section h2 { font-size:2rem; }
@@ -676,7 +674,7 @@
     document.querySelectorAll('.nav-links a').forEach(l=>l.addEventListener('click',()=>{ document.getElementById('navLinks').classList.remove('open'); }));
 
     // TYPING
-    const txt="Branding, websites, and media — built on proof, not promises.";
+    const txt = "We help businesses become discoverable, trusted and profitable through proper branding";
     const el=document.getElementById('typingText');
     let i=0, del=false;
     function type(){
