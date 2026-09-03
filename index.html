@@ -427,7 +427,7 @@
     <div class="hero-particles" id="particles"></div>
     <div class="container">
       <h1><span id="typingText"></span><span class="cursor-blink"></span></h1>
-      <p>DMAD helps businesses look as credible and consistent as they actually are — with real, delivered work shown at every step.</p>
+      <p>We help businesses become discoverable, trusted and profitable through proper branding. DMAD helps businesses look as credible and consistent as they actually are — with real, delivered work shown at every step.</p>
       <div class="btn-group">
         <a href="#work" class="btn btn-primary">See Our Work</a>
         <a href="#contact" class="btn btn-outline-light">Book a Discovery Call</a>
@@ -594,23 +594,6 @@
         <textarea name="Message" placeholder="Tell us about your project..." required></textarea>
         <button type="submit" class="btn btn-primary">Send Message</button>
       </form>
-
-      <!--
-        ===== UPGRADE PATH: Option B — Formspree =====
-        To use Formspree instead:
-        1. Go to formspree.io
-        2. Sign up free with dmadgrps@gmail.com
-        3. Create a new form
-        4. Replace YOUR_FORM_ID below with the ID Formspree gives you
-        5. Uncomment the code below and comment out the mailto form above
-
-        <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-          <input type="text" name="name" placeholder="Your name" required />
-          <input type="email" name="email" placeholder="Email address" required />
-          <textarea name="message" placeholder="Tell us about your project..." required></textarea>
-          <button type="submit" class="btn btn-primary">Send Message</button>
-        </form>
-      -->
     </div>
   </section>
 
@@ -674,7 +657,7 @@
     document.getElementById('navToggle').addEventListener('click',()=>{ document.getElementById('navLinks').classList.toggle('open'); });
     document.querySelectorAll('.nav-links a').forEach(l=>l.addEventListener('click',()=>{ document.getElementById('navLinks').classList.remove('open'); }));
 
-    // TYPING
+    // TYPING — NEW TAGLINE
     const txt = "We help businesses become discoverable, trusted and profitable through proper branding";
     const el=document.getElementById('typingText');
     let i=0, del=false;
