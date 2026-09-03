@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DMAD — proof-first creative agency</title>
+  <meta name="description" content="DMAD is a proof-first creative agency offering branding, website design, and media production — built on real delivered work, not promises." />
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Poppins:wght@600;700;800&family=Bangers&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  
+  <style>
+    /* ===== DARK MODE VARIABLES ===== */
+    :root {
+      --bg: #FAFAFA; --card: #fff; --nav: #1F4C8F; --hero: #1F4C8F; --footer: #0d0d0d;
+      --text: #1A1A1A; --text2: #4a4a4a; --text3: #888; --shadow: 0 4px 20px rgba(0,0,0,0.04);
+    }
+    [data-theme="dark"] {
+      --bg: #0f0f13; --card: #1a1a24; --nav: #0a0a12; --hero: #0a0a18; --footer: #050508;
+      --text: #e8e8f0; --text2: #b0b0c0; --text3: #707080; --shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; }
+    body {
+      font-family:'Inter',sans-serif; background:var(--bg); color:var(--text);
+      line-height:1.6; overflow-x:hidden; transition:background .4s,color .4s;
+      cursor:none;
+    }
+
+    /* ===== CURSOR ===== */
+    .cursor-dot { width:8px; height:8px; background:#FF6B4A; border-radius:50%; position:fixed; pointer-events:none; z-index:9999; mix-blend-mode:difference; }
+    .cursor-ring { width:30px; height:30px; border:2px solid rgba(255,107,74,0.3); border-radius:50%; position:fixed; pointer-events:none; z-index:9998; transition:all .2s; transform:translate(-50%,-50%); }
+    @media (pointer:coarse) { .cursor-dot,.cursor-ring { display:none; } body { cursor:auto; } }
+
+    /* ===== PROGRESS BAR ===== */
+    .progress-bar { position:fixed; top:0; left:0; height:3px; background:linear-gradient(90deg,#FF6B4A,#D4A72C); z-index:9999; width:0%; }
+
+    .container { max-width:1200px; margin:0 auto; padding:0 1.5rem; }
+
+    /* ===== BUTTONS ===== */
+    .btn {
+      display:inline-block; padding:.8rem 2rem; border-radius:50px; font-weight:600;
+      text-decoration:none; transition:all .3s; border:2px solid transparent; cursor:pointer; font-size:.95rem;
+      position:relative; overflow:hidden;
+    }
+    .btn::after {
+      content:''; position:absolute; top:50%; left:50%; width:0; height:0; border-radius:50%;
+      background:rgba(255,255,255,.2); transition:width .6s,height .6s,top .6s,left .6s;
+    }
+    .btn:hover::after { width:300px; height:300px; top:-100px; left:-100px; }
+    .btn-primary { background:#FF6B4A; color:#fff; border-color:#FF6B4A; animation:pulse-btn 2s infinite; }
+    @keyframes pulse-btn { 0%,100% { box-shadow:0 0 0 0 rgba(255,107,74,.4); } 50% { box-shadow:0 0 0 15px rgba(255,107,74,0); } }
+    .btn-primary:hover { background:#e85a3a; border-color:#e85a3a; transform:translateY(-2px); box-shadow:0 10px 30px rgba(255,107,74,.3); }
+    .btn-outline-light { border-color:rgba(255,255,255,.4); color:#fff; background:transparent; }
+    .btn-outline-light:hover { background:rgba(255,255,255,.1); border-color:#fff; transform:translateY(-2px); }
+    .btn-outline-dark { border-color:#1F4C8F; color:#1F4C8F; background:transparent; }
+    [data-theme="dark"] .btn-outline-dark { border-color:#FF6B4A; color:#FF6B4A; }
+    .btn-outline-dark:hover { background:#1F4C8F; color:#fff; }
+    [data-theme="dark"] .btn-outline-dark:hover { background:#FF6B4A; color:#fff; }
+
+    /* ===== THEME TOGGLE ===== */
+    .theme-toggle {
+      background:rgba(255,255,255,.1); border:1px solid rgba(255,255,255,.2); color:#fff;
+      width:40px; height:40px; border-radius:50%; cursor:pointer; font-size:1.2rem;
+      transition:all .3s; display:flex; align-items:center; justify-content:center;
+    }
+    .theme-toggle:hover { background:rgba(255,255,255,.2); transform:rotate(30deg); }
+    [data-theme="dark"] .theme-toggle { background:rgba(255,107,74,.2); border-color:rgba(255,107,74,.3); }
+
+    /* ===== NAVBAR ===== */
+    .navbar {
+      background:var(--nav); padding:.6rem 0; position:fixed; top:0; left:0; right:0; z-index:1000;
+      box-shadow:0 2px 20px rgba(0,0,0,.15); transition:all .4s;
+    }
+    .navbar.scrolled { padding:.3rem 0; background:var(--nav); backdrop-filter:blur(10px); }
+    .navbar .container { display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; }
+    .nav-links { display:flex; align-items:center; gap:2rem; list-style:none; }
+    .nav-links a {
+      color:rgba(255,255,255,.85); text-decoration:none; font-weight:500; font-size:.95rem;
+      transition:all .3s; position:relative; padding-bottom:2px;
+    }
+    .nav-links a::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:#FF6B4A; transition:width .3s; }
+    .nav-links a:hover { color:#fff; }
+    .nav-links a:hover::after { width:100%; }
+    .nav-cta { padding:.4rem 1.4rem !important; border-radius:50px !important; background:#FF6B4A !important; color:#fff !important; border:none !important; }
+    .nav-cta:hover { background:#e85a3a !important; transform:translateY(-2px) !important; box-shadow:0 8px 25px rgba(255,107,74,.35) !important; }
+    .nav-toggle { display:none; background:none; border:none; color:#fff; font-size:1.8rem; cursor:pointer; transition:transform .3s; }
+    .nav-toggle:hover { transform:rotate(90deg); }
+
+    .nav-logo { height:38px; width:auto; display:block; transition:transform .3s; }
+    .nav-logo:hover { transform:scale(1.04); }
+
+    /* ===== SECTIONS ===== */
+    section { padding:5rem 0; background:var(--bg); transition:background .4s; }
+    .section-label { font-size:.75rem; text-transform:uppercase; letter-spacing:3px; color:#1F4C8F; font-weight:700; margin-bottom:.5rem; display:inline-block; }
+    [data-theme="dark"] .section-label { color:#FF6B4A; }
+    .section-label::before { content:'✦ '; color:#FF6B4A; }
+    .section-title { font-size:2.6rem; font-weight:700; margin-bottom:1rem; color:var(--text); line-height:1.2; }
+    .section-title.blue { color:#1F4C8F; }
+    [data-theme="dark"] .section-title.blue { color:#FF6B4A; }
+
+    /* ===== HERO ===== */
+    .hero {
+      background:var(--hero); color:#fff; padding:8rem 0 5rem; position:relative; overflow:hidden; transition:background .4s;
+    }
+    .hero::before {
+      content:''; position:absolute; top:-50%; right:-20%; width:600px; height:600px;
+      background:radial-gradient(circle,rgba(255,107,74,.15) 0%,transparent 70%); border-radius:50%; animation:float 20s infinite;
+    }
+    @keyframes float { 0%,100% { transform:translate(0,0) scale(1); } 50% { transform:translate(-30px,-20px) scale(1.1); } }
+    .hero-particles { position:absolute; inset:0; overflow:hidden; z-index:1; pointer-events:none; }
+    .particle {
+      position:absolute; width:4px; height:4px; background:rgba(255,255,255,.15); border-radius:50%;
+      animation:particleFloat 15s infinite linear;
+    }
+    @keyframes particleFloat {
+      0% { transform:translateY(100vh) rotate(0); opacity:0; }
+      10% { opacity:1; }
+      90% { opacity:1; }
+      100% { transform:translateY(-10vh) rotate(720deg); opacity:0; }
+    }
+    .hero .container { position:relative; z-index:2; }
+    .hero h1 { font-size:3.8rem; line-height:1.15; max-width:800px; margin-bottom:1rem; }
+    .hero h1 .cursor-blink { display:inline-block; width:3px; height:1.1em; background:#FF6B4A; margin-left:2px; vertical-align:text-bottom; animation:blink .8s step-end infinite; }
+    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
+    .hero p { font-size:1.25rem; opacity:.9; max-width:600px; margin-bottom:2.5rem; }
+    .hero .btn-group { display:flex; flex-wrap:wrap; gap:1rem; }
+    .hero .badge-row { display:flex; gap:3rem; margin-top:3rem; flex-wrap:wrap; opacity:.9; font-size:.95rem; }
+    .hero .badge-row i { color:#FF6B4A; margin-right:.5rem; }
+    .scroll-indicator { position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); color:rgba(255,255,255,.4); font-size:1.4rem; animation:bounce 2s infinite; z-index:2; }
+    @keyframes bounce { 0%,100% { transform:translateX(-50%) translateY(0); } 50% { transform:translateX(-50%) translateY(8px); } }
+
+    /* ===== CARDS ===== */
+    .problem-grid,.services-grid,.proof-grid { display:grid; gap:2rem; margin-top:2.5rem; }
+    .problem-grid { grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); }
+    .services-grid { grid-template-columns:repeat(auto-fit,minmax(210px,1fr)); }
+    .proof-grid { grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); }
+
+    .problem-card,.service-card,.proof-card,.pricing-card,.blog-card,.feature-card,.mv-card {
+      background:var(--card); box-shadow:var(--shadow); transition:all .4s; border-radius:20px;
+    }
+    .problem-card { padding:2rem; border-left:5px solid #FF6B4A; }
+    .problem-card:hover,.service-card:hover,.proof-card:hover,.pricing-card:hover,.blog-card:hover,.feature-card:hover,.mv-card:hover {
+      transform:translateY(-6px); box-shadow:0 20px 50px rgba(0,0,0,.08);
+    }
+    .problem-card .icon { font-size:2rem; color:#1F4C8F; margin-bottom:.8rem; }
+    [data-theme="dark"] .problem-card .icon { color:#FF6B4A; }
+    .problem-card h3 { font-size:1.2rem; margin-bottom:.5rem; }
+    .problem-card p,.service-card p,.proof-card p { color:var(--text2); }
+
+    .service-card { padding:1.8rem 1.5rem; text-align:center; border:1px solid rgba(0,0,0,.02); position:relative; overflow:hidden; }
+    .service-card::after { content:''; position:absolute; bottom:0; left:0; right:0; height:3px; background:linear-gradient(90deg,#1F4C8F,#FF6B4A); transform:scaleX(0); transition:transform .4s; }
+    .service-card:hover::after { transform:scaleX(1); }
+    .service-card i { color:var(--text); font-size:2.2rem; margin-bottom:.6rem; transition:all .3s; }
+    .service-card:hover i { color:#FF6B4A; transform:scale(1.1) rotate(-5deg); }
+    .service-card h4 { margin-bottom:.3rem; font-size:1rem; }
+
+    .proof-card { padding:1.8rem; border-bottom:4px solid #D4A72C; }
+    .proof-card .img-placeholder {
+      background:var(--card); height:120px; border-radius:16px; margin-bottom:1rem;
+      display:flex; align-items:center; justify-content:center; color:var(--text3);
+      font-size:.75rem; font-weight:600; border:2px dashed rgba(31,76,143,.15);
+      transition:all .4s;
+    }
+    .proof-card:hover .img-placeholder { border-color:#FF6B4A; }
+    .proof-card h4 { color:var(--text); margin-bottom:.3rem; }
+
+    /* ===== ABOUT ===== */
+    .about-grid { display:grid; grid-template-columns:1fr 1fr; gap:3rem; margin-top:2rem; }
+    .about-text { font-size:1.1rem; line-height:1.8; color:var(--text); }
+    .about-text strong { color:#1F4C8F; }
+    [data-theme="dark"] .about-text strong { color:#FF6B4A; }
+    .feature-cards { display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.5rem; }
+    .feature-card { padding:1.8rem; text-align:center; border-top:4px solid #1F4C8F; }
+    [data-theme="dark"] .feature-card { border-top-color:#FF6B4A; }
+    .feature-card i { color:#FF6B4A; font-size:2.2rem; margin-bottom:.6rem; }
+    .feature-card h4 { margin-bottom:.3rem; font-size:1rem; }
+    .feature-card p { color:var(--text2); font-size:.9rem; }
+
+    .mission-vision { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; margin-top:2.5rem; }
+    .mv-card { padding:2rem; border:1px solid rgba(31,76,143,.08); }
+    [data-theme="dark"] .mv-card { border-color:rgba(255,255,255,.05); }
+    .mv-card h4 { color:#1F4C8F; margin-bottom:.6rem; font-size:1.2rem; }
+    [data-theme="dark"] .mv-card h4 { color:#FF6B4A; }
+    .mv-card .emoji { font-size:1.8rem; margin-right:.5rem; }
+
+    /* ===== BLOG ===== */
+    .blog-grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:2rem; margin-top:2.5rem; }
+    .blog-card { border-radius:24px; overflow:hidden; }
+    .blog-card.featured { border:2px solid #FF6B4A; }
+    .blog-card .blog-image { height:200px; display:flex; align-items:center; justify-content:center; font-size:2.5rem; color:#1F4C8F; position:relative; background:var(--card); }
+    .blog-card .featured-badge { position:absolute; top:1rem; left:1rem; background:#FF6B4A; color:#fff; padding:.2rem 1rem; border-radius:40px; font-size:.7rem; font-weight:700; text-transform:uppercase; }
+    .blog-card .blog-tag { display:inline-block; background:rgba(31,76,143,.08); color:#1F4C8F; padding:.2rem .8rem; border-radius:40px; font-size:.7rem; font-weight:600; margin-bottom:.5rem; }
+    [data-theme="dark"] .blog-card .blog-tag { background:rgba(255,107,74,.15); color:#FF6B4A; }
+    .blog-card .blog-content { padding:1.5rem; }
+    .blog-card .blog-content h4 { font-size:1.1rem; margin-bottom:.4rem; }
+    .blog-card .blog-content p { color:var(--text2); font-size:.9rem; margin-bottom:1rem; }
+    .blog-card .blog-meta { display:flex; justify-content:space-between; align-items:center; font-size:.8rem; color:var(--text3); border-top:1px solid var(--card); padding-top:.8rem; }
+    .blog-card .blog-meta .read-link { color:#1F4C8F; font-weight:600; text-decoration:none; transition:all .3s; }
+    .blog-card .blog-meta .read-link:hover { color:#FF6B4A; }
+    .blog-card .blog-meta .read-link i { transition:transform .3s; }
+    .blog-card .blog-meta .read-link:hover i { transform:translateX(4px); }
+
+    /* ===== PARTNER BANNER ===== */
+    .partner-banner { background:var(--hero); color:#fff; padding:4rem 0; border-top:6px solid #FF6B4A; border-bottom:6px solid #FF6B4A; margin:2rem 0; position:relative; overflow:hidden; transition:background .4s; }
+    .partner-banner::before { content:'✦'; position:absolute; font-size:20rem; right:-5%; top:-50%; opacity:.05; transform:rotate(15deg); }
+    .partner-banner .container { position:relative; z-index:2; }
+    .partner-banner h2 { font-size:2.8rem; margin-bottom:.5rem; }
+    .partner-banner p { max-width:600px; opacity:.9; margin:.8rem 0 2rem; font-size:1.1rem; }
+
+    /* ===== PRICING ===== */
+    .pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2rem; margin-top:2.5rem; }
+    .pricing-card { padding:2.5rem 2rem; border:1px solid rgba(0,0,0,.04); position:relative; }
+    [data-theme="dark"] .pricing-card { border-color:rgba(255,255,255,.05); }
+    .pricing-card.popular { border:2px solid #FF6B4A; transform:scale(1.03); }
+    .pricing-card.popular:hover { transform:scale(1.03) translateY(-8px); }
+    .popular-badge { position:absolute; top:-12px; left:50%; transform:translateX(-50%); background:#FF6B4A; color:#fff; padding:.2rem 1.6rem; border-radius:40px; font-size:.75rem; font-weight:700; text-transform:uppercase; }
+    .pricing-card .price { font-size:2.4rem; font-weight:800; color:#1F4C8F; margin:.8rem 0 .4rem; }
+    [data-theme="dark"] .pricing-card .price { color:#FF6B4A; }
+    .pricing-card .price span { font-size:1rem; font-weight:400; color:var(--text3); }
+    .pricing-card ul { list-style:none; margin:1.5rem 0; }
+    .pricing-card li { padding:.5rem 0; border-bottom:1px solid var(--card); font-size:.95rem; color:var(--text2); }
+    .pricing-card li i { color:#FF6B4A; margin-right:.6rem; }
+    .pricing-card .btn { width:100%; text-align:center; }
+    .footnote { font-size:.8rem; color:var(--text3); margin-top:2.5rem; font-style:italic; text-align:center; }
+
+    /* ===== STEPS ===== */
+    .steps-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2.5rem; margin-top:2.5rem; }
+    .step-card { text-align:center; transition:all .4s; }
+    .step-card:hover { transform:translateY(-4px); }
+    .step-card .icon-circle {
+      background:linear-gradient(135deg,#1F4C8F,#2a5fa8); color:#fff; width:80px; height:80px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center; margin:0 auto 1.2rem; font-size:2rem;
+      transition:all .4s; box-shadow:0 8px 25px rgba(31,76,143,.2);
+    }
+    .step-card:hover .icon-circle { transform:scale(1.05) rotate(-5deg); box-shadow:0 12px 35px rgba(31,76,143,.3); }
+    .step-card .step-number { display:inline-block; background:rgba(255,107,74,.1); color:#FF6B4A; padding:.1rem .8rem; border-radius:40px; font-size:.7rem; font-weight:700; letter-spacing:1px; margin-bottom:.5rem; }
+    .step-card h4 { margin-bottom:.3rem; }
+    .step-card p { color:var(--text2); font-size:.95rem; }
+
+    /* ===== CONTACT ===== */
+    .contact-section { background:var(--hero); color:#fff; padding:5rem 0; position:relative; overflow:hidden; transition:background .4s; }
+    .contact-section::before { content:''; position:absolute; bottom:-30%; left:-10%; width:500px; height:500px; background:radial-gradient(circle,rgba(255,107,74,.08),transparent 70%); border-radius:50%; }
+    .contact-section .container { position:relative; z-index:2; display:grid; grid-template-columns:1fr 1fr; gap:4rem; }
+    .contact-section h2 { font-size:2.6rem; margin-bottom:1.5rem; line-height:1.2; }
+
+    .contact-details p {
+      margin:0.9rem 0;
+      font-size:1.05rem;
+      display:flex;
+      align-items:center;
+      gap:.8rem;
+      transition:all .3s;
+      padding:.4rem .8rem;
+      border-radius:12px;
+      cursor:pointer;
+    }
+    .contact-details p:hover {
+      background:rgba(255,255,255,0.05);
+      transform:translateX(4px);
+    }
+    .contact-details p a {
+      color:#fff;
+      text-decoration:none;
+      transition:color .3s;
+      display:flex;
+      align-items:center;
+      gap:.5rem;
+    }
+    .contact-details p a:hover {
+      color:#FF6B4A;
+    }
+    .contact-details i {
+      color:#FF6B4A;
+      width:24px;
+      text-align:center;
+      flex-shrink:0;
+    }
+    .contact-label { opacity:0.6; font-size:0.8rem; font-weight:400; }
+
+    .contact-form input,.contact-form textarea {
+      width:100%; padding:.9rem 1.2rem; border-radius:50px; border:1px solid var(--card);
+      margin-bottom:1rem; font-family:'Inter',sans-serif; font-size:.95rem; transition:all .3s; outline:none;
+      background:var(--card); color:var(--text);
+    }
+    .contact-form input:focus,.contact-form textarea:focus { box-shadow:0 0 0 3px rgba(255,107,74,.4); transform:scale(1.01); }
+    .contact-form textarea { border-radius:20px; min-height:120px; resize:vertical; }
+    .contact-form button { width:100%; padding:.9rem; font-size:1rem; }
+
+    /* ===== FLOATING WHATSAPP BUTTON ===== */
+    .whatsapp-float {
+      position:fixed;
+      bottom:24px;
+      right:24px;
+      z-index:999;
+      background:#25D366;
+      color:#fff;
+      width:56px;
+      height:56px;
+      border-radius:50%;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-size:2rem;
+      box-shadow:0 4px 20px rgba(37,211,102,0.4);
+      transition:all .3s;
+      text-decoration:none;
+      border:none;
+    }
+    .whatsapp-float:hover {
+      transform:scale(1.08);
+      box-shadow:0 6px 30px rgba(37,211,102,0.5);
+      color:#fff;
+    }
+    .whatsapp-float .tooltip {
+      position:absolute;
+      right:66px;
+      background:rgba(0,0,0,0.8);
+      color:#fff;
+      padding:.4rem 1rem;
+      border-radius:8px;
+      font-size:.75rem;
+      white-space:nowrap;
+      opacity:0;
+      pointer-events:none;
+      transition:opacity .3s;
+      font-weight:500;
+    }
+    .whatsapp-float:hover .tooltip { opacity:1; }
+
+    /* ===== FOOTER ===== */
+    .footer { background:var(--footer); color:var(--text3); padding:2.5rem 0; transition:background .4s; }
+    .footer .container { display:flex; justify-content:space-between; flex-wrap:wrap; align-items:center; gap:1.5rem; }
+    .footer-brand .footer-logo { height:30px; width:auto; display:block; }
+    .footer-brand p { font-size:.8rem; margin-top:.5rem; opacity:.6; }
+    .footer-links { display:flex; gap:2rem; list-style:none; flex-wrap:wrap; }
+    .footer-links a { color:var(--text3); text-decoration:none; font-size:.9rem; transition:color .3s; }
+    .footer-links a:hover { color:#FF6B4A; }
+    .social-icons { display:flex; gap:.8rem; }
+    .social-icons a {
+      color:var(--text3); font-size:1.3rem; transition:all .3s; width:40px; height:40px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,.06);
+    }
+    .social-icons a:hover { color:#FF6B4A; border-color:#FF6B4A; transform:translateY(-3px) rotate(5deg); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width:1024px) { .pricing-grid { grid-template-columns:repeat(2,1fr); } .pricing-card.popular { transform:scale(1); } .pricing-card.popular:hover { transform:translateY(-8px); } }
+    @media (max-width:900px) {
+      .about-grid,.mission-vision,.contact-section .container { grid-template-columns:1fr; }
+      .feature-cards { grid-template-columns:1fr 1fr; }
+      .steps-grid { grid-template-columns:1fr 1fr; }
+      .hero h1 { font-size:2.8rem; }
+      .section-title { font-size:2.2rem; }
+      .blog-grid { grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width:768px) {
+      .nav-links { display:none; flex-direction:column; width:100%; background:var(--nav); padding:1.5rem 0; gap:1.2rem; border-top:1px solid rgba(255,255,255,.05); }
+      .nav-links.open { display:flex; }
+      .nav-toggle { display:block; }
+      .navbar .container { flex-wrap:wrap; }
+      .hero { padding:7rem 0 4rem; }
+      .hero h1 { font-size:2.2rem; }
+      .pricing-grid,.steps-grid,.blog-grid { grid-template-columns:1fr; max-width:400px; margin-left:auto; margin-right:auto; }
+      .contact-section .container { gap:2.5rem; }
+      .footer .container { flex-direction:column; text-align:center; }
+      .footer-links { justify-content:center; }
+      .hero .badge-row { gap:1.5rem; font-size:.85rem; flex-direction:column; align-items:flex-start; }
+      .whatsapp-float { width:48px; height:48px; font-size:1.6rem; bottom:16px; right:16px; }
+      .whatsapp-float .tooltip { display:none; }
+    }
+    @media (max-width:480px) {
+      .problem-grid,.services-grid,.proof-grid,.feature-cards { grid-template-columns:1fr; }
+      .hero h1 { font-size:1.8rem; }
+      .hero p { font-size:1rem; }
+      .section-title { font-size:1.8rem; }
+      .partner-banner h2,.contact-section h2 { font-size:2rem; }
+      .nav-logo { height:30px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== CURSOR ===== -->
+  <div class="cursor-dot"></div>
+  <div class="cursor-ring"></div>
+  <div class="progress-bar" id="progressBar"></div>
+
+  <!-- ===== NAVBAR ===== -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#home" class="logo-link">
+        <img src="dmad-logo-white.png" alt="DMAD" class="nav-logo" />
+      </a>
+      <div style="display:flex; align-items:center; gap:.5rem;">
+        <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon" id="themeIcon"></i></button>
+        <button class="nav-toggle" id="navToggle"><i class="fas fa-bars"></i></button>
+      </div>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#insights">Insights</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact" class="btn nav-cta">Get in touch</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero" id="home">
+    <div class="hero-particles" id="particles"></div>
+    <div class="container">
+      <h1><span id="typingText"></span><span class="cursor-blink"></span></h1>
+      <p>DMAD helps businesses look as credible and consistent as they actually are — with real, delivered work shown at every step.</p>
+      <div class="btn-group">
+        <a href="#work" class="btn btn-primary">See Our Work</a>
+        <a href="#contact" class="btn btn-outline-light">Book a Discovery Call</a>
+      </div>
+      <div class="badge-row">
+        <div><i class="fas fa-check-circle"></i> Proof-first process</div>
+        <div><i class="fas fa-users"></i> One team, every discipline</div>
+        <div><i class="fas fa-comments"></i> We respond within 24 hours</div>
+      </div>
+    </div>
+    <div class="scroll-indicator"><i class="fas fa-chevron-down"></i></div>
+  </section>
+
+  <!-- ===== PROBLEM ===== -->
+  <section id="problem">
+    <div class="container">
+      <div class="section-label">The problem</div>
+      <h2 class="section-title">Why brands lose trust before they even start.</h2>
+      <div class="problem-grid">
+        <div class="problem-card"><div class="icon">🎯</div><h3>Real quality, underselling itself</h3><p>Growing businesses often have great products but an inconsistent, DIY, or outdated visual identity.</p></div>
+        <div class="problem-card"><div class="icon">📋</div><h3>Agencies pitch promises, not proof</h3><p>Clients are wary of decks full of mockups and stock templates instead of delivered work.</p></div>
+        <div class="problem-card"><div class="icon">🤝</div><h3>Trust has to come first</h3><p>Trust needs to be earned before the contract is signed, not promised after it.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about">
+    <div class="container">
+      <div class="section-label">Who we are</div>
+      <h2 class="section-title">One team, one vision — <span class="blue">proof-first</span>.</h2>
+      <div class="about-grid">
+        <div>
+          <p class="about-text"><strong>DMAD</strong> is a creative agency that helps businesses look as credible and consistent as they actually are. We handle branding, website design, and media production under one roof — and instead of leading with claims, we lead with <strong>real, finished work</strong>.</p>
+          <p class="about-text" style="margin-top:1rem; color:var(--text3);">No smoke. No mirrors. Just deliverable that speaks for itself.</p>
+        </div>
+        <div class="feature-cards">
+          <div class="feature-card"><i class="fas fa-check-circle"></i><h4>Proof-first</h4><p>Every pitch leads with real, delivered work, not mockups.</p></div>
+          <div class="feature-card"><i class="fas fa-users"></i><h4>One team</h4><p>Branding, web, and media handled together, identity stays consistent.</p></div>
+          <div class="feature-card"><i class="fas fa-eye"></i><h4>Trust built visibly</h4><p>Clients see the process — sketches, drafts, finals.</p></div>
+        </div>
+      </div>
+      <div class="mission-vision">
+        <div class="mv-card"><h4><span class="emoji">🚀</span> Mission</h4><p>To help small businesses and startups build a credible, consistent digital presence — through branding, web design, and media that's backed by real, delivered proof of work.</p></div>
+        <div class="mv-card"><h4><span class="emoji">🔭</span> Vision</h4><p>To become the trusted creative partner businesses turn to first when they're ready to grow online — known for showing real results before asking for trust.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SERVICES ===== -->
+  <section id="services">
+    <div class="container">
+      <div class="section-label">What we offer</div>
+      <h2 class="section-title">Creative services, <span class="blue">all under one roof</span>.</h2>
+      <div class="services-grid">
+        <div class="service-card"><i class="fas fa-pen-fancy"></i><h4>Branding</h4><p>Logo & identity systems, packaging, label design</p></div>
+        <div class="service-card"><i class="fas fa-code"></i><h4>Web Design</h4><p>Landing pages, full websites, e‑commerce setup</p></div>
+        <div class="service-card"><i class="fas fa-hashtag"></i><h4>Social Media</h4><p>Content calendars, posting, community engagement</p></div>
+        <div class="service-card"><i class="fas fa-edit"></i><h4>Graphic Design</h4><p>Social graphics, photo/video editing, ad creatives</p></div>
+        <div class="service-card"><i class="fas fa-video"></i><h4>Media Production</h4><p>Short-form video and product photography</p></div>
+        <div class="service-card"><i class="fas fa-sign"></i><h4>Print & Signage</h4><p>Banners, shop signage, point‑of‑sale materials</p></div>
+        <div class="service-card"><i class="fas fa-calendar-alt"></i><h4>Brand Management</h4><p>Monthly content calendars, ad creative, retainers</p></div>
+        <div class="service-card"><i class="fas fa-chart-line"></i><h4>Consulting</h4><p>Positioning, messaging, go‑to‑market guidance</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PARTNER BANNER ===== -->
+  <div class="partner-banner">
+    <div class="container">
+      <h2>Partner with us.</h2>
+      <p>Know a small business or startup that needs a real digital presence? Let's team up — whether that's a referral partnership, a collaboration, or an ongoing agency relationship.</p>
+      <a href="#contact" class="btn btn-primary">Let's Talk Partnership</a>
+    </div>
+  </div>
+
+  <!-- ===== BLOG ===== -->
+  <section id="insights">
+    <div class="container">
+      <div class="section-label">Insights & proof</div>
+      <h2 class="section-title">Stories from the <span class="blue">front lines</span>.</h2>
+      <p style="color:var(--text3); max-width:600px; margin-bottom:1rem;">Real projects, real processes, and real results — because proof isn't just a promise.</p>
+      <div class="blog-grid">
+        <div class="blog-card featured">
+          <div class="blog-image" style="background:linear-gradient(135deg,#1F4C8F,#2a5fa8);color:#fff;"><span style="font-size:3rem;">🎨</span><span class="featured-badge">Featured</span></div>
+          <div class="blog-content"><span class="blog-tag">Case Study</span><h4>From concept to completion: A complete brand overhaul</h4><p>How we transformed a business with a fresh visual identity, website, and marketing materials — all delivered on time.</p><div class="blog-meta"><span>📅 2 weeks ago</span><a href="#" class="read-link">Read full story <i class="fas fa-arrow-right"></i></a></div></div>
+        </div>
+        <div class="blog-card">
+          <div class="blog-image" style="background:linear-gradient(135deg,#e8d5b5,#d4c4a8);"><span>💡</span></div>
+          <div class="blog-content"><span class="blog-tag">Branding</span><h4>Why consistent branding builds trust faster</h4><p>How a unified visual identity across all platforms makes your business look bigger, better, and more reliable.</p><div class="blog-meta"><span>📅 1 month ago</span><a href="#" class="read-link">Read <i class="fas fa-arrow-right"></i></a></div></div>
+        </div>
+        <div class="blog-card">
+          <div class="blog-image" style="background:linear-gradient(135deg,#c5d5e8,#a8c0d8);"><span>🌐</span></div>
+          <div class="blog-content"><span class="blog-tag">Web Design</span><h4>5 website mistakes that kill credibility</h4><p>Small changes that make your brand look polished, professional, and trustworthy overnight.</p><div class="blog-meta"><span>📅 2 months ago</span><a href="#" class="read-link">Read <i class="fas fa-arrow-right"></i></a></div></div>
+        </div>
+        <div class="blog-card">
+          <div class="blog-image" style="background:linear-gradient(135deg,#d4a72c,#c49620);color:#fff;"><span>📱</span></div>
+          <div class="blog-content"><span class="blog-tag">Media Production</span><h4>Social media content that actually converts</h4><p>Behind-the-scenes of how we create scroll-stopping visuals that drive real engagement and sales.</p><div class="blog-meta"><span>📅 3 months ago</span><a href="#" class="read-link">Read <i class="fas fa-arrow-right"></i></a></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WORK ===== -->
+  <section id="work">
+    <div class="container">
+      <div class="section-label">Our work</div>
+      <h2 class="section-title">Real work. <span class="blue">Real results.</span></h2>
+      <p style="color:var(--text3); margin-bottom:.5rem; font-size:.9rem;">A small selection of what we've delivered for clients across industries</p>
+      <div class="proof-grid">
+        <div class="proof-card"><div class="img-placeholder">🎨 [Brand Identity]</div><h4>Complete brand system</h4><p>Logo design, color palettes, typography, and brand guidelines for consistent visual identity across all platforms.</p></div>
+        <div class="proof-card"><div class="img-placeholder">🌐 [Website]</div><h4>Custom website design</h4><p>Responsive, conversion-optimized websites that tell your story and drive real business results.</p></div>
+        <div class="proof-card"><div class="img-placeholder">🎬 [Video]</div><h4>Media production</h4><p>Short-form video content, product photography, and animated commercials that capture attention and build brand memory.</p></div>
+        <div class="proof-card"><div class="img-placeholder">📊 [Brand Management]</div><h4>Ongoing brand management</h4><p>Monthly content calendars, social media management, and ad creative that keeps your brand top-of-mind.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PRICING ===== -->
+  <section id="pricing">
+    <div class="container">
+      <div class="section-label">Service tiers & pricing</div>
+      <h2 class="section-title">Choose the <span class="blue">right fit</span> for your brand.</h2>
+      <div class="pricing-grid">
+        <div class="pricing-card"><h3>Starter</h3><div class="price">₦30,000</div><ul><li><i class="fas fa-check"></i> Logo design / brand refresh</li><li><i class="fas fa-check"></i> Social media graphics pack (5 designs)</li><li><i class="fas fa-check"></i> Brand color palette & typography</li><li><i class="fas fa-check"></i> One round of revisions</li></ul><a href="#contact" class="btn btn-outline-dark">Get Started</a></div>
+        <div class="pricing-card popular"><span class="popular-badge">Most Popular</span><h3>Growth</h3><div class="price">₦60,000</div><ul><li><i class="fas fa-check"></i> Everything in Starter</li><li><i class="fas fa-check"></i> Full brand identity system</li><li><i class="fas fa-check"></i> Landing page or one-page website</li><li><i class="fas fa-check"></i> Monthly social media content (10 posts)</li></ul><a href="#contact" class="btn btn-primary">Get Started</a></div>
+        <div class="pricing-card"><h3>Full‑Service</h3><div class="price">₦80,000 <span>/ mo</span></div><ul><li><i class="fas fa-check"></i> Everything in Growth</li><li><i class="fas fa-check"></i> Full multi‑page website</li><li><i class="fas fa-check"></i> Video / media production</li><li><i class="fas fa-check"></i> Priority turnaround & dedicated account manager</li></ul><a href="#contact" class="btn btn-outline-dark">Get Started</a></div>
+      </div>
+      <div class="footnote">*Indicative starting prices — final quotes depend on scope, assets, and timeline. Custom packages available.</div>
+    </div>
+  </section>
+
+  <!-- ===== STEPS ===== -->
+  <section>
+    <div class="container">
+      <div class="section-label">Next steps</div>
+      <h2 class="section-title">How we <span class="blue">work together</span>.</h2>
+      <div class="steps-grid">
+        <div class="step-card"><div class="step-number">STEP 01</div><div class="icon-circle"><i class="fas fa-phone-alt"></i></div><h4>Discovery Call</h4><p>A short conversation about your brand, goals, and current pain points.</p></div>
+        <div class="step-card"><div class="step-number">STEP 02</div><div class="icon-circle"><i class="fas fa-pencil-ruler"></i></div><h4>Proof‑of‑Concept Draft</h4><p>One low‑risk deliverable — a logo refresh, a label, or a landing page.</p></div>
+        <div class="step-card"><div class="step-number">STEP 03</div><div class="icon-circle"><i class="fas fa-rocket"></i></div><h4>Full Engagement</h4><p>Once you've seen the work, we scope the right tier and get moving.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTACT ===== -->
+  <section class="contact-section" id="contact">
+    <div class="container">
+      <div>
+        <h2>Let's build something clients trust.</h2>
+        <div class="contact-details">
+          <p><i class="fas fa-envelope"></i><a href="mailto:dmadgrps@gmail.com">dmadgrps@gmail.com</a></p>
+          <p><i class="fab fa-whatsapp"></i><a href="https://wa.me/2349123767786" target="_blank">+234 912 376 7786 <span class="contact-label">— WhatsApp Business</span></a></p>
+          <p><i class="fab fa-whatsapp"></i><a href="https://wa.me/919021786564" target="_blank">+91 902 178 6564 <span class="contact-label">— WhatsApp Business (alt)</span></a></p>
+          <p><i class="fas fa-phone-alt"></i><a href="tel:+2348140112165">+234 814 011 2165 <span class="contact-label">— Telephone</span></a></p>
+        </div>
+        <div style="margin-top:2rem; opacity:.7; font-size:.9rem;"><p>We respond within 24 hours.</p></div>
+      </div>
+
+      <!-- ===== CONTACT FORM — Option A (mailto) ===== -->
+      <form class="contact-form" action="mailto:dmadgrps@gmail.com" method="POST" enctype="text/plain">
+        <input type="text" name="Name" placeholder="Your name" required />
+        <input type="email" name="Email" placeholder="Email address" required />
+        <textarea name="Message" placeholder="Tell us about your project..." required></textarea>
+        <button type="submit" class="btn btn-primary">Send Message</button>
+      </form>
+
+      <!--
+        ===== UPGRADE PATH: Option B — Formspree =====
+        To use Formspree instead:
+        1. Go to formspree.io
+        2. Sign up free with dmadgrps@gmail.com
+        3. Create a new form
+        4. Replace YOUR_FORM_ID below with the ID Formspree gives you
+        5. Uncomment the code below and comment out the mailto form above
+
+        <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <input type="text" name="Name" placeholder="Your name" required />
+          <input type="email" name="Email" placeholder="Email address" required />
+          <textarea name="Message" placeholder="Tell us about your project..." required></textarea>
+          <button type="submit" class="btn btn-primary">Send Message</button>
+        </form>
+      -->
+    </div>
+  </section>
+
+  <!-- ===== FLOATING WHATSAPP BUTTON ===== -->
+  <a href="https://wa.me/2349123767786" target="_blank" class="whatsapp-float" aria-label="Chat on WhatsApp">
+    <i class="fab fa-whatsapp"></i>
+    <span class="tooltip">Chat on WhatsApp</span>
+  </a>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-brand">
+        <img src="dmad-logo-white.png" alt="DMAD" class="footer-logo" />
+        <p>© 2026 DMAD. All rights reserved.</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="#about">About</a></li><li><a href="#services">Services</a></li>
+        <li><a href="#insights">Insights</a></li><li><a href="#work">Work</a></li>
+        <li><a href="#pricing">Pricing</a></li><li><a href="#contact">Contact</a></li>
+      </ul>
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-x-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // DARK MODE
+    const toggle = document.getElementById('themeToggle');
+    const icon = document.getElementById('themeIcon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'dark') { html.setAttribute('data-theme','dark'); icon.className='fas fa-sun'; }
+    toggle.addEventListener('click',()=>{
+      if (html.getAttribute('data-theme')==='dark') {
+        html.removeAttribute('data-theme'); localStorage.setItem('theme','light'); icon.className='fas fa-moon';
+      } else {
+        html.setAttribute('data-theme','dark'); localStorage.setItem('theme','dark'); icon.className='fas fa-sun';
+      }
+    });
+
+    // CURSOR
+    const dot=document.querySelector('.cursor-dot'), ring=document.querySelector('.cursor-ring');
+    let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY; dot.style.left=mx+'px'; dot.style.top=my+'px'; });
+    function animRing(){ rx+=(mx-rx)*.15; ry+=(my-ry)*.15; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animRing); } animRing();
+
+    // PROGRESS
+    const prog=document.getElementById('progressBar');
+    window.addEventListener('scroll',()=>{ const s=window.scrollY; const h=document.documentElement.scrollHeight-window.innerHeight; prog.style.width=(s/h*100)+'%'; });
+
+    // NAVBAR SCROLL
+    const nav=document.getElementById('navbar');
+    window.addEventListener('scroll',()=>{ nav.classList.toggle('scrolled',window.scrollY>50); });
+
+    // MOBILE NAV
+    document.getElementById('navToggle').addEventListener('click',()=>{ document.getElementById('navLinks').classList.toggle('open'); });
+    document.querySelectorAll('.nav-links a').forEach(l=>l.addEventListener('click',()=>{ document.getElementById('navLinks').classList.remove('open'); }));
+
+    // TYPING
+    const txt="Branding, websites, and media — built on proof, not promises.";
+    const el=document.getElementById('typingText');
+    let i=0, del=false;
+    function type(){
+      if(!del){ el.textContent=txt.substring(0,i+1); i++; if(i===txt.length){ setTimeout(()=>{ del=true; },3000); } setTimeout(type,40); }
+      else { el.textContent=txt.substring(0,i-1); i--; if(i===0){ del=false; setTimeout(type,500); } else setTimeout(type,20); }
+    }
+    type();
+
+    // PARTICLES
+    const pc=document.getElementById('particles');
+    for(let i=0;i<25;i++){ const p=document.createElement('div'); p.className='particle'; p.style.left=Math.random()*100+'%'; p.style.width=(Math.random()*4+2)+'px'; p.style.height=p.style.width; p.style.animationDuration=(Math.random()*20+10)+'s'; p.style.animationDelay=(Math.random()*15)+'s'; p.style.opacity=Math.random()*.3+.1; pc.appendChild(p); }
+
+    // SMOOTH SCROLL
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{ a.addEventListener('click',function(e){ const h=this.getAttribute('href'); if(h==='#') return; e.preventDefault(); const t=document.querySelector(h); if(t){ const top=t.getBoundingClientRect().top+window.pageYOffset-document.querySelector('.navbar').offsetHeight-10; window.scrollTo({top,behavior:'smooth'}); } }); });
+
+    // REVEAL
+    document.querySelectorAll('.problem-card,.feature-card,.service-card,.proof-card,.pricing-card,.step-card,.mv-card,.blog-card').forEach((el,i)=>{
+      el.style.opacity='0'; el.style.transform='translateY(30px)'; el.style.transition='all .6s cubic-bezier(.25,.46,.45,.94)';
+      new IntersectionObserver(e=>{ e.forEach(entry=>{ if(entry.isIntersecting){ el.style.opacity='1'; el.style.transform='translateY(0)'; } }); },{threshold:.1}).observe(el);
+    });
+  </script>
+</body>
+</html>
