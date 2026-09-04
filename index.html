@@ -405,7 +405,7 @@
   <nav class="navbar" id="navbar">
     <div class="container">
       <a href="#home" class="logo-link">
-        <img src="dma-dlogo-white.png" alt="DMAD" class="nav-logo" />
+        <img src="dmad-logo-white.png" alt="DMAD" class="nav-logo" />
       </a>
       <div style="display:flex; align-items:center; gap:.5rem;">
         <button class="theme-toggle" id="themeToggle"><i class="fas fa-moon" id="themeIcon"></i></button>
@@ -427,7 +427,7 @@
     <div class="hero-particles" id="particles"></div>
     <div class="container">
       <h1><span id="typingText"></span><span class="cursor-blink"></span></h1>
-      <p>We help businesses become discoverable, trusted and profitable through proper branding. DMAD helps businesses look as credible and consistent as they actually are — with real, delivered work shown at every step.</p>
+      <p>DMAD helps businesses look as credible and consistent as they actually are — with real, delivered work shown at every step.</p>
       <div class="btn-group">
         <a href="#work" class="btn btn-primary">See Our Work</a>
         <a href="#contact" class="btn btn-outline-light">Book a Discovery Call</a>
@@ -607,19 +607,30 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-brand">
-        <img src="dma-dlogo-white.png" alt="DMAD" class="footer-logo" />
+        <img src="dmad-logo-white.png" alt="DMAD" class="footer-logo" />
         <p>© 2026 DMAD. All rights reserved.</p>
       </div>
       <ul class="footer-links">
-        <li><a href="#about">About</a></li><li><a href="#services">Services</a></li>
-        <li><a href="#insights">Insights</a></li><li><a href="#work">Work</a></li>
-        <li><a href="#pricing">Pricing</a></li><li><a href="#contact">Contact</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#insights">Insights</a></li>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
       <div class="social-icons">
-        <a href="#"><i class="fab fa-instagram"></i></a>
-        <a href="#"><i class="fab fa-x-twitter"></i></a>
-        <a href="#"><i class="fab fa-linkedin-in"></i></a>
-        <a href="#"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.instagram.com/dmadgrps?utm_source=qr&igsi=MW44c2RyZjE0eGtybw==" target="_blank" aria-label="Instagram">
+          <i class="fab fa-instagram"></i>
+        </a>
+        <a href="https://www.tiktok.com/@dmad594?_r=1&_t=ZS-99RmcLD9M9a" target="_blank" aria-label="TikTok">
+          <i class="fab fa-tiktok"></i>
+        </a>
+        <a href="#" aria-label="X (Twitter)">
+          <i class="fab fa-x-twitter"></i>
+        </a>
+        <a href="#" aria-label="YouTube">
+          <i class="fab fa-youtube"></i>
+        </a>
       </div>
     </div>
   </footer>
@@ -657,7 +668,7 @@
     document.getElementById('navToggle').addEventListener('click',()=>{ document.getElementById('navLinks').classList.toggle('open'); });
     document.querySelectorAll('.nav-links a').forEach(l=>l.addEventListener('click',()=>{ document.getElementById('navLinks').classList.remove('open'); }));
 
-    // TYPING — NEW TAGLINE
+    // TYPING
     const txt = "We help businesses become discoverable, trusted and profitable through proper branding";
     const el=document.getElementById('typingText');
     let i=0, del=false;
