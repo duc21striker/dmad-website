@@ -34,10 +34,10 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
 
   <style>
-    /* ===== RESET & VARIABLES ===== */
     :root {
       --blue: #1F4C8F;
       --blue-dark: #143670;
+      --blue-light: #EEF3FB;
       --coral: #FF6B4A;
       --coral-dark: #e85a3a;
       --gold: #D4A72C;
@@ -73,18 +73,11 @@
 
     /* ===== BUTTONS ===== */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.85rem 2rem;
-      border-radius: var(--radius-full);
-      font-weight: 600;
-      font-size: 0.95rem;
-      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.85rem 2rem; border-radius: var(--radius-full);
+      font-weight: 600; font-size: 0.95rem; text-decoration: none;
       transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-      border: 2px solid transparent;
-      cursor: pointer;
-      white-space: nowrap;
+      border: 2px solid transparent; cursor: pointer; white-space: nowrap;
     }
     .btn-primary { background: var(--blue); color: #fff; }
     .btn-primary:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(31,76,143,0.3); }
@@ -95,87 +88,113 @@
     .btn-ghost { border-color: rgba(255,255,255,0.3); color: #fff; background: transparent; }
     .btn-ghost:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
 
-    /* ===== NAVBAR ===== */
+    /* ===== NAVBAR (white bg, blue bar, orange CTA) ===== */
     .navbar {
       position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: blur(20px);
-      -webkit-backdrop-filter: blur(20px);
-      border-bottom: 1px solid transparent;
+      background: #FFFFFF;
+      border-bottom: 3px solid var(--blue);
       transition: all 0.3s ease;
     }
-    .navbar.scrolled { border-bottom-color: var(--border); box-shadow: var(--shadow-sm); }
+    .navbar.scrolled { box-shadow: var(--shadow-sm); }
     .navbar .container { display: flex; align-items: center; justify-content: space-between; height: 72px; }
     .nav-logo { height: 36px; width: auto; display: block; }
     .nav-links { display: flex; align-items: center; gap: 2rem; list-style: none; }
     .nav-links a { color: var(--text2); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
     .nav-links a:hover { color: var(--blue); }
-    .nav-cta { padding: 0.6rem 1.5rem !important; font-size: 0.9rem !important; }
+    .nav-cta {
+      background: var(--coral) !important;
+      color: #fff !important;
+      padding: 0.6rem 1.5rem !important;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .nav-cta:hover {
+      background: var(--coral-dark) !important;
+      color: #fff !important;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(255,107,74,0.35);
+    }
     .nav-toggle { display: none; background: none; border: none; font-size: 1.6rem; color: var(--text); cursor: pointer; }
 
-    /* ===== HERO ===== */
-    .hero { padding: 9rem 0 5rem; position: relative; overflow: hidden; }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 4rem;
-      align-items: center;
+    /* ===== HERO (centered + animated) ===== */
+    .hero {
+      padding: 10rem 0 6rem;
+      position: relative; overflow: hidden;
+      text-align: center;
+      background: linear-gradient(180deg, #FFFFFF 0%, #FAFAFA 100%);
     }
+    .hero::before {
+      content: ''; position: absolute; top: 10%; left: 50%; transform: translateX(-50%);
+      width: 900px; height: 900px; max-width: 100vw;
+      background: radial-gradient(circle, rgba(31,76,143,0.06) 0%, transparent 65%);
+      border-radius: 50%; pointer-events: none;
+    }
+    .hero .container { position: relative; z-index: 2; }
     .hero-badge {
       display: inline-flex; align-items: center; gap: 0.5rem;
       background: #fff; border: 1px solid var(--border);
-      padding: 0.4rem 1rem; border-radius: var(--radius-full);
+      padding: 0.5rem 1.2rem; border-radius: var(--radius-full);
       font-size: 0.8rem; font-weight: 500; color: var(--text2);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.8rem;
       box-shadow: var(--shadow-sm);
+      animation: fadeDown 0.8s ease both;
     }
-    .hero-badge .dot { width: 8px; height: 8px; background: var(--coral); border-radius: 50%; }
-    .hero h1 {
-      font-size: 3.6rem; font-weight: 700; line-height: 1.1;
-      letter-spacing: -0.03em; margin-bottom: 1.2rem;
+    .hero-badge .dot {
+      width: 8px; height: 8px; background: var(--coral); border-radius: 50%;
+      animation: pulse 1.6s infinite;
     }
-    .hero h1 .accent { color: var(--blue); }
-    .hero p { font-size: 1.15rem; color: var(--text2); max-width: 520px; margin-bottom: 2rem; }
-    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 2rem; }
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(255,107,74,0.5); }
+      50% { box-shadow: 0 0 0 8px rgba(255,107,74,0); }
+    }
 
-    /* Hero visual cards */
-    .hero-visual { position: relative; height: 480px; }
-    .float-card {
-      position: absolute; background: #fff; border-radius: var(--radius);
-      box-shadow: var(--shadow-lg); overflow: hidden;
-      transition: transform 0.4s ease;
+    .hero h1 {
+      font-size: 3.8rem; font-weight: 700; line-height: 1.1;
+      letter-spacing: -0.03em; margin-bottom: 1.2rem;
+      max-width: 900px; margin-left: auto; margin-right: auto;
+      animation: fadeUp 0.9s ease 0.1s both;
     }
-    .float-card:hover { transform: translateY(-8px) scale(1.02); }
-    .card-main {
-      width: 320px; height: 380px; top: 0; right: 0;
-      background: linear-gradient(135deg, #1F4C8F, #2a5fa8);
-      display: flex; flex-direction: column; justify-content: flex-end;
-      padding: 1.5rem; color: #fff;
+    .hero h1 .accent { color: var(--blue); position: relative; display: inline-block; }
+    .hero h1 .accent::after {
+      content: ''; position: absolute; left: 0; right: 0; bottom: 4px;
+      height: 10px; background: rgba(255,107,74,0.25); border-radius: 4px; z-index: -1;
     }
-    .card-main .card-label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px; opacity: 0.7; margin-bottom: 0.3rem; }
-    .card-main .card-title { font-size: 1.4rem; font-weight: 700; }
-    .card-stat {
-      width: 200px; padding: 1.3rem; bottom: 40px; left: 0;
-      background: #fff;
+    .hero p {
+      font-size: 1.15rem; color: var(--text2);
+      max-width: 620px; margin: 0 auto 2.2rem;
+      animation: fadeUp 0.9s ease 0.25s both;
     }
-    .card-stat .stat-number { font-size: 2.2rem; font-weight: 800; color: var(--blue); line-height: 1; }
-    .card-stat .stat-label { font-size: 0.8rem; color: var(--text3); margin-top: 0.3rem; }
-    .card-mini {
-      width: 160px; padding: 1rem; top: 30px; left: 20px;
-      background: #fff;
+    .hero-actions {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+      animation: fadeUp 0.9s ease 0.4s both;
     }
-    .card-mini .mini-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; }
-    .card-mini .mini-icon { width: 32px; height: 32px; border-radius: 8px; background: #EEF3FB; display: flex; align-items: center; justify-content: center; color: var(--blue); font-size: 0.9rem; }
-    .card-mini .mini-text { font-size: 0.75rem; font-weight: 600; color: var(--text); }
+    .hero-stats {
+      display: flex; justify-content: center; gap: 3rem; margin-top: 3.5rem;
+      flex-wrap: wrap;
+      animation: fadeUp 0.9s ease 0.55s both;
+    }
+    .hero-stats .stat { text-align: center; }
+    .hero-stats .stat b { font-family: 'Poppins', sans-serif; font-size: 1.8rem; font-weight: 800; color: var(--blue); display: block; }
+    .hero-stats .stat span { font-size: 0.85rem; color: var(--text3); }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-15px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
 
     /* ===== LOGO STRIP ===== */
-    .logo-strip { padding: 3rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: #fff; }
+    .logo-strip { padding: 2.5rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: #fff; }
     .logo-strip .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2rem; }
     .logo-strip .trust-label { font-size: 0.85rem; color: var(--text3); font-weight: 500; }
-    .logo-strip .brands { display: flex; gap: 3rem; align-items: center; flex-wrap: wrap; opacity: 0.4; }
-    .logo-strip .brands span { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.3rem; color: var(--text); }
+    .logo-strip .brands { display: flex; gap: 2.5rem; align-items: center; flex-wrap: wrap; opacity: 0.45; }
+    .logo-strip .brands span { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--text); }
 
-    /* ===== SECTION HEADERS ===== */
+    /* ===== SECTION ===== */
     .section { padding: 5rem 0; }
     .section-head { margin-bottom: 3rem; }
     .section-tag {
@@ -188,7 +207,7 @@
     .section-title .accent { color: var(--blue); }
     .section-sub { font-size: 1.05rem; color: var(--text2); max-width: 600px; margin-top: 0.8rem; }
 
-    /* ===== PROBLEM / CARDS ===== */
+    /* ===== PROBLEM CARDS (with real icons) ===== */
     .cards-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
     .info-card {
       background: #fff; border: 1px solid var(--border);
@@ -198,10 +217,11 @@
     .info-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: transparent; }
     .info-card .icon-box {
       width: 52px; height: 52px; border-radius: 14px;
-      background: #EEF3FB; color: var(--blue);
+      background: var(--blue-light); color: var(--blue);
       display: flex; align-items: center; justify-content: center;
       font-size: 1.3rem; margin-bottom: 1.2rem;
     }
+    .info-card:hover .icon-box { background: var(--blue); color: #fff; transition: all 0.3s; }
     .info-card h3 { font-size: 1.15rem; margin-bottom: 0.5rem; font-weight: 700; }
     .info-card p { font-size: 0.92rem; color: var(--text2); line-height: 1.6; }
 
@@ -209,11 +229,11 @@
     .about-split { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
     .about-visual {
       border-radius: var(--radius); overflow: hidden;
-      background: linear-gradient(135deg, #EEF3FB, #dfe8f5);
+      background: linear-gradient(135deg, var(--blue-light), #dfe8f5);
       height: 420px; position: relative;
       display: flex; align-items: center; justify-content: center;
     }
-    .about-visual .about-emoji { font-size: 8rem; opacity: 0.3; }
+    .about-visual i { font-size: 8rem; color: var(--blue); opacity: 0.35; }
     .about-content h2 { font-size: 2.4rem; margin-bottom: 1rem; line-height: 1.15; }
     .about-content p { color: var(--text2); margin-bottom: 1rem; }
     .feature-list { list-style: none; margin-top: 1.5rem; }
@@ -222,7 +242,7 @@
     .feature-list li strong { display: block; font-size: 0.95rem; }
     .feature-list li span { font-size: 0.88rem; color: var(--text2); }
 
-    /* ===== SERVICES GRID ===== */
+    /* ===== SERVICES ===== */
     .services-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.2rem; }
     .service-card {
       background: #fff; border: 1px solid var(--border);
@@ -230,11 +250,18 @@
       transition: all 0.3s ease;
     }
     .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); border-color: var(--blue); }
-    .service-card i { font-size: 1.5rem; color: var(--blue); margin-bottom: 0.8rem; display: block; }
+    .service-card .s-icon {
+      width: 44px; height: 44px; border-radius: 12px;
+      background: var(--blue-light); color: var(--blue);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; margin-bottom: 1rem;
+      transition: all 0.3s;
+    }
+    .service-card:hover .s-icon { background: var(--coral); color: #fff; }
     .service-card h4 { font-size: 0.98rem; margin-bottom: 0.3rem; }
     .service-card p { font-size: 0.82rem; color: var(--text3); line-height: 1.5; }
 
-    /* ===== DARK BAND (CTA / PARTNER) ===== */
+    /* ===== DARK BAND ===== */
     .dark-band {
       background: var(--dark); color: #fff;
       padding: 5rem 0; position: relative; overflow: hidden;
@@ -249,22 +276,29 @@
     .dark-band .section-title { color: #fff; }
     .dark-band p { color: rgba(255,255,255,0.7); max-width: 600px; margin: 1rem 0 2rem; }
 
-    /* ===== WORK / CASE CARDS ===== */
+    /* ===== WORK CARDS ===== */
     .work-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; }
     .work-card {
       background: #fff; border-radius: var(--radius);
       overflow: hidden; border: 1px solid var(--border);
-      transition: all 0.4s ease;
+      transition: all 0.4s ease; display: flex; flex-direction: column;
     }
     .work-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
     .work-thumb {
       height: 180px; display: flex; align-items: center; justify-content: center;
       font-size: 3rem;
     }
-    .work-body { padding: 1.4rem; }
+    .work-thumb i { font-size: 3.2rem; color: #fff; }
+    .work-body { padding: 1.4rem; flex: 1; display: flex; flex-direction: column; }
     .work-body .work-cat { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--coral); font-weight: 700; }
     .work-body h4 { font-size: 1rem; margin: 0.4rem 0; }
-    .work-body p { font-size: 0.85rem; color: var(--text2); line-height: 1.5; }
+    .work-body p { font-size: 0.85rem; color: var(--text2); line-height: 1.5; flex: 1; }
+    .work-body .work-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      margin-top: 1rem; font-size: 0.85rem; font-weight: 600;
+      color: var(--blue); text-decoration: none; transition: all 0.3s;
+    }
+    .work-body .work-link:hover { color: var(--coral); gap: 0.7rem; }
 
     /* ===== PRICING ===== */
     .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; align-items: start; }
@@ -322,40 +356,104 @@
     .step-card h4 { font-size: 1.05rem; margin-bottom: 0.4rem; }
     .step-card p { font-size: 0.88rem; color: var(--text2); }
 
-    /* ===== CONTACT ===== */
-    .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
-    .contact-info h2 { font-size: 2.4rem; margin-bottom: 1rem; line-height: 1.15; }
-    .contact-list { list-style: none; margin-top: 2rem; }
-    .contact-list li { display: flex; align-items: center; gap: 1rem; padding: 0.9rem 0; border-bottom: 1px solid var(--border); }
-    .contact-list li:last-child { border-bottom: none; }
-    .contact-list .ci {
-      width: 44px; height: 44px; border-radius: 12px;
-      background: #EEF3FB; color: var(--blue);
-      display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    /* ===== CONTACT (premium, FinPro-inspired, DMAD colors) ===== */
+    .contact-section {
+      background: var(--bg);
+      padding: 5rem 0;
     }
-    .contact-list a { color: var(--text); text-decoration: none; font-weight: 500; font-size: 0.95rem; transition: color 0.2s; }
-    .contact-list a:hover { color: var(--coral); }
-    .contact-list small { display: block; font-size: 0.75rem; color: var(--text3); font-weight: 400; }
+    .contact-head { text-align: center; margin-bottom: 3rem; }
+    .contact-head h2 {
+      font-size: 2.8rem; font-weight: 700; line-height: 1.15;
+      color: var(--text);
+    }
+    .contact-head h2 .accent { color: var(--blue); }
+    .contact-head p { color: var(--text2); margin-top: 0.8rem; max-width: 550px; margin-left: auto; margin-right: auto; }
 
-    .contact-form { background: #fff; border: 1px solid var(--border); border-radius: var(--radius); padding: 2rem; }
-    .contact-form input, .contact-form textarea {
-      width: 100%; padding: 0.9rem 1.2rem;
-      border: 1px solid var(--border); border-radius: var(--radius-sm);
-      font-family: 'Inter', sans-serif; font-size: 0.92rem;
-      margin-bottom: 1rem; outline: none; transition: all 0.2s;
-      background: #F8FAFC;
+    .contact-panel {
+      background: #fff;
+      border-radius: 32px;
+      border: 1px solid var(--border);
+      padding: 3rem;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      box-shadow: var(--shadow);
     }
-    .contact-form input:focus, .contact-form textarea:focus {
+
+    .contact-side h3 { font-size: 1.8rem; font-weight: 700; margin-bottom: 1rem; line-height: 1.2; }
+    .contact-side h3 .accent { color: var(--blue); }
+    .contact-side > p { color: var(--text2); font-size: 1rem; margin-bottom: 2rem; line-height: 1.7; }
+
+    .contact-info-block { margin-bottom: 1.8rem; }
+    .contact-info-block .ci-label { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text3); font-weight: 700; margin-bottom: 0.4rem; }
+    .contact-info-block .ci-value { font-size: 1.1rem; font-weight: 600; color: var(--text); }
+    .contact-info-block .ci-value a { color: var(--text); text-decoration: none; transition: color 0.3s; }
+    .contact-info-block .ci-value a:hover { color: var(--coral); }
+    .contact-info-block .ci-note { font-size: 0.82rem; color: var(--text3); margin-top: 0.2rem; }
+
+    .live-chat-btn {
+      display: inline-flex; align-items: center; gap: 0.7rem;
+      background: var(--dark); color: #fff;
+      padding: 0.9rem 1.6rem; border-radius: var(--radius-full);
+      font-weight: 600; font-size: 0.92rem; text-decoration: none;
+      transition: all 0.3s; margin-top: 1rem;
+    }
+    .live-chat-btn:hover { background: var(--blue); transform: translateY(-2px); }
+    .live-chat-btn .arrow-circle {
+      width: 26px; height: 26px; border-radius: 50%;
+      background: #fff; color: var(--dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem;
+    }
+    .live-chat-btn:hover .arrow-circle { background: var(--coral); color: #fff; }
+
+    /* Form */
+    .contact-form-premium { display: flex; flex-direction: column; gap: 1.2rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; }
+    .form-group { display: flex; flex-direction: column; }
+    .form-group label {
+      font-size: 0.8rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem;
+    }
+    .form-group input,
+    .form-group textarea {
+      width: 100%; padding: 1rem 1.3rem;
+      border: 1px solid var(--border); border-radius: 14px;
+      font-family: 'Inter', sans-serif; font-size: 0.92rem;
+      background: #F8FAFC; color: var(--text);
+      outline: none; transition: all 0.25s;
+    }
+    .form-group textarea { min-height: 130px; resize: vertical; }
+    .form-group input:focus,
+    .form-group textarea:focus {
       border-color: var(--blue); background: #fff;
       box-shadow: 0 0 0 4px rgba(31,76,143,0.08);
     }
-    .contact-form textarea { min-height: 130px; resize: vertical; }
-    .contact-form .btn { width: 100%; justify-content: center; }
+    .form-group input::placeholder,
+    .form-group textarea::placeholder { color: #A0A8B5; }
+
+    .send-btn {
+      align-self: flex-end;
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      background: var(--dark); color: #fff;
+      padding: 0.9rem 1.8rem; border-radius: var(--radius-full);
+      font-weight: 600; font-size: 0.95rem; border: none; cursor: pointer;
+      transition: all 0.3s; margin-top: 0.5rem;
+    }
+    .send-btn:hover { background: var(--blue); transform: translateY(-2px); box-shadow: 0 10px 25px rgba(31,76,143,0.25); }
+    .send-btn .arrow-circle {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: #fff; color: var(--dark);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.8rem; transition: all 0.3s;
+    }
+    .send-btn:hover .arrow-circle { background: var(--coral); color: #fff; }
 
     /* ===== FOOTER ===== */
     .footer { background: var(--dark); color: rgba(255,255,255,0.6); padding: 3rem 0 2rem; }
-    .footer-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
-    .footer-links { display: flex; gap: 2rem; list-style: none; flex-wrap: wrap; }
+    .footer-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.08); }
+    .footer-brand h4 { color: #fff; font-size: 1.3rem; margin-bottom: 0.6rem; }
+    .footer-brand p { font-size: 0.85rem; max-width: 320px; line-height: 1.6; }
+    .footer-links { display: flex; gap: 2.5rem; list-style: none; flex-wrap: wrap; }
     .footer-links a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.88rem; transition: color 0.2s; }
     .footer-links a:hover { color: var(--coral); }
     .socials { display: flex; gap: 0.8rem; }
@@ -382,13 +480,12 @@
 
     /* ===== RESPONSIVE ===== */
     @media (max-width: 1024px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 3rem; }
-      .hero-visual { height: 400px; max-width: 500px; }
       .services-grid { grid-template-columns: repeat(2, 1fr); }
       .work-grid { grid-template-columns: repeat(2, 1fr); }
       .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
       .about-split { grid-template-columns: 1fr; gap: 2.5rem; }
       .about-visual { height: 300px; }
+      .contact-panel { grid-template-columns: 1fr; gap: 2.5rem; padding: 2rem; }
     }
 
     @media (max-width: 768px) {
@@ -396,7 +493,7 @@
         position: fixed; top: 72px; left: 0; right: 0;
         background: #fff; flex-direction: column; gap: 0;
         padding: 1rem 1.5rem 1.5rem;
-        border-bottom: 1px solid var(--border);
+        border-bottom: 3px solid var(--blue);
         box-shadow: var(--shadow);
         transform: translateY(-120%); transition: transform 0.35s ease;
         align-items: stretch;
@@ -404,24 +501,23 @@
       .nav-links.open { transform: translateY(0); }
       .nav-links li { padding: 0.7rem 0; border-bottom: 1px solid var(--border); }
       .nav-links li:last-child { border-bottom: none; padding-top: 1rem; }
+      .nav-links .nav-cta { text-align: center; }
       .nav-toggle { display: block; }
-      .hero { padding: 7rem 0 3rem; }
+      .hero { padding: 7.5rem 0 4rem; }
       .hero h1 { font-size: 2.3rem; }
       .hero p { font-size: 1rem; }
-      .hero-visual { height: 340px; }
-      .card-main { width: 240px; height: 300px; }
-      .card-stat { width: 150px; bottom: 20px; }
-      .card-mini { width: 130px; top: 10px; left: 0; }
+      .hero-stats { gap: 1.5rem; }
       .cards-3, .steps-grid, .services-grid, .work-grid { grid-template-columns: 1fr; }
       .section { padding: 3.5rem 0; }
       .section-title { font-size: 1.9rem; }
-      .contact-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
-      .contact-info h2 { font-size: 1.9rem; }
+      .contact-head h2 { font-size: 2rem; }
+      .contact-side h3 { font-size: 1.4rem; }
+      .form-row { grid-template-columns: 1fr; }
+      .send-btn { align-self: stretch; justify-content: center; }
       .logo-strip .brands { gap: 1.5rem; }
       .logo-strip .brands span { font-size: 1rem; }
       .founding-banner { flex-direction: column; text-align: center; }
-      .footer-top { flex-direction: column; text-align: center; }
-      .footer-links { justify-content: center; }
+      .footer-top { flex-direction: column; }
     }
 
     @media (max-width: 480px) {
@@ -429,6 +525,7 @@
       .hero-actions .btn { width: 100%; justify-content: center; }
       .price-card .amount { font-size: 2rem; }
       .whatsapp-float { width: 48px; height: 48px; font-size: 1.4rem; bottom: 16px; right: 16px; }
+      .contact-panel { padding: 1.5rem; }
     }
   </style>
 </head>
@@ -441,42 +538,29 @@
       <button class="nav-toggle" id="navToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
       <ul class="nav-links" id="navLinks">
         <li><a href="#about">About</a></li>
-        <li><a href="#services">Service</a></li>
+        <li><a href="#services">Services</a></li>
         <li><a href="#work">Work</a></li>
         <li><a href="#pricing">Pricing</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="#contact" class="btn btn-primary nav-cta">Free Consultation</a></li>
+        <li><a href="#contact" class="nav-cta">Free Consultation</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- ===== HERO ===== -->
+  <!-- ===== HERO (centered + animated) ===== -->
   <section class="hero" id="home">
     <div class="container">
-      <div class="hero-grid">
-        <div>
-          <div class="hero-badge"><span class="dot"></span> On-demand & free support</div>
-          <h1>We help businesses become <span class="accent">discoverable, trusted</span> and profitable through proper branding.</h1>
-          <p>DMAD helps businesses look as credible and consistent as they actually are — with real, delivered work shown at every step.</p>
-          <div class="hero-actions">
-            <a href="#contact" class="btn btn-primary">Get Started <i class="fas fa-arrow-right"></i></a>
-            <a href="#work" class="btn btn-outline">See Our Work</a>
-          </div>
-        </div>
-        <div class="hero-visual">
-          <div class="float-card card-mini">
-            <div class="mini-row"><div class="mini-icon"><i class="fas fa-check"></i></div><div class="mini-text">Proof-first</div></div>
-            <div class="mini-row"><div class="mini-icon"><i class="fas fa-users"></i></div><div class="mini-text">One team</div></div>
-          </div>
-          <div class="float-card card-main">
-            <div class="card-label">DMAD Creative</div>
-            <div class="card-title">Designed Quality.</div>
-          </div>
-          <div class="float-card card-stat">
-            <div class="stat-number">100%</div>
-            <div class="stat-label">Real, delivered work</div>
-          </div>
-        </div>
+      <div class="hero-badge"><span class="dot"></span> On-demand & free support</div>
+      <h1>We help businesses become <span class="accent">discoverable, trusted</span> and profitable through proper branding.</h1>
+      <p>DMAD helps businesses look as credible and consistent as they actually are — with real, delivered work shown at every step.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Get Started <i class="fas fa-arrow-right"></i></a>
+        <a href="#work" class="btn btn-outline">See Our Work</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><b>100%</b><span>Real, delivered work</span></div>
+        <div class="stat"><b>24hr</b><span>Response time</span></div>
+        <div class="stat"><b>8+</b><span>Services under one roof</span></div>
       </div>
     </div>
   </section>
@@ -495,7 +579,7 @@
     </div>
   </div>
 
-  <!-- ===== PROBLEM ===== -->
+  <!-- ===== PROBLEM (real icons) ===== -->
   <section class="section">
     <div class="container">
       <div class="section-head">
@@ -504,17 +588,17 @@
       </div>
       <div class="cards-3">
         <div class="info-card">
-          <div class="icon-box">🎯</div>
+          <div class="icon-box"><i class="fas fa-bullseye"></i></div>
           <h3>Real quality, underselling itself</h3>
           <p>Growing businesses often have great products but an inconsistent, DIY, or outdated visual identity.</p>
         </div>
         <div class="info-card">
-          <div class="icon-box">📋</div>
+          <div class="icon-box"><i class="fas fa-file-alt"></i></div>
           <h3>Agencies pitch promises, not proof</h3>
           <p>Clients are wary of decks full of mockups and stock templates instead of delivered work.</p>
         </div>
         <div class="info-card">
-          <div class="icon-box">🤝</div>
+          <div class="icon-box"><i class="fas fa-handshake"></i></div>
           <h3>Trust has to come first</h3>
           <p>Trust needs to be earned before the contract is signed, not promised after it.</p>
         </div>
@@ -527,7 +611,7 @@
     <div class="container">
       <div class="about-split">
         <div class="about-visual">
-          <span class="about-emoji">🎨</span>
+          <i class="fas fa-palette"></i>
         </div>
         <div class="about-content">
           <div class="section-tag">Who we are</div>
@@ -552,19 +636,19 @@
         <h2 class="section-title">Creative services, <span class="accent">all under one roof.</span></h2>
       </div>
       <div class="services-grid">
-        <div class="service-card"><i class="fas fa-pen-fancy"></i><h4>Branding</h4><p>Logo & identity systems, packaging, label design</p></div>
-        <div class="service-card"><i class="fas fa-code"></i><h4>Web Design</h4><p>Landing pages, full websites, e‑commerce setup</p></div>
-        <div class="service-card"><i class="fas fa-hashtag"></i><h4>Social Media</h4><p>Content calendars, posting, community engagement</p></div>
-        <div class="service-card"><i class="fas fa-edit"></i><h4>Graphic Design</h4><p>Social graphics, photo/video editing, ad creatives</p></div>
-        <div class="service-card"><i class="fas fa-video"></i><h4>Media Production</h4><p>Short-form video and product photography</p></div>
-        <div class="service-card"><i class="fas fa-sign"></i><h4>Print & Signage</h4><p>Banners, shop signage, point‑of‑sale materials</p></div>
-        <div class="service-card"><i class="fas fa-calendar-alt"></i><h4>Brand Management</h4><p>Monthly content calendars, ad creative, retainers</p></div>
-        <div class="service-card"><i class="fas fa-chart-line"></i><h4>Consulting</h4><p>Positioning, messaging, go‑to‑market guidance</p></div>
+        <div class="service-card"><div class="s-icon"><i class="fas fa-pen-nib"></i></div><h4>Branding</h4><p>Logo & identity systems, packaging, label design</p></div>
+        <div class="service-card"><div class="s-icon"><i class="fas fa-code"></i></div><h4>Web Design</h4><p>Landing pages, full websites, e‑commerce setup</p></div>
+        <div class="service-card"><div class="s-icon"><i class="fas fa-hashtag"></i></div><h4>Social Media</h4><p>Content calendars, posting, community engagement</p></div>
+        <div class="service-card"><div class="s-icon"><i class="fas fa-paint-brush"></i></div><h4>Graphic Design</h4><p>Social graphics, photo/video editing, ad creatives</p></div>
+        <div class="service-card"><div class="s-icon"><i class="fas fa-video"></i></div><h4>Media Production</h4><p>Short-form video and product photography</p></div>
+        <div class="service-card"><div class="s-icon"><i class="fas fa-sign"></i></div><h4>Print & Signage</h4><p>Banners, shop signage, point‑of‑sale materials</p></div>
+        <div class="service-card"><div class="s-icon"><i class="fas fa-calendar-check"></i></div><h4>Brand Management</h4><p>Monthly content calendars, ad creative, retainers</p></div>
+        <div class="service-card"><div class="s-icon"><i class="fas fa-chart-line"></i></div><h4>Consulting</h4><p>Positioning, messaging, go‑to‑market guidance</p></div>
       </div>
     </div>
   </section>
 
-  <!-- ===== DARK BAND — PARTNER ===== -->
+  <!-- ===== DARK BAND ===== -->
   <section class="dark-band">
     <div class="container">
       <div style="max-width:700px;">
@@ -585,38 +669,67 @@
         <p class="section-sub">Brand identities, websites, and campaigns we've built for Nigerian businesses.</p>
       </div>
       <div class="work-grid">
+
+        <!-- WORK 1: Sare Express -->
         <div class="work-card">
-          <div class="work-thumb" style="background:linear-gradient(135deg,#1F4C8F,#2a5fa8);color:#fff;">🍽️</div>
-          <div class="work-body">
-            <div class="work-cat">Brand Identity</div>
-            <h4>Lagos restaurant rebrand</h4>
-            <p>Logo, menu layout, social templates, and signage for a growing restaurant chain.</p>
+          <div class="work-thumb" style="background:linear-gradient(135deg,#1F4C8F,#2a5fa8);">
+            <i class="fas fa-truck-fast"></i>
           </div>
-        </div>
-        <div class="work-card">
-          <div class="work-thumb" style="background:linear-gradient(135deg,#e8d5b5,#d4c4a8);">👗</div>
           <div class="work-body">
             <div class="work-cat">Website</div>
-            <h4>Nigerian fashion e-commerce</h4>
-            <p>Custom website with product catalog, lookbook gallery, and seamless checkout.</p>
+            <h4>Delivery Express platform</h4>
+            <p>Custom logistics website for herb & cosmetics delivery across Lagos, Abuja & Port Harcourt.</p>
+            <a href="https://duc21striker.github.io/sare-express" target="_blank" class="work-link">
+              View live site <i class="fas fa-arrow-up-right-from-square"></i>
+            </a>
           </div>
         </div>
+
+        <!-- WORK 2: Anides Yarn Studios -->
         <div class="work-card">
-          <div class="work-thumb" style="background:linear-gradient(135deg,#c5d5e8,#a8c0d8);">💄</div>
+          <div class="work-thumb" style="background:linear-gradient(135deg,#c5d5e8,#a8c0d8);">
+            <i class="fas fa-note-sticky"></i>
+          </div>
           <div class="work-body">
-            <div class="work-cat">Packaging</div>
-            <h4>Beauty brand label system</h4>
-            <p>Full label system, brand style guide, and social campaign for a skincare line.</p>
+            <div class="work-cat">Sticker Design</div>
+            <h4>Anides Yarn Studios</h4>
+            <p>Custom sticker pack design for a yarn & craft studio — playful, collectible, on-brand.</p>
+            <a href="#" class="work-link">
+              View project <i class="fas fa-arrow-right"></i>
+            </a>
           </div>
         </div>
+
+        <!-- WORK 3 -->
         <div class="work-card">
-          <div class="work-thumb" style="background:linear-gradient(135deg,#d4a72c,#c49620);color:#fff;">📱</div>
+          <div class="work-thumb" style="background:linear-gradient(135deg,#e8d5b5,#d4c4a8);">
+            <i class="fas fa-tshirt"></i>
+          </div>
+          <div class="work-body">
+            <div class="work-cat">Brand Identity</div>
+            <h4>Nigerian fashion brand</h4>
+            <p>Full visual identity system with product catalog and lookbook-ready assets.</p>
+            <a href="#" class="work-link">
+              View project <i class="fas fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- WORK 4 -->
+        <div class="work-card">
+          <div class="work-thumb" style="background:linear-gradient(135deg,#d4a72c,#c49620);">
+            <i class="fas fa-mobile-screen-button"></i>
+          </div>
           <div class="work-body">
             <div class="work-cat">UI/UX</div>
             <h4>Fintech app design</h4>
             <p>Complete app interface, user flow, and pitch deck for investor meetings.</p>
+            <a href="#" class="work-link">
+              View project <i class="fas fa-arrow-right"></i>
+            </a>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -631,7 +744,7 @@
 
       <div class="founding-banner">
         <div>
-          <h3>🎯 Founding 20 Offer — 20% off your first project</h3>
+          <h3><i class="fas fa-bullseye"></i> Founding 20 Offer — 20% off your first project</h3>
           <p>First 20 clients only. Valid on any package. Launching 7 September 2026.</p>
         </div>
         <div class="pill">Limited spots</div>
@@ -655,7 +768,7 @@
           <a href="#contact" class="btn btn-outline">Get Started</a>
         </div>
 
-        <!-- GROW (updated to ₦80,000) -->
+        <!-- GROW -->
         <div class="price-card featured">
           <div class="price-badge">Most Popular</div>
           <div class="plan-name">DMAD GROW</div>
@@ -729,40 +842,79 @@
     </div>
   </section>
 
-  <!-- ===== CONTACT ===== -->
-  <section class="section" id="contact" style="background:#fff;">
+  <!-- ===== CONTACT (premium, FinPro-inspired, DMAD colors) ===== -->
+  <section class="contact-section" id="contact">
     <div class="container">
-      <div class="contact-wrap">
-        <div class="contact-info">
-          <div class="section-tag">Contact</div>
-          <h2>Let's build something clients trust.</h2>
-          <p style="color:var(--text2);">We respond within 24 hours. Reach out via form, email, or WhatsApp.</p>
-          <ul class="contact-list">
-            <li>
-              <div class="ci"><i class="fas fa-envelope"></i></div>
-              <div><a href="mailto:dmadgrps@gmail.com">dmadgrps@gmail.com</a><small>Email us anytime</small></div>
-            </li>
-            <li>
-              <div class="ci"><i class="fab fa-whatsapp"></i></div>
-              <div><a href="https://wa.me/2349123767786" target="_blank">+234 912 376 7786</a><small>WhatsApp Business</small></div>
-            </li>
-            <li>
-              <div class="ci"><i class="fab fa-whatsapp"></i></div>
-              <div><a href="https://wa.me/919021786564" target="_blank">+91 902 178 6564</a><small>WhatsApp Business (alt)</small></div>
-            </li>
-            <li>
-              <div class="ci"><i class="fas fa-phone-alt"></i></div>
-              <div><a href="tel:+2348140112165">+234 814 011 2165</a><small>Telephone</small></div>
-            </li>
-          </ul>
+
+      <div class="contact-head">
+        <div class="section-tag" style="justify-content:center; display:inline-flex;">Contact</div>
+        <h2>Get in — <span class="accent">touch with us</span></h2>
+        <p>We're here to help! Whether you have a question about our services, need assistance with your brand, or want to start a project — our team is ready to assist you.</p>
+      </div>
+
+      <div class="contact-panel">
+
+        <!-- Left: contact info -->
+        <div class="contact-side">
+          <h3>Let's build something <span class="accent">clients trust.</span></h3>
+          <p>Reach out via form, email, or WhatsApp. We respond within 24 hours.</p>
+
+          <div class="contact-info-block">
+            <div class="ci-label">Email</div>
+            <div class="ci-value"><a href="mailto:dmadgrps@gmail.com">dmadgrps@gmail.com</a></div>
+          </div>
+
+          <div class="contact-info-block">
+            <div class="ci-label">WhatsApp Business</div>
+            <div class="ci-value"><a href="https://wa.me/2349123767786" target="_blank">+234 912 376 7786</a></div>
+          </div>
+
+          <div class="contact-info-block">
+            <div class="ci-label">WhatsApp Business (alt)</div>
+            <div class="ci-value"><a href="https://wa.me/919021786564" target="_blank">+91 902 178 6564</a></div>
+          </div>
+
+          <div class="contact-info-block">
+            <div class="ci-label">Telephone</div>
+            <div class="ci-value"><a href="tel:+2348140112165">+234 814 011 2165</a></div>
+            <div class="ci-note">Available Monday to Saturday, 9 AM – 6 PM WAT</div>
+          </div>
+
+          <a href="https://wa.me/2349123767786" target="_blank" class="live-chat-btn">
+            Live Chat
+            <span class="arrow-circle"><i class="fas fa-arrow-right"></i></span>
+          </a>
         </div>
 
-        <form class="contact-form" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
-          <input type="text" name="name" placeholder="Your name" required />
-          <input type="email" name="email" placeholder="Email address" required />
-          <textarea name="message" placeholder="Tell us about your project..." required></textarea>
-          <button type="submit" class="btn btn-coral">Send Message <i class="fas fa-paper-plane"></i></button>
+        <!-- Right: form -->
+        <form class="contact-form-premium" action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="firstName">First Name</label>
+              <input type="text" id="firstName" name="firstName" placeholder="Enter your first name..." required />
+            </div>
+            <div class="form-group">
+              <label for="lastName">Last Name</label>
+              <input type="text" id="lastName" name="lastName" placeholder="Enter your last name..." required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email address..." required />
+          </div>
+
+          <div class="form-group">
+            <label for="message">How can we help you?</label>
+            <textarea id="message" name="message" placeholder="Enter your message..." required></textarea>
+          </div>
+
+          <button type="submit" class="send-btn">
+            Send Message
+            <span class="arrow-circle"><i class="fas fa-arrow-right"></i></span>
+          </button>
         </form>
+
       </div>
     </div>
   </section>
@@ -771,19 +923,25 @@
   <footer class="footer">
     <div class="container">
       <div class="footer-top">
-        <a href="#home"><img src="dmad-logo-white.png" alt="DMAD" style="height:30px;" /></a>
+        <div class="footer-brand">
+          <img src="dmad-logo-white.png" alt="DMAD" style="height:32px; margin-bottom:0.8rem;" />
+          <p>Start by growing your brand with DMAD — branding, web design, and media production under one roof.</p>
+        </div>
         <ul class="footer-links">
           <li><a href="#about">About</a></li>
-          <li><a href="#services">Service</a></li>
+          <li><a href="#services">Services</a></li>
           <li><a href="#work">Work</a></li>
           <li><a href="#pricing">Pricing</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
-        <div class="socials">
-          <a href="https://www.instagram.com/dmadgrps" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="https://www.tiktok.com/@dmad594" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-          <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
-          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <div>
+          <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); font-weight:700; margin-bottom:0.8rem;">Social Media</div>
+          <div class="socials">
+            <a href="https://www.instagram.com/dmadgrps" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com/@dmad594" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+            <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
         </div>
       </div>
       <div class="footer-bottom">© 2026 DMAD. All rights reserved. Built on proof, not promises.</div>
@@ -815,7 +973,7 @@
         e.preventDefault();
         const t = document.querySelector(h);
         if (t) {
-          const top = t.getBoundingClientRect().top + window.pageYOffset - 80;
+          const top = t.getBoundingClientRect().top + window.pageYOffset - 90;
           window.scrollTo({ top, behavior: 'smooth' });
         }
       });
