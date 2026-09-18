@@ -46,6 +46,18 @@
       --coral-soft: rgba(255,107,74,0.15);
       --gold: #D4A72C;
 
+      #heroHeadline::after {
+  content: '|';
+  color: var(--coral);
+  margin-left: 4px;
+  animation: blink 0.9s step-end infinite;
+  font-weight: 400;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
       /* Surfaces (light) */
       --bg: #F3F5F9;
       --bg-alt: #FFFFFF;
@@ -1142,7 +1154,7 @@
 
   <a href="https://wa.me/2349123767786" target="_blank" class="whatsapp-float" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
 
-  <script>
+    <script>
     // ===== THEME TOGGLE =====
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = document.getElementById('themeIcon');
@@ -1196,29 +1208,85 @@
       });
     });
 
-    // ===== HERO WORD-BY-WORD ANIMATION =====
+    // ===== HERO TYPING ANIMATION =====
     (function() {
       const el = document.getElementById('heroHeadline');
-      const html = el.innerHTML;
+      // Save original markup then empty it
+      const originalHTML = el.innerHTML;
+      el.innerHTML = '';
+      el.style.minHeight = el.offsetHeight ? el.offsetHeight + 'px' : '4em';
 
-      // Split by whitespace, preserve inline tags (span.accent)
-      const tokens = html.split(/(\s+)/);
-      let wordIndex = 0;
+      // Build the sequence: segments with target HTML (so accent color stays)
+      // Format: [ plainText, isAccent ]
+      const segments = [
+        { text: 'We help businesses become ', accent: false },
+        { text: 'discoverable, trusted', accent: true },
+        { text: ' and profitable through proper branding.', accent: false }
+      ];
 
-      const wrapped = tokens.map(token => {
-        if (/^\s+$/.test(token) || token === '') return token;
+      // Flatten into individual characters with accent info
+      const chars = [];
+      segments.forEach(seg => {
+        for (const ch of seg.text) {
+          chars.push({ ch, accent: seg.accent });
+        }
+      });
 
-        // If it's a span, animate its text content but preserve the tag
-        const match = token.match(/^(<span[^>]*>)(.*?)(<\/span>)$/);
-        if (match) {
-          const inner = match[2].split('').length; // just to hold place
-          return `<span class="word" style="animation-delay:${0.15 * wordIndex++}s"><span class="accent">${match[2]}</span></span>`;
+      // Create a span container for the accent part and normal text nodes
+      // We'll rebuild char-by-char using a single text node + accent span
+      let accentSpan = null;
+      let currentAccentState = false;
+
+      function setupContainers() {
+        el.innerHTML = '';
+        accentSpan = document.createElement('span');
+        accentSpan.className = 'accent';
+        el.appendChild(accentSpan);
+      }
+
+      setupContainers();
+
+      let i = 0;
+      const speed = 45; // ms per char
+      const accentSpanStart = segments[0].text.length; // index where accent begins
+      const accentSpanEnd = accentSpanStart + segments[1].text.length; // index where accent ends
+
+      function typeNext() {
+        if (i >= chars.length) {
+          // done
+          return;
         }
 
-        return `<span class="word" style="animation-delay:${0.15 * wordIndex++}s">${token}</span>`;
-      }).join('');
+        const { ch, accent } = chars[i];
 
-      el.innerHTML = wrapped;
+        if (accent) {
+          // First char of accent: insert accentSpan into DOM right after plain text
+          if (i === accentSpanStart) {
+            accentSpan = document.createElement('span');
+            accentSpan.className = 'accent';
+            el.appendChild(accentSpan);
+          }
+          accentSpan.textContent += ch;
+        } else {
+          // After accent ends, create a new text node for remaining plain text
+          if (i === accentSpanEnd) {
+            el.appendChild(document.createTextNode(''));
+          }
+          // Append to last child if it's a text node, else create one
+          const last = el.lastChild;
+          if (last && last.nodeType === Node.TEXT_NODE) {
+            last.textContent += ch;
+          } else {
+            el.appendChild(document.createTextNode(ch));
+          }
+        }
+
+        i++;
+        setTimeout(typeNext, speed);
+      }
+
+      // Start typing after a short delay
+      setTimeout(typeNext, 400);
     })();
   </script>
 </body>
