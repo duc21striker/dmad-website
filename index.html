@@ -36,7 +36,6 @@
   <style>
     /* ================= THEME VARIABLES ================= */
     :root {
-      /* Brand */
       --blue: #1F4C8F;
       --blue-dark: #143670;
       --blue-deep: #0B2244;
@@ -46,34 +45,18 @@
       --coral-soft: rgba(255,107,74,0.15);
       --gold: #D4A72C;
 
-      #heroHeadline::after {
-  content: '|';
-  color: var(--coral);
-  margin-left: 4px;
-  animation: blink 0.9s step-end infinite;
-  font-weight: 400;
-}
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
-}
-
-      /* Surfaces (light) */
       --bg: #F3F5F9;
       --bg-alt: #FFFFFF;
       --bg-soft: #E9EDF4;
       --card: #FFFFFF;
       --dark: #0D0D0D;
 
-      /* Text */
       --text: #14213D;
       --text2: #4A5568;
       --text3: #8A94A6;
-      --text-invert: #FFFFFF;
 
       --border: #E1E7F0;
 
-      /* Shadows */
       --shadow-sm: 0 2px 8px rgba(20,33,61,0.05);
       --shadow: 0 10px 30px rgba(20,33,61,0.08);
       --shadow-lg: 0 24px 60px rgba(20,33,61,0.12);
@@ -101,8 +84,8 @@
       --shadow-lg: 0 24px 70px rgba(0,0,0,0.6);
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
+    * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; -webkit-overflow-scrolling: touch; }
 
     body {
       font-family: 'Inter', sans-serif;
@@ -141,7 +124,7 @@
       border-bottom: 3px solid var(--blue);
       transition: all 0.3s ease;
     }
-    [data-theme="dark"] .navbar { border-bottom-color: var(--blue); background: rgba(12,18,32,0.9); backdrop-filter: blur(14px); }
+    [data-theme="dark"] .navbar { background: rgba(12,18,32,0.9); backdrop-filter: blur(14px); }
     .navbar.scrolled { box-shadow: var(--shadow-sm); }
     .navbar .container { display: flex; align-items: center; justify-content: space-between; height: 72px; }
     .nav-logo { height: 36px; width: auto; display: block; }
@@ -185,7 +168,6 @@
         linear-gradient(180deg, var(--bg-alt) 0%, var(--bg) 100%);
     }
 
-    /* Aura / glow behind the headline */
     .hero-aura {
       position: absolute;
       top: 30%;
@@ -237,45 +219,44 @@
       50% { box-shadow: 0 0 0 8px rgba(255,107,74,0); }
     }
 
-    /* Animated headline: per-word fade-up */
     .hero h1 {
       font-size: 3.8rem; font-weight: 700; line-height: 1.1;
       letter-spacing: -0.03em; margin-bottom: 1.2rem;
       max-width: 900px; margin-left: auto; margin-right: auto;
+      min-height: 3.3em;
       position: relative;
-    }
-    .hero h1 .word {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(28px);
-      animation: wordRise 0.75s cubic-bezier(0.2, 0.7, 0.3, 1) forwards;
-    }
-    @keyframes wordRise {
-      to { opacity: 1; transform: translateY(0); }
     }
     .hero h1 .accent {
       color: var(--blue);
-      position: relative;
-      display: inline-block;
+      position: relative; display: inline;
     }
     [data-theme="dark"] .hero h1 .accent { color: #6FA0FF; }
     .hero h1 .accent::after {
       content: ''; position: absolute; left: 0; right: 0; bottom: 4px;
       height: 10px; background: rgba(255,107,74,0.28); border-radius: 4px; z-index: -1;
-      transform: scaleX(0); transform-origin: left;
-      animation: underlineGrow 0.9s ease 1.6s forwards;
     }
-    @keyframes underlineGrow { to { transform: scaleX(1); } }
+    .hero h1 .typing-cursor {
+      display: inline-block;
+      width: 3px; height: 0.95em;
+      background: var(--coral);
+      margin-left: 4px;
+      vertical-align: -0.08em;
+      animation: blink 0.9s step-end infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
+    }
 
     .hero p {
       font-size: 1.15rem; color: var(--text2);
       max-width: 620px; margin: 0 auto 2.2rem;
-      animation: fadeUp 0.9s ease 1.2s both;
+      animation: fadeUp 0.9s ease 0.3s both;
     }
 
     .hero-actions {
       display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
-      animation: fadeUp 0.9s ease 1.4s both;
+      animation: fadeUp 0.9s ease 0.5s both;
     }
     .hero-actions .btn { animation: btnFloat 3s ease-in-out infinite; }
     .hero-actions .btn:nth-child(2) { animation-delay: 0.3s; }
@@ -287,12 +268,12 @@
     .hero-stats {
       display: flex; justify-content: center; gap: 3.5rem; margin-top: 3.5rem;
       flex-wrap: wrap;
-      animation: fadeUp 0.9s ease 1.6s both;
+      animation: fadeUp 0.9s ease 0.7s both;
     }
     .hero-stats .stat { text-align: center; }
     .hero-stats .stat b {
       font-family: 'Poppins', sans-serif; font-size: 1.9rem; font-weight: 800;
-      color: var(--blue); display: block;
+      display: block;
       background: linear-gradient(135deg, var(--blue), var(--coral));
       -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
     }
@@ -311,12 +292,65 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ================= LOGO STRIP ================= */
-    .logo-strip { padding: 2.5rem 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: var(--bg-alt); }
-    .logo-strip .container { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 2rem; }
-    .logo-strip .trust-label { font-size: 0.85rem; color: var(--text3); font-weight: 500; }
-    .logo-strip .brands { display: flex; gap: 2.5rem; align-items: center; flex-wrap: wrap; opacity: 0.55; }
-    .logo-strip .brands span { font-family: 'Poppins', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--text); }
+    /* ================= LOGO STRIP (MARQUEE) ================= */
+    .logo-strip {
+      padding: 2rem 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--bg-alt);
+      overflow: hidden;
+    }
+    .logo-strip .container {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 1.2rem;
+    }
+    .logo-strip .trust-label {
+      font-size: 0.8rem;
+      color: var(--text3);
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .marquee {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+              mask-image: linear-gradient(90deg, transparent 0%, #000 8%, #000 92%, transparent 100%);
+    }
+    .marquee-track {
+      display: flex;
+      gap: 3.5rem;
+      width: max-content;
+      animation: marqueeScroll 40s linear infinite;
+      padding: 0.5rem 0;
+      will-change: transform;
+    }
+    .marquee-track span {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      font-size: 1.35rem;
+      color: var(--text);
+      opacity: 0.55;
+      white-space: nowrap;
+      transition: opacity 0.3s, color 0.3s;
+    }
+    .marquee-track span:hover { opacity: 1; color: var(--coral); }
+
+    @keyframes marqueeScroll {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    @media (hover: hover) {
+      .marquee:hover .marquee-track { animation-play-state: paused; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .marquee-track { animation: none; }
+      .marquee { overflow-x: auto; }
+    }
 
     /* ================= SECTIONS ================= */
     .section { padding: 5rem 0; }
@@ -478,38 +512,6 @@
     .work-body .work-link:hover { color: var(--coral); gap: 0.7rem; }
 
     /* ================= PRICING ================= */
-    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; align-items: start; }
-    .price-card {
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: var(--radius); padding: 2.2rem 1.8rem;
-      position: relative; transition: all 0.4s ease;
-    }
-    .price-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
-    .price-card.featured {
-      border: 2px solid var(--blue);
-      box-shadow: 0 20px 50px rgba(31,76,143,0.2);
-      background:
-        linear-gradient(180deg, rgba(31,76,143,0.04), transparent 40%),
-        var(--card);
-    }
-    .price-badge {
-      position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-      background: var(--coral); color: #fff;
-      padding: 0.35rem 1.4rem; border-radius: var(--radius-full);
-      font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-      box-shadow: 0 6px 20px rgba(255,107,74,0.4);
-    }
-    .price-card .plan-name { font-size: 1.1rem; font-weight: 700; color: var(--text); }
-    .price-card .plan-desc { font-size: 0.85rem; color: var(--text3); margin: 0.3rem 0 1.2rem; }
-    .price-card .amount { font-size: 2.4rem; font-weight: 800; color: var(--blue); line-height: 1; }
-    [data-theme="dark"] .price-card .amount { color: #6FA0FF; }
-    .price-card .amount small { font-size: 1rem; font-weight: 500; color: var(--text3); }
-    .price-card .discounted { font-size: 0.85rem; color: #10b981; font-weight: 700; margin-top: 0.3rem; }
-    .price-card ul { list-style: none; margin: 1.5rem 0; border-top: 1px solid var(--border); padding-top: 1.2rem; }
-    .price-card ul li { font-size: 0.88rem; color: var(--text2); padding: 0.35rem 0; display: flex; gap: 0.6rem; align-items: flex-start; }
-    .price-card ul li i { color: var(--coral); font-size: 0.75rem; margin-top: 0.35rem; }
-    .price-card .btn { width: 100%; justify-content: center; }
-
     .founding-banner {
       background: linear-gradient(135deg, var(--coral), #ff8a6e);
       color: #fff; border-radius: var(--radius);
@@ -524,6 +526,203 @@
       background: rgba(255,255,255,0.2); border-radius: var(--radius-full);
       padding: 0.5rem 1.2rem; font-size: 0.85rem; font-weight: 700;
       backdrop-filter: blur(8px);
+    }
+
+    .pricing-slider {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+      align-items: stretch;
+      padding: 1rem 0 2rem;
+    }
+
+    .plan-card {
+      position: relative;
+      background: linear-gradient(180deg, var(--card) 0%, var(--card) 60%, var(--bg-soft) 100%);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 2rem 1.8rem 1.6rem;
+      display: flex;
+      flex-direction: column;
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                  box-shadow 0.5s ease,
+                  border-color 0.3s ease;
+      will-change: transform;
+    }
+    .plan-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
+
+    .plan-card.featured {
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(255,107,74,0.18), transparent 55%),
+        linear-gradient(160deg, #1F4C8F 0%, #143670 60%, #0B2244 100%);
+      border: 2px solid var(--coral);
+      color: #fff;
+      transform: scale(1.02);
+      box-shadow: 0 24px 60px rgba(31,76,143,0.35);
+    }
+    .plan-card.featured:hover { transform: scale(1.02) translateY(-8px); }
+    .plan-card.featured .plan-name,
+    .plan-card.featured .plan-price,
+    .plan-card.featured .plan-desc,
+    .plan-card.featured .plan-note { color: #fff; }
+    .plan-card.featured .plan-desc { color: rgba(255,255,255,0.75); }
+    .plan-card.featured .plan-note { color: #FFD9A0; }
+    .plan-card.featured .plan-features { border-color: rgba(255,255,255,0.15); }
+    .plan-card.featured .plan-features li { color: rgba(255,255,255,0.9); }
+    .plan-card.featured .plan-features li.off { color: rgba(255,255,255,0.35); }
+    .plan-card.featured .plan-features li i { color: #9BE8B8; }
+    .plan-card.featured .plan-features li.off i { color: rgba(255,255,255,0.25); }
+
+    .save-badge {
+      position: absolute;
+      top: -12px; right: 18px;
+      background: var(--coral);
+      color: #fff;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      padding: 0.35rem 0.9rem;
+      border-radius: 40px;
+      box-shadow: 0 8px 20px rgba(255,107,74,0.4);
+    }
+
+    .plan-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      gap: 0.5rem;
+    }
+    .plan-name {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -0.01em;
+    }
+
+    .plan-tag {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text2);
+    }
+    .plan-tag .dot {
+      width: 7px; height: 7px; border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 3px rgba(212,167,44,0.2);
+    }
+    .plan-tag .dot.green {
+      background: #4CDE8A;
+      box-shadow: 0 0 0 3px rgba(76,222,138,0.2);
+    }
+
+    .plan-price {
+      font-family: 'Poppins', sans-serif;
+      font-size: 2.6rem;
+      font-weight: 800;
+      line-height: 1;
+      color: var(--blue);
+      display: flex; align-items: baseline; flex-wrap: wrap; gap: 0.15rem;
+      margin-bottom: 0.4rem;
+    }
+    [data-theme="dark"] .plan-price { color: #6FA0FF; }
+    .plan-card.featured .plan-price { color: #fff; }
+    .plan-price .currency { font-size: 1.4rem; font-weight: 700; }
+    .plan-price .old {
+      font-size: 1rem; font-weight: 500;
+      color: var(--text3);
+      text-decoration: line-through;
+      margin-right: 0.4rem;
+    }
+    .plan-card.featured .plan-price .old { color: rgba(255,255,255,0.5); }
+    .plan-price .period {
+      font-size: 0.85rem; font-weight: 500;
+      color: var(--text3);
+      margin-left: 0.3rem;
+    }
+    .plan-card.featured .plan-price .period { color: rgba(255,255,255,0.7); }
+
+    .plan-note {
+      font-size: 0.78rem; font-weight: 600;
+      color: #10b981;
+      margin-bottom: 1rem;
+    }
+
+    .plan-desc {
+      font-size: 0.88rem;
+      color: var(--text2);
+      line-height: 1.55;
+      margin-bottom: 1.4rem;
+    }
+
+    .plan-features {
+      list-style: none;
+      border-top: 1px dashed var(--border);
+      padding-top: 1.2rem;
+      margin-bottom: 1.6rem;
+      flex: 1;
+    }
+    .plan-features li {
+      display: flex; align-items: flex-start; gap: 0.6rem;
+      padding: 0.35rem 0;
+      font-size: 0.85rem;
+      color: var(--text2);
+      line-height: 1.45;
+    }
+    .plan-features li i {
+      width: 16px; height: 16px;
+      border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 0.6rem;
+      margin-top: 0.15rem;
+      flex-shrink: 0;
+    }
+    .plan-features li.on i {
+      background: rgba(76,222,138,0.15);
+      color: #10b981;
+    }
+    .plan-features li.off {
+      color: var(--text3);
+    }
+    .plan-features li.off i {
+      background: rgba(148,163,184,0.15);
+      color: var(--text3);
+    }
+
+    .plan-btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 0.9rem 1.5rem;
+      border-radius: 40px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-decoration: none;
+      background: var(--bg-soft);
+      color: var(--text);
+      border: 1px solid var(--border);
+      transition: all 0.3s;
+    }
+    .plan-btn:hover {
+      background: var(--blue);
+      color: #fff;
+      border-color: var(--blue);
+      transform: translateY(-2px);
+    }
+    .plan-btn.primary {
+      background: #fff;
+      color: var(--blue);
+      border-color: #fff;
+    }
+    .plan-btn.primary:hover {
+      background: var(--coral);
+      color: #fff;
+      border-color: var(--coral);
+      box-shadow: 0 12px 28px rgba(255,107,74,0.4);
     }
 
     /* ================= STEPS ================= */
@@ -684,7 +883,13 @@
     @media (max-width: 1024px) {
       .services-grid { grid-template-columns: repeat(2, 1fr); }
       .work-grid { grid-template-columns: repeat(2, 1fr); }
-      .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+      .pricing-slider {
+        grid-template-columns: 1fr;
+        max-width: 460px;
+        margin: 0 auto;
+      }
+      .plan-card.featured { transform: none; }
+      .plan-card.featured:hover { transform: translateY(-8px); }
       .about-split { grid-template-columns: 1fr; gap: 2.5rem; }
       .about-visual { height: 340px; }
       .contact-panel { grid-template-columns: 1fr; gap: 2.5rem; padding: 2rem; }
@@ -708,7 +913,7 @@
       .nav-toggle { display: block; }
       .theme-toggle { width: 38px; height: 38px; font-size: 0.95rem; }
       .hero { padding: 7.5rem 0 4rem; }
-      .hero h1 { font-size: 2.3rem; }
+      .hero h1 { font-size: 2.3rem; min-height: 4.4em; }
       .hero p { font-size: 1rem; }
       .hero-aura { width: 480px; height: 480px; }
       .hero-stats { gap: 1.8rem; }
@@ -719,16 +924,18 @@
       .contact-side h3 { font-size: 1.4rem; }
       .form-row { grid-template-columns: 1fr; }
       .send-btn { align-self: stretch; justify-content: center; }
-      .logo-strip .brands { gap: 1.5rem; }
-      .logo-strip .brands span { font-size: 1rem; }
+      .marquee-track { gap: 2.2rem; animation-duration: 28s; }
+      .marquee-track span { font-size: 1.05rem; }
+      .logo-strip .trust-label { font-size: 0.7rem; letter-spacing: 1.5px; }
       .founding-banner { flex-direction: column; text-align: center; }
       .footer-top { flex-direction: column; }
     }
 
     @media (max-width: 480px) {
-      .hero h1 { font-size: 1.9rem; }
+      .hero h1 { font-size: 1.9rem; min-height: 5em; }
       .hero-actions .btn { width: 100%; justify-content: center; }
-      .price-card .amount { font-size: 2rem; }
+      .plan-price { font-size: 2.1rem; }
+      .plan-card { padding: 1.6rem 1.3rem 1.3rem; border-radius: 22px; }
       .whatsapp-float { width: 48px; height: 48px; font-size: 1.4rem; bottom: 16px; right: 16px; }
       .contact-panel { padding: 1.5rem; }
     }
@@ -765,9 +972,7 @@
     <div class="hero-aura"></div>
     <div class="container">
       <div class="hero-badge"><span class="dot"></span> On-demand & free support</div>
-      <h1 id="heroHeadline">
-        We help businesses become <span class="accent">discoverable, trusted</span> and profitable through proper branding.
-      </h1>
+      <h1><span id="typingText"></span><span class="typing-cursor"></span></h1>
       <p>DMAD helps businesses look as credible and consistent as they actually are — with real, delivered work shown at every step.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn btn-primary">Get Started <i class="fas fa-arrow-right"></i></a>
@@ -781,16 +986,17 @@
     </div>
   </section>
 
-  <!-- ===== LOGO STRIP ===== -->
+  <!-- ===== LOGO STRIP (MARQUEE) ===== -->
   <div class="logo-strip">
     <div class="container">
       <span class="trust-label">Trusted by growing Nigerian brands</span>
-      <div class="brands">
-        <span>Fashion</span>
-        <span>Beauty</span>
-        <span>Fintech</span>
-        <span>Hospitality</span>
-        <span>Real Estate</span>
+    </div>
+    <div class="marquee">
+      <div class="marquee-track">
+        <span>Fashion</span><span>Beauty</span><span>Fintech</span><span>Hospitality</span><span>Real Estate</span>
+        <span>E-commerce</span><span>Food &amp; Beverage</span><span>Fitness</span><span>Logistics</span><span>Education</span>
+        <span>Fashion</span><span>Beauty</span><span>Fintech</span><span>Hospitality</span><span>Real Estate</span>
+        <span>E-commerce</span><span>Food &amp; Beverage</span><span>Fitness</span><span>Logistics</span><span>Education</span>
       </div>
     </div>
   </div>
@@ -962,56 +1168,81 @@
         <div class="pill">Limited spots</div>
       </div>
 
-      <div class="pricing-grid">
-        <div class="price-card">
-          <div class="plan-name">DMAD START</div>
-          <div class="plan-desc">For brands that need a clean, professional foundation.</div>
-          <div class="amount">₦50,000</div>
-          <div class="discounted">₦40,000 with Founding 20</div>
-          <ul>
-            <li><i class="fas fa-check"></i> Logo design / refinement</li>
-            <li><i class="fas fa-check"></i> Brand colours & typography</li>
-            <li><i class="fas fa-check"></i> Basic brand direction</li>
-            <li><i class="fas fa-check"></i> 5 social media templates</li>
-            <li><i class="fas fa-check"></i> 1 promotional design</li>
-            <li><i class="fas fa-check"></i> 2 revision rounds</li>
+      <div class="pricing-slider">
+        <!-- START -->
+        <div class="plan-card">
+          <div class="plan-head">
+            <div class="plan-name">DMAD START</div>
+            <span class="plan-tag">Active <span class="dot"></span></span>
+          </div>
+          <div class="plan-price">
+            <span class="currency">₦</span>50,000
+            <span class="period">/ one-off</span>
+          </div>
+          <div class="plan-note">From ₦40,000 with Founding 20</div>
+          <p class="plan-desc">For brands that need a clean, professional foundation.</p>
+          <ul class="plan-features">
+            <li class="on"><i class="fas fa-check"></i> Logo design / refinement</li>
+            <li class="on"><i class="fas fa-check"></i> Brand colours &amp; typography</li>
+            <li class="on"><i class="fas fa-check"></i> Basic brand direction</li>
+            <li class="on"><i class="fas fa-check"></i> 5 social media templates</li>
+            <li class="on"><i class="fas fa-check"></i> 1 promotional design</li>
+            <li class="off"><i class="fas fa-xmark"></i> Full brand identity system</li>
+            <li class="off"><i class="fas fa-xmark"></i> Website / landing page</li>
+            <li class="off"><i class="fas fa-xmark"></i> 30-day content direction</li>
           </ul>
-          <a href="#contact" class="btn btn-outline">Get Started</a>
+          <a href="#contact" class="plan-btn">Get Started</a>
         </div>
 
-        <div class="price-card featured">
-          <div class="price-badge">Most Popular</div>
-          <div class="plan-name">DMAD GROW</div>
-          <div class="plan-desc">Complete brand identity + website to start scaling.</div>
-          <div class="amount">₦80,000</div>
-          <div class="discounted">₦64,000 with Founding 20</div>
-          <ul>
-            <li><i class="fas fa-check"></i> Complete brand identity</li>
-            <li><i class="fas fa-check"></i> Brand direction / mini guidelines</li>
-            <li><i class="fas fa-check"></i> 10 social media designs</li>
-            <li><i class="fas fa-check"></i> Content direction</li>
-            <li><i class="fas fa-check"></i> Landing page / basic website</li>
-            <li><i class="fas fa-check"></i> Promotional campaign concept</li>
-            <li><i class="fas fa-check"></i> 30-day content direction</li>
+        <!-- GROW (featured) -->
+        <div class="plan-card featured">
+          <div class="save-badge">Save 20%</div>
+          <div class="plan-head">
+            <div class="plan-name">DMAD GROW</div>
+          </div>
+          <div class="plan-price">
+            <span class="old">₦100,000</span>
+            <span class="currency">₦</span>80,000
+            <span class="period">/ one-off</span>
+          </div>
+          <div class="plan-note">From ₦64,000 with Founding 20</div>
+          <p class="plan-desc">Complete brand identity + website to start scaling.</p>
+          <ul class="plan-features">
+            <li class="on"><i class="fas fa-check"></i> Complete brand identity</li>
+            <li class="on"><i class="fas fa-check"></i> Brand direction / mini guidelines</li>
+            <li class="on"><i class="fas fa-check"></i> 10 social media designs</li>
+            <li class="on"><i class="fas fa-check"></i> Content direction</li>
+            <li class="on"><i class="fas fa-check"></i> Landing page / basic website</li>
+            <li class="on"><i class="fas fa-check"></i> Promotional campaign concept</li>
+            <li class="on"><i class="fas fa-check"></i> 30-day content direction</li>
+            <li class="off"><i class="fas fa-xmark"></i> Monthly social media management</li>
           </ul>
-          <a href="#contact" class="btn btn-coral">Get Started</a>
+          <a href="#contact" class="plan-btn primary">Start 7-day concept trial</a>
         </div>
 
-        <div class="price-card">
-          <div class="plan-name">DMAD BRAND PREMIUM</div>
-          <div class="plan-desc">Full-service brand management, month after month.</div>
-          <div class="amount">₦120,000 <small>/mo</small></div>
-          <div class="discounted">₦96,000/mo with Founding 20</div>
-          <ul>
-            <li><i class="fas fa-check"></i> Social media management</li>
-            <li><i class="fas fa-check"></i> Content planning</li>
-            <li><i class="fas fa-check"></i> Graphic design</li>
-            <li><i class="fas fa-check"></i> Publishing / scheduling</li>
-            <li><i class="fas fa-check"></i> Campaign development</li>
-            <li><i class="fas fa-check"></i> Monthly strategy / reporting</li>
-            <li><i class="fas fa-check"></i> Creative direction</li>
+        <!-- PREMIUM -->
+        <div class="plan-card">
+          <div class="plan-head">
+            <div class="plan-name">DMAD BRAND PREMIUM</div>
+            <span class="plan-tag popular">Popular <span class="dot green"></span></span>
+          </div>
+          <div class="plan-price">
+            <span class="currency">₦</span>120,000
+            <span class="period">/ month</span>
+          </div>
+          <div class="plan-note">From ₦96,000/mo with Founding 20</div>
+          <p class="plan-desc">Full-service brand management, month after month.</p>
+          <ul class="plan-features">
+            <li class="on"><i class="fas fa-check"></i> Social media management</li>
+            <li class="on"><i class="fas fa-check"></i> Content planning</li>
+            <li class="on"><i class="fas fa-check"></i> Graphic design</li>
+            <li class="on"><i class="fas fa-check"></i> Publishing / scheduling</li>
+            <li class="on"><i class="fas fa-check"></i> Campaign development</li>
+            <li class="on"><i class="fas fa-check"></i> Monthly strategy / reporting</li>
+            <li class="on"><i class="fas fa-check"></i> Creative direction</li>
+            <li class="on"><i class="fas fa-check"></i> Dedicated account manager</li>
           </ul>
-          <a href="#contact" class="btn btn-outline">Get Started</a>
+          <a href="#contact" class="plan-btn">Start 7-day concept trial</a>
         </div>
       </div>
 
@@ -1154,7 +1385,7 @@
 
   <a href="https://wa.me/2349123767786" target="_blank" class="whatsapp-float" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
 
-    <script>
+  <script>
     // ===== THEME TOGGLE =====
     const themeToggle = document.getElementById('themeToggle');
     const themeIcon = document.getElementById('themeIcon');
@@ -1208,23 +1439,16 @@
       });
     });
 
-    // ===== HERO TYPING ANIMATION =====
+    // ===== HERO TYPING ANIMATION (preserves accent span) =====
     (function() {
-      const el = document.getElementById('heroHeadline');
-      // Save original markup then empty it
-      const originalHTML = el.innerHTML;
-      el.innerHTML = '';
-      el.style.minHeight = el.offsetHeight ? el.offsetHeight + 'px' : '4em';
-
-      // Build the sequence: segments with target HTML (so accent color stays)
-      // Format: [ plainText, isAccent ]
+      const el = document.getElementById('typingText');
       const segments = [
         { text: 'We help businesses become ', accent: false },
         { text: 'discoverable, trusted', accent: true },
         { text: ' and profitable through proper branding.', accent: false }
       ];
 
-      // Flatten into individual characters with accent info
+      // Flatten into char array with accent info
       const chars = [];
       segments.forEach(seg => {
         for (const ch of seg.text) {
@@ -1232,47 +1456,25 @@
         }
       });
 
-      // Create a span container for the accent part and normal text nodes
-      // We'll rebuild char-by-char using a single text node + accent span
+      const accentStart = segments[0].text.length;
+      const accentEnd = accentStart + segments[1].text.length;
+
       let accentSpan = null;
-      let currentAccentState = false;
-
-      function setupContainers() {
-        el.innerHTML = '';
-        accentSpan = document.createElement('span');
-        accentSpan.className = 'accent';
-        el.appendChild(accentSpan);
-      }
-
-      setupContainers();
-
       let i = 0;
-      const speed = 45; // ms per char
-      const accentSpanStart = segments[0].text.length; // index where accent begins
-      const accentSpanEnd = accentSpanStart + segments[1].text.length; // index where accent ends
+      const speed = 45;
 
       function typeNext() {
-        if (i >= chars.length) {
-          // done
-          return;
-        }
-
+        if (i >= chars.length) return;
         const { ch, accent } = chars[i];
 
         if (accent) {
-          // First char of accent: insert accentSpan into DOM right after plain text
-          if (i === accentSpanStart) {
+          if (i === accentStart) {
             accentSpan = document.createElement('span');
             accentSpan.className = 'accent';
             el.appendChild(accentSpan);
           }
           accentSpan.textContent += ch;
         } else {
-          // After accent ends, create a new text node for remaining plain text
-          if (i === accentSpanEnd) {
-            el.appendChild(document.createTextNode(''));
-          }
-          // Append to last child if it's a text node, else create one
           const last = el.lastChild;
           if (last && last.nodeType === Node.TEXT_NODE) {
             last.textContent += ch;
@@ -1285,7 +1487,6 @@
         setTimeout(typeNext, speed);
       }
 
-      // Start typing after a short delay
       setTimeout(typeNext, 400);
     })();
   </script>
