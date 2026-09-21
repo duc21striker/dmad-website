@@ -476,3 +476,325 @@ a { color: inherit; }
   .case-cta h2 { font-size: 1.55rem; }
   .pullquote p { font-size: 1.1rem; }
 }
+
+/* ============================================================
+   ADDITIONS — for the extended case study template
+   (OAK & OVEN pattern — used across all 6 concept pages)
+   ============================================================ */
+
+/* ---- Hero preview (browser mockup) ---- */
+.case-preview__browser-bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 32px;
+  background: #1a2235;
+  border-bottom: 1px solid #2a3445;
+}
+.case-preview__browser-bar::before {
+  content: '';
+  position: absolute;
+  top: 13px; left: 16px;
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #ff5f57;
+  box-shadow: 14px 0 0 #ffbd2e, 28px 0 0 #28ca42;
+}
+.case-preview__screen {
+  padding-top: 32px;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-left: 3rem;
+  padding-right: 3rem;
+}
+.case-preview__screen .mockup-hero {
+  width: 100%;
+  max-width: 640px;
+  text-align: center;
+}
+.mockup-eyebrow {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  margin-bottom: 1rem;
+}
+.mockup-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 2rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #fff;
+  margin-bottom: 1.5rem;
+}
+.mockup-sub {
+  height: 6px;
+  width: 60%;
+  margin: 0 auto 0.6rem;
+  background: rgba(255,255,255,0.25);
+  border-radius: 3px;
+}
+.mockup-sub.short { width: 40%; }
+.mockup-buttons {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+.mockup-btn {
+  display: block;
+  height: 40px;
+  width: 140px;
+  border-radius: 100px;
+}
+.mockup-btn.solid { background: #FF6B4A; }
+.mockup-btn.ghost {
+  background: transparent;
+  border: 1.5px solid rgba(255,255,255,0.3);
+}
+
+/* Preview themes — each case study gets its own gradient */
+.case-preview[data-theme="oak"] .case-preview__screen {
+  background:
+    radial-gradient(circle at 30% 20%, rgba(201,169,110,0.35), transparent 55%),
+    linear-gradient(160deg, #2a1f16 0%, #1a1209 55%, #0d0805 100%);
+}
+.case-preview[data-theme="velora"] .case-preview__screen {
+  background:
+    radial-gradient(circle at 70% 30%, rgba(212,180,255,0.25), transparent 55%),
+    linear-gradient(160deg, #1a1622 0%, #0f0d15 60%, #060508 100%);
+}
+.case-preview[data-theme="haven"] .case-preview__screen {
+  background:
+    radial-gradient(circle at 30% 70%, rgba(255,180,140,0.25), transparent 55%),
+    linear-gradient(160deg, #2a1e18 0%, #1a120e 60%, #0d0705 100%);
+}
+.case-preview[data-theme="nexa"] .case-preview__screen {
+  background:
+    radial-gradient(circle at 70% 20%, rgba(31,76,143,0.5), transparent 55%),
+    linear-gradient(160deg, #0B2244 0%, #1F4C8F 60%, #0a1a33 100%);
+}
+.case-preview[data-theme="lumie"] .case-preview__screen {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(201,196,184,0.3), transparent 55%),
+    radial-gradient(circle at 75% 75%, rgba(212,165,165,0.25), transparent 55%),
+    linear-gradient(160deg, #3D4A3D 0%, #2a3329 60%, #171d16 100%);
+}
+.case-preview[data-theme="meridian"] .case-preview__screen {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(143,166,143,0.2), transparent 55%),
+    radial-gradient(circle at 80% 80%, rgba(201,169,110,0.25), transparent 55%),
+    linear-gradient(160deg, #1B2A4A 0%, #0F1419 60%, #06080c 100%);
+}
+
+/* ---- Status badge ---- */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 0.35rem 0.8rem;
+  border-radius: 100px;
+}
+.status-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: statusPulse 2s ease-in-out infinite;
+}
+.status-badge--live {
+  color: #10b981;
+  background: rgba(16,185,129,0.12);
+}
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+/* ---- Lead paragraph in content ---- */
+.case-lead-paragraph {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text);
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+/* ---- Design system grid ---- */
+.design-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+}
+@media (max-width: 900px) { .design-grid { grid-template-columns: 1fr; gap: 2.5rem; } }
+
+.design-colors h4,
+.design-type h4 {
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--text3);
+  margin-bottom: 1.25rem;
+}
+
+.swatch-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
+}
+.swatch { display: flex; flex-direction: column; gap: 0.5rem; }
+.swatch-color {
+  height: 72px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+.swatch-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+.swatch-meta strong {
+  font-size: 0.8rem;
+  color: var(--text);
+  font-weight: 700;
+}
+.swatch-meta span {
+  font-size: 0.7rem;
+  color: var(--text3);
+  font-family: 'Courier New', monospace;
+}
+
+.type-sample {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.type-display,
+.type-body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+.type-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text3);
+}
+.type-serif {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: var(--text);
+}
+.type-body p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text2);
+}
+
+/* ---- Approach timeline ---- */
+.approach-timeline {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border-top: 1px solid var(--border);
+}
+.approach-step {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 2rem;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--border);
+}
+@media (max-width: 600px) {
+  .approach-step { grid-template-columns: 1fr; gap: 0.75rem; }
+}
+.approach-step-num {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: var(--coral);
+  line-height: 1;
+}
+.approach-step-body h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.6rem;
+}
+.approach-step-body p {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: var(--text2);
+  max-width: 70ch;
+}
+
+/* ---- CTA band (View Demo) ---- */
+.case-cta-band {
+  padding: 4rem 0;
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(31,76,143,0.35), transparent 60%),
+    radial-gradient(ellipse at 80% 70%, rgba(255,107,74,0.2), transparent 55%),
+    var(--blue-deep);
+  color: #fff;
+}
+.case-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+.case-cta-text .case-section-num { color: var(--coral); }
+.case-cta-text h2 {
+  font-size: 2rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+  line-height: 1.15;
+}
+.case-cta-text p {
+  color: rgba(255,255,255,0.75);
+  font-size: 1rem;
+  max-width: 480px;
+}
+.btn-large { padding: 1.05rem 2.4rem; font-size: 1rem; }
+
+@media (max-width: 768px) {
+  .case-cta-inner { flex-direction: column; align-items: flex-start; }
+  .case-cta-text h2 { font-size: 1.5rem; }
+}
+
+/* ---- Next case grid (6 cards) ---- */
+.next-case-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+}
+@media (max-width: 768px) { .next-case-grid { grid-template-columns: 1fr; } }
+
+.next-case-grid .next-case { min-height: 200px; }
+.next-case-grid .next-case--all {
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(31,76,143,0.15), transparent 60%),
+    radial-gradient(ellipse at 80% 50%, rgba(255,107,74,0.1), transparent 60%),
+    var(--bg-soft);
+}
+[data-theme="dark"] .next-case-grid .next-case--all {
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(31,76,143,0.35), transparent 60%),
+    radial-gradient(ellipse at 80% 50%, rgba(255,107,74,0.15), transparent 60%),
+    var(--bg-soft);
+}
