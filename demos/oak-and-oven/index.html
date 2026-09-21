@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>OAK & OVEN — Modern dining. Rooted in flavour.</title>
+  <meta name="description" content="Lagos' premier contemporary Nigerian restaurant. Wood-fired, locally sourced, deeply flavourful.">
+  <meta name="theme-color" content="#150E0A">
+
+  <meta property="og:title" content="OAK & OVEN — Modern dining. Rooted in flavour.">
+  <meta property="og:description" content="A cinematic dining experience in Lekki, Lagos.">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://oakandoven.ng">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23150E0A'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='15' fill='%23B87333'%3EO%26O%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<div class="glow-field" aria-hidden="true">
+  <div class="glow glow-1"></div>
+  <div class="glow glow-2"></div>
+  <div class="glow glow-3"></div>
+</div>
+
+<div id="scroll-progress" aria-hidden="true"></div>
+
+<div class="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-ring" aria-hidden="true"></div>
+<div class="cursor-lens" aria-hidden="true"><span>VIEW</span></div>
+
+<!-- Toast container -->
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- ==================== PRELOADER ==================== -->
+<div id="preloader" role="status" aria-label="Loading">
+  <div class="preloader-brand" aria-hidden="true">
+    <span style="animation-delay:0s">O</span>
+    <span style="animation-delay:0.08s">A</span>
+    <span style="animation-delay:0.16s">K</span>
+    <span style="animation-delay:0.24s">&nbsp;</span>
+    <span style="animation-delay:0.32s">&amp;</span>
+    <span style="animation-delay:0.4s">&nbsp;</span>
+    <span style="animation-delay:0.48s">O</span>
+    <span style="animation-delay:0.56s">V</span>
+    <span style="animation-delay:0.64s">E</span>
+    <span style="animation-delay:0.72s">N</span>
+  </div>
+  <div class="preloader-progress">
+    <div class="preloader-progress-bar" id="preloaderBar"></div>
+  </div>
+  <div class="preloader-counter" id="preloaderCounter">0%</div>
+</div>
+
+<!-- ==================== NAVIGATION ==================== -->
+<header>
+  <nav id="mainNav" class="nav-shell" aria-label="Main navigation">
+    <div class="nav-pill glass">
+      <a href="#hero" class="nav-logo" aria-label="Oak & Oven home">OAK &amp; OVEN</a>
+      <ul class="nav-links" role="list">
+        <li><a href="#the-table">The Table</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#story">Kitchen</a></li>
+      </ul>
+      <a href="#reservation" class="nav-cta">Reserve</a>
+      <button class="mobile-menu-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+
+<div class="mobile-overlay" id="mobileOverlay" role="dialog" aria-label="Mobile menu">
+  <a href="#the-table">The Table</a>
+  <a href="#menu">Menu</a>
+  <a href="#experience">Experience</a>
+  <a href="#story">Kitchen</a>
+  <a href="#reservation">Reserve</a>
+</div>
+
+<main>
+
+  <!-- ==================== 01 — HERO ==================== -->
+  <section id="hero" aria-label="Hero">
+    <div class="hero-bg">
+      <!-- Image src set from IMAGES.hero in main.js -->
+      <img data-img="hero" src="" alt="Warmly lit dining room with wood-fired oven in the background" fetchpriority="high">
+    </div>
+
+    <canvas class="embers-canvas" data-embers="hero" aria-hidden="true"></canvas>
+
+    <div class="hero-content">
+      <div class="hero-text">
+        <h1 class="hero-title">
+          <span class="line-mask"><span>OAK &amp;</span></span>
+          <span class="line-mask"><span><em>OVEN</em></span></span>
+        </h1>
+        <p class="hero-tagline">
+          <span class="line-mask"><span>Modern dining. Rooted in flavour.</span></span>
+        </p>
+        <a href="#the-table" class="hero-cta" id="heroCta">Enter the Experience →</a>
+      </div>
+
+      <!--
+        HERO FLOATING DISH
+        Wrapper: .hero-dish-scroll (driven by scroll scrub — scale/rotate/y)
+        Inner:   .hero-dish (driven by mouse parallax — x/y)
+        Image src set from IMAGES.heroDish in main.js
+      -->
+      <div class="hero-dish-scroll" data-parallax="hero-scroll">
+        <div class="hero-dish" data-parallax="hero-mouse">
+          <div class="hero-dish-glow"></div>
+          <div class="hero-dish-plate">
+            <img data-img="heroDish" src="" alt="Smoked jollof rice with charred prawns" loading="eager">
+          </div>
+          <div class="hero-steam" aria-hidden="true">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tasting ticket — thumbnail image set from IMAGES.ticketThumb -->
+    <a href="#reservation" class="tasting-ticket glass">
+      <div class="ticket-notch top"></div>
+      <div class="ticket-notch bottom"></div>
+      <div class="ticket-thumb">
+        <img data-img="ticketThumb" src="" alt="Chef's tasting dish" loading="lazy">
+      </div>
+      <div class="ticket-text">
+        <p class="ticket-label">Chef's Tasting Table</p>
+        <p class="ticket-detail">7 courses · Fri &amp; Sat</p>
+      </div>
+      <span class="ticket-cta">Reserve →</span>
+    </a>
+  </section>
+
+  <!-- ==================== 02 — THE TABLE ==================== -->
+  <section id="the-table" class="section-pad" aria-labelledby="tableHeading">
+    <div class="container-wide">
+      <div class="bracket-heading" data-bracket>
+        <span class="bracket tl"></span><span class="bracket br"></span>
+        <p class="label">The Table</p>
+        <h2 id="tableHeading" class="section-title">
+          We cook the way <em>Nigeria</em> eats.
+        </h2>
+      </div>
+
+      <div class="table-image-wrap" id="tableImage">
+        <img data-img="table" src="" alt="Chef plating a dish with precision in a warm kitchen" loading="lazy">
+      </div>
+
+      <p class="table-statement">
+        <span class="word">With</span> <span class="word">fire,</span> <span class="word">patience</span> <span class="word">and</span> <span class="word">generosity.</span>
+      </p>
+
+      <div class="stats-row">
+        <div class="stat-item">
+          <div class="stat-number" data-target="2019">0</div>
+          <div class="stat-label">Established</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="3">0</div>
+          <div class="stat-label">Wood-fired ovens</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="100">0</div>
+          <div class="stat-label">% Local produce</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" data-target="12">0</div>
+          <div class="stat-label">Seasonal dishes</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 03 — SIGNATURE DISHES ==================== -->
+  <section id="signatures" class="section-pad" aria-labelledby="sigHeading">
+    <div class="container-wide">
+      <div class="bracket-heading" data-bracket>
+        <span class="bracket tl"></span><span class="bracket br"></span>
+        <p class="label">Signatures</p>
+        <h2 id="sigHeading" class="section-title">Our <em>Signature</em> Dishes</h2>
+      </div>
+    </div>
+
+    <div class="dish-stack">
+      <!-- Dish images set from IMAGES.dishes[0..2] in main.js -->
+      <article class="dish-panel" data-dish-index="0">
+        <div class="dish-panel-inner glass">
+          <div class="dish-cutout" data-side="right">
+            <div class="dish-cutout-glow"></div>
+            <img data-img="dish-0" src="" alt="The Oak Board — dry-aged suya" loading="lazy">
+          </div>
+          <div class="dish-content">
+            <span class="dish-tag">Chef's Pick</span>
+            <h3 class="dish-name">The Oak Board</h3>
+            <p class="dish-desc">Dry-aged suya, ram, grilled chicken, and seasonal sides. Serves two, generously.</p>
+            <div class="dish-meta">
+              <span class="dish-price">₦55,000</span>
+              <button class="dish-add-note" data-dish="The Oak Board">+ Add to reservation notes</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="dish-panel" data-dish-index="1">
+        <div class="dish-panel-inner glass">
+          <div class="dish-cutout" data-side="left">
+            <div class="dish-cutout-glow"></div>
+            <img data-img="dish-1" src="" alt="Whole Oven-Baked Croaker with tatashe glaze" loading="lazy">
+          </div>
+          <div class="dish-content">
+            <span class="dish-tag">Chef's Pick</span>
+            <h3 class="dish-name">Whole Oven-Baked Croaker</h3>
+            <p class="dish-desc">Tatashe glaze, charred lemon, and a bed of smoky jollof.</p>
+            <div class="dish-meta">
+              <span class="dish-price">₦38,000</span>
+              <button class="dish-add-note" data-dish="Whole Oven-Baked Croaker">+ Add to reservation notes</button>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="dish-panel" data-dish-index="2">
+        <div class="dish-panel-inner glass">
+          <div class="dish-cutout" data-side="right">
+            <div class="dish-cutout-glow"></div>
+            <img data-img="dish-2" src="" alt="Oven-Roasted Lamb Shank with egusi jus" loading="lazy">
+          </div>
+          <div class="dish-content">
+            <span class="dish-tag">Chef's Pick</span>
+            <h3 class="dish-name">Oven-Roasted Lamb Shank</h3>
+            <p class="dish-desc">Fall-off-the-bone lamb, egusi jus, and roasted root vegetables.</p>
+            <div class="dish-meta">
+              <span class="dish-price">₦28,000</span>
+              <button class="dish-add-note" data-dish="Oven-Roasted Lamb Shank">+ Add to reservation notes</button>
+            </div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ==================== 04 — MENU ==================== -->
+  <section id="menu" class="section-pad" aria-labelledby="menuHeading">
+    <div class="container-narrow">
+      <div class="bracket-heading center" data-bracket>
+        <span class="bracket tl"></span><span class="bracket br"></span>
+        <p class="label">The Menu</p>
+        <h2 id="menuHeading" class="section-title">What We're <em>Cooking</em></h2>
+      </div>
+
+      <div class="menu-tabs glass" role="tablist" aria-label="Menu categories">
+        <span class="tab-indicator" aria-hidden="true"></span>
+        <button class="menu-tab active" role="tab" aria-selected="true" data-category="starters">Starters</button>
+        <button class="menu-tab" role="tab" aria-selected="false" data-category="mains">Mains</button>
+        <button class="menu-tab" role="tab" aria-selected="false" data-category="signatures">Signatures</button>
+        <button class="menu-tab" role="tab" aria-selected="false" data-category="desserts">Desserts</button>
+        <button class="menu-tab" role="tab" aria-selected="false" data-category="drinks">Drinks</button>
+      </div>
+
+      <div class="menu-list" id="menuList" role="tabpanel"></div>
+
+      <div class="menu-download">
+        <a href="#" id="menuDownload">Download full menu (PDF)</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 05 — EXPERIENCE ==================== -->
+  <section id="experience" class="section-pad" aria-labelledby="expHeading">
+    <div class="container-wide">
+      <div class="bracket-heading" data-bracket>
+        <span class="bracket tl"></span><span class="bracket br"></span>
+        <p class="label">The Experience</p>
+        <h2 id="expHeading" class="section-title">Three <em>Chapters</em></h2>
+      </div>
+
+      <div class="exp-block">
+        <div class="exp-image">
+          <img data-img="exp-0" src="" alt="Open kitchen with chefs working over wood fire" loading="lazy">
+          <div class="exp-chip glass">
+            <span class="exp-chip-num">01</span>
+            <span class="exp-chip-title">The Kitchen</span>
+          </div>
+        </div>
+        <div class="exp-text">
+          <h3>The Kitchen</h3>
+          <p>Our open kitchen is the heart of the restaurant. Watch our chefs work the wood-fired ovens, coaxing smoke and char into every dish. It's theatre, but the kind you can taste.</p>
+        </div>
+      </div>
+
+      <div class="exp-block reverse">
+        <div class="exp-image">
+          <img data-img="exp-1" src="" alt="Moody bar with copper accents and craft cocktails" loading="lazy">
+          <div class="exp-chip glass">
+            <span class="exp-chip-num">02</span>
+            <span class="exp-chip-title">The Bar</span>
+          </div>
+        </div>
+        <div class="exp-text">
+          <h3>The Bar</h3>
+          <p>A curated list of cocktails that reimagine Nigerian classics. The Zobo Negroni. The Chapman, rebuilt. Small-batch spirits and a wine list that knows its way around spice.</p>
+        </div>
+      </div>
+
+      <div class="exp-block">
+        <div class="exp-image">
+          <img data-img="exp-2" src="" alt="Intimate private dining room with warm candlelight" loading="lazy">
+          <div class="exp-chip glass">
+            <span class="exp-chip-num">03</span>
+            <span class="exp-chip-title">Private Dining</span>
+          </div>
+        </div>
+        <div class="exp-text">
+          <h3>Private Dining</h3>
+          <p>For celebrations that deserve their own room. Our private space seats up to 20, with a dedicated host and a menu tailored to the occasion. Quiet, warm, yours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 06 — OUR STORY ==================== -->
+  <section id="story" class="section-pad" aria-labelledby="storyHeading">
+    <div class="container-wide">
+      <div class="bracket-heading" data-bracket>
+        <span class="bracket tl"></span><span class="bracket br"></span>
+        <p class="label">Our Story</p>
+        <h2 id="storyHeading" class="section-title">From <em>Lagos</em>, with fire.</h2>
+      </div>
+
+      <div class="story-grid">
+        <div class="story-portrait reveal-clip">
+          <!-- Story portrait uses IMAGES.portrait (distinct from chef portrait) -->
+          <img data-img="portrait" src="" alt="The story of Oak & Oven, told in light and fire" loading="lazy">
+        </div>
+        <div>
+          <blockquote class="story-quote">"I grew up watching my grandmother cook with fire. OAK & OVEN is my attempt to honour that — and push it forward."</blockquote>
+          <p class="story-body">
+            Chef Adeola Balogun opened OAK & OVEN in 2019 with a simple idea: Nigerian food, cooked with the same reverence the world gives to French or Japanese cuisine. No shortcuts. No apologies. Just fire, patience, and the best ingredients Lagos has to offer.
+          </p>
+        </div>
+      </div>
+
+      <div class="timeline" id="timeline">
+        <div class="timeline-line" id="timelineLine"></div>
+        <div class="timeline-items">
+          <div class="timeline-item"><div class="timeline-year">2019</div><div class="timeline-dot"></div><div class="timeline-desc">Opened on Admiralty Way</div></div>
+          <div class="timeline-item"><div class="timeline-year">2021</div><div class="timeline-dot"></div><div class="timeline-desc">Second wood-fired oven</div></div>
+          <div class="timeline-item"><div class="timeline-year">2023</div><div class="timeline-dot"></div><div class="timeline-desc">Private dining launched</div></div>
+          <div class="timeline-item"><div class="timeline-year">2025</div><div class="timeline-dot"></div><div class="timeline-desc">Expanded the kitchen team</div></div>
+          <div class="timeline-item"><div class="timeline-year">Today</div><div class="timeline-dot"></div><div class="timeline-desc">Still cooking</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 07 — GALLERY ==================== -->
+  <section id="gallery" aria-labelledby="galleryHeading">
+    <div class="gallery-header container-wide">
+      <div class="bracket-heading" data-bracket>
+        <span class="bracket tl"></span><span class="bracket br"></span>
+        <p class="label">From Our Kitchen</p>
+        <h2 id="galleryHeading" class="section-title">A night in <em>frames</em>.</h2>
+      </div>
+    </div>
+    <div class="gallery-pin-wrap">
+      <div class="gallery-track" id="galleryTrack">
+        <!-- Gallery images set from IMAGES.gallery[] in main.js -->
+        <div class="gallery-item" data-ar="4/5"><img data-img="gal-0" src="" alt="Close-up of grilled meat with char marks" loading="lazy"><div class="caption glass"><span class="cap-num">01</span><span>The Grill</span></div></div>
+        <div class="gallery-item" data-ar="3/4"><img data-img="gal-1" src="" alt="Fresh ingredients on a dark surface" loading="lazy"><div class="caption glass"><span class="cap-num">02</span><span>Market Morning</span></div></div>
+        <div class="gallery-item" data-ar="4/3"><img data-img="gal-2" src="" alt="Plated dish with vibrant colors" loading="lazy"><div class="caption glass"><span class="cap-num">03</span><span>Plating</span></div></div>
+        <div class="gallery-item" data-ar="4/5"><img data-img="gal-3" src="" alt="Salad with fresh vegetables" loading="lazy"><div class="caption glass"><span class="cap-num">04</span><span>Garden</span></div></div>
+        <div class="gallery-item" data-ar="3/4"><img data-img="gal-4" src="" alt="Pizza fresh from the oven" loading="lazy"><div class="caption glass"><span class="cap-num">05</span><span>Wood Fire</span></div></div>
+        <div class="gallery-item" data-ar="4/3"><img data-img="gal-5" src="" alt="Elegant dessert presentation" loading="lazy"><div class="caption glass"><span class="cap-num">06</span><span>Sweet</span></div></div>
+        <div class="gallery-item" data-ar="4/5"><img data-img="gal-6" src="" alt="Restaurant interior at night" loading="lazy"><div class="caption glass"><span class="cap-num">07</span><span>Evening</span></div></div>
+        <div class="gallery-item" data-ar="3/4"><img data-img="gal-7" src="" alt="Cocktail being poured" loading="lazy"><div class="caption glass"><span class="cap-num">08</span><span>The Bar</span></div></div>
+        <div class="gallery-item" data-ar="4/3"><img data-img="gal-8" src="" alt="Dining room with warm lighting" loading="lazy"><div class="caption glass"><span class="cap-num">09</span><span>The Room</span></div></div>
+        <div class="gallery-item" data-ar="3/4"><img data-img="gal-9" src="" alt="Chef finishing a dish" loading="lazy"><div class="caption glass"><span class="cap-num">10</span><span>Final Touch</span></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 08 — TESTIMONIALS ==================== -->
+  <section id="testimonials" class="section-pad" aria-labelledby="testHeading">
+    <div class="container-wide">
+      <div class="bracket-heading center" data-bracket>
+        <span class="bracket tl"></span><span class="bracket br"></span>
+        <p class="label">What Guests Say</p>
+        <h2 id="testHeading" class="section-title">Words from the <em>table</em>.</h2>
+      </div>
+
+      <div class="testimonial-stack" id="testimonialStack">
+        <article class="testimonial-card glass" data-testimonial="0">
+          <div class="t-avatar" aria-hidden="true">C</div>
+          <div class="t-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="t-quote">"The Oak Board is a religious experience. I've eaten at restaurants across three continents and nothing comes close to what Chef Adeola is doing here."</p>
+          <div class="t-meta">
+            <span class="t-author">Chidinma O.</span>
+            <span class="t-occasion">Anniversary dinner</span>
+          </div>
+        </article>
+
+        <article class="testimonial-card glass" data-testimonial="1">
+          <div class="t-avatar" aria-hidden="true">T</div>
+          <div class="t-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="t-quote">"OAK & OVEN doesn't feel like a restaurant. It feels like being invited into someone's home — if that someone happened to be a genius with fire."</p>
+          <div class="t-meta">
+            <span class="t-author">Tunde A.</span>
+            <span class="t-occasion">Business dinner</span>
+          </div>
+        </article>
+
+        <article class="testimonial-card glass" data-testimonial="2">
+          <div class="t-avatar" aria-hidden="true">A</div>
+          <div class="t-stars" aria-label="5 out of 5 stars">★★★★★</div>
+          <p class="t-quote">"The smoked jollof with charred prawns ruined all other jollof for me. I'm not even mad about it."</p>
+          <div class="t-meta">
+            <span class="t-author">Amara N.</span>
+            <span class="t-occasion">Birthday celebration</span>
+          </div>
+        </article>
+      </div>
+
+      <div class="testimonial-controls">
+        <button class="testimonial-btn" id="testPrev" aria-label="Previous testimonial">←</button>
+        <div class="testimonial-dots" id="testDots" role="tablist" aria-label="Testimonial navigation"></div>
+        <button class="testimonial-btn" id="testNext" aria-label="Next testimonial">→</button>
+      </div>
+
+      <p class="rating-line">Rated 4.9 by 1,200+ guests</p>
+    </div>
+  </section>
+
+  <!-- ==================== 09 — MEET THE KITCHEN ==================== -->
+  <section id="kitchen-meet" class="section-pad" aria-labelledby="meetHeading">
+    <div class="container-wide">
+      <div class="bracket-heading" data-bracket>
+        <span class="bracket tl"></span><span class="bracket br"></span>
+        <p class="label">Meet the Kitchen</p>
+        <h2 id="meetHeading" class="section-title">The <em>hand</em> behind the fire.</h2>
+      </div>
+
+      <div class="chef-panel glass">
+        <div class="chef-portrait">
+          <div class="chef-accent" aria-hidden="true"></div>
+          <!-- Chef portrait uses IMAGES.chef -->
+          <img data-img="chef" src="" alt="Chef Adeola Balogun in whites holding a plated dish" loading="lazy">
+        </div>
+
+        <div class="chef-content">
+          <h3 class="chef-name">Chef Adeola Balogun</h3>
+          <p class="chef-philosophy">
+            "Fire is patient. It teaches you to wait — and to respect the ingredient. I cook the food I grew up with, plated for the room I'm in now. Nothing hidden, nothing rushed."
+          </p>
+          <ul class="chef-creds" role="list">
+            <li>Est. OAK &amp; OVEN, 2019</li>
+            <li>Formerly, Ile Ijo, Ikoyi</li>
+            <li>12 years cooking with fire</li>
+          </ul>
+          <a href="#" class="ghost-btn" id="meetTeam">Meet the team →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== 10 — RESERVATION ==================== -->
+  <section id="reservation" aria-labelledby="reserveHeading">
+    <canvas class="embers-canvas" data-embers="reserve" aria-hidden="true"></canvas>
+    <div class="reserve-glow-wrap" aria-hidden="true">
+      <div class="reserve-glow"></div>
+    </div>
+    <h2 class="reserve-headline" id="reserveHeading">Your table is <em>waiting.</em></h2>
+    <button class="reserve-btn" id="openReservation">Reserve a Table</button>
+    <p class="reserve-note">
+      Or <a href="https://wa.me/2348000000000?text=Hello%20OAK%20%26%20OVEN%2C%20I'd%20like%20to%20reserve%20a%20table." target="_blank" rel="noopener">book via WhatsApp →</a>
+    </p>
+  </section>
+
+  <!-- Reservation Modal -->
+  <div class="modal-overlay" id="reservationModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal glass">
+      <button class="modal-close" id="closeReservation" aria-label="Close reservation form">✕</button>
+      <div id="formContainer">
+        <h3 id="modalTitle">Reserve a Table</h3>
+        <p class="modal-sub">We'll confirm within 30 minutes via WhatsApp.</p>
+        <form id="reservationForm" novalidate>
+          <div class="form-group">
+            <label for="resName">Full Name *</label>
+            <input type="text" id="resName" name="name" required autocomplete="name">
+            <span class="error-msg" id="resNameError">Please enter your name</span>
+          </div>
+          <div class="form-group">
+            <label for="resPhone">Phone *</label>
+            <input type="tel" id="resPhone" name="phone" required autocomplete="tel" placeholder="+234...">
+            <span class="error-msg" id="resPhoneError">Please enter a valid phone number</span>
+          </div>
+          <div class="form-group">
+            <label for="resEmail">Email (optional)</label>
+            <input type="email" id="resEmail" name="email" autocomplete="email">
+          </div>
+          <div class="form-group">
+            <label for="resDate">Date *</label>
+            <input type="date" id="resDate" name="date" required>
+            <span class="error-msg" id="resDateError">Please select a date</span>
+            <span class="error-msg" id="resDateClosedError">We're closed on Mondays — please choose another day.</span>
+          </div>
+          <div class="form-group">
+            <label>Time *</label>
+            <div class="time-slots" id="timeSlots">
+              <!-- populated by JS based on the selected date -->
+            </div>
+            <span class="error-msg" id="resTimeError">Please select a time</span>
+          </div>
+          <div class="form-group">
+            <label>Guests *</label>
+            <div class="guest-stepper">
+              <button type="button" class="stepper-btn" id="guestMinus" aria-label="Decrease guests">−</button>
+              <span class="stepper-value" id="guestCount">2</span>
+              <button type="button" class="stepper-btn" id="guestPlus" aria-label="Increase guests">+</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="resOccasion">Occasion</label>
+            <select id="resOccasion" name="occasion">
+              <option value="">Select an occasion</option>
+              <option value="birthday">Birthday</option>
+              <option value="anniversary">Anniversary</option>
+              <option value="business">Business dinner</option>
+              <option value="date">Date night</option>
+              <option value="celebration">Celebration</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="resRequests">Special Requests</label>
+            <textarea id="resRequests" name="requests" rows="3" placeholder="Allergies, seating preference, etc."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Request Reservation</button>
+        </form>
+      </div>
+      <div class="form-success" id="formSuccess">
+        <div class="check">✓</div>
+        <h4>Your table is requested.</h4>
+        <p>We'll confirm on WhatsApp within 30 minutes.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 11 — LOCATION ==================== -->
+  <section id="location" class="section-pad" aria-labelledby="locHeading">
+    <div class="location-grid">
+      <div class="location-info">
+        <div class="bracket-heading" data-bracket>
+          <span class="bracket tl"></span><span class="bracket br"></span>
+          <p class="label">Visit</p>
+          <h2 id="locHeading" class="section-title">Find <em>us</em>.</h2>
+        </div>
+        <div class="location-details">
+          <p>14 Admiralty Way, Lekki Phase 1, Lagos</p>
+          <p><a href="tel:+2348000000000" class="link-quiet">+234 800 000 0000</a></p>
+          <p><a href="mailto:hello@oakandoven.ng" class="link-quiet">hello@oakandoven.ng</a></p>
+        </div>
+
+        <table class="hours-table" id="hoursTable">
+          <tr data-day="2"><td>Tuesday</td><td>12:00 – 22:00</td></tr>
+          <tr data-day="3"><td>Wednesday</td><td>12:00 – 22:00</td></tr>
+          <tr data-day="4"><td>Thursday</td><td>12:00 – 22:00</td></tr>
+          <tr data-day="5"><td>Friday</td><td>12:00 – 23:30</td></tr>
+          <tr data-day="6"><td>Saturday</td><td>12:00 – 23:30</td></tr>
+          <tr data-day="0"><td>Sunday</td><td>12:00 – 21:00</td></tr>
+          <tr data-day="1"><td>Monday</td><td>Closed</td></tr>
+        </table>
+
+        <div class="open-status" id="openStatus">
+          <span class="dot"></span>
+          <span id="statusText">Open now</span>
+        </div>
+
+        <div class="location-actions">
+          <a href="https://maps.google.com/?q=14+Admiralty+Way+Lekki+Phase+1+Lagos" target="_blank" rel="noopener">Get Directions</a>
+        </div>
+
+        <p class="parking-note">
+          Complimentary valet parking available. Smart casual dress code. Children welcome until 8pm.
+        </p>
+      </div>
+      <div class="map-wrap">
+        <iframe
+          src="https://www.google.com/maps?q=14+Admiralty+Way+Lekki+Phase+1+Lagos&output=embed"
+          allowfullscreen=""
+          loading="lazy"
+          title="Oak & Oven location map"
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ==================== 12 — FOOTER ==================== -->
+<footer>
+  <div class="footer-wordmark" aria-hidden="true">OAK &amp; OVEN</div>
+
+  <div class="footer-columns">
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="#the-table">The Table</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#story">Kitchen</a></li>
+        <li><a href="#reservation">Reserve</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Visit</h4>
+      <ul>
+        <li><a href="https://maps.google.com/?q=14+Admiralty+Way+Lekki+Phase+1+Lagos" target="_blank" rel="noopener">14 Admiralty Way</a></li>
+        <li><a href="https://maps.google.com/?q=14+Admiralty+Way+Lekki+Phase+1+Lagos" target="_blank" rel="noopener">Lekki Phase 1, Lagos</a></li>
+        <li><a href="tel:+2348000000000">+234 800 000 0000</a></li>
+        <li><a href="mailto:hello@oakandoven.ng">hello@oakandoven.ng</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Follow</h4>
+      <ul>
+        <li><a href="#" target="_blank" rel="noopener">Instagram</a></li>
+        <li><a href="#" target="_blank" rel="noopener">TikTok</a></li>
+        <li><a href="#" target="_blank" rel="noopener">X (Twitter)</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Newsletter</h4>
+      <form class="newsletter-form glass" id="newsletterForm">
+        <input type="email" placeholder="Your email" aria-label="Email address" required>
+        <button type="submit" aria-label="Subscribe">→</button>
+      </form>
+      <p class="newsletter-success" id="newsletterSuccess">Thank you. We'll be in touch.</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <p>© 2026 Oak &amp; Oven. All rights reserved.</p>
+    <p>Designed &amp; developed by <a href="https://duc21striker.github.io/dmad-website/" target="_blank" rel="noopener">DMAD</a></p>
+  </div>
+  <p class="concept-note">Concept project — not a real restaurant.</p>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+<script src="js/main.js" defer></script>
+
+</body>
+</html>
