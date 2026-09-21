@@ -1,0 +1,627 @@
+/* ============================================================
+   DMAD — Concept Work Section Styles
+   Companion to portfolio.css
+   ============================================================ */
+
+/* ============================================================
+   1. SECTION SHELL
+   ============================================================ */
+.section-concept-work {
+  position: relative;
+  overflow: hidden;
+}
+
+.section-concept-work::before {
+  content: '';
+  position: absolute;
+  top: 15%;
+  left: -15%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(31,76,143,0.10), transparent 65%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.section-concept-work::after {
+  content: '';
+  position: absolute;
+  bottom: 10%;
+  right: -15%;
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(255,107,74,0.08), transparent 65%);
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.section-concept-work > .container {
+  position: relative;
+  z-index: 1;
+}
+
+/* ============================================================
+   2. HEAD — SPLIT WITH VIEW-ALL LINK
+   ============================================================ */
+.section-head-split {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-bottom: 2.5rem;
+}
+
+.section-head-split > div {
+  flex: 1;
+  min-width: 280px;
+}
+
+.concept-view-all {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--blue);
+  text-decoration: none;
+  padding: 0.65rem 1.3rem;
+  border-radius: var(--radius-full);
+  border: 1.5px solid var(--border);
+  background: var(--bg-alt);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  white-space: nowrap;
+}
+
+.concept-view-all:hover {
+  background: var(--blue);
+  color: #fff;
+  border-color: var(--blue);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(31,76,143,0.3);
+}
+
+.concept-view-all i {
+  font-size: 0.75rem;
+  transition: transform 0.3s ease;
+}
+
+.concept-view-all:hover i {
+  transform: translateX(3px);
+}
+
+[data-theme="dark"] .concept-view-all {
+  color: #6FA0FF;
+  background: rgba(31,76,143,0.15);
+  border-color: rgba(111,160,255,0.3);
+}
+
+[data-theme="dark"] .concept-view-all:hover {
+  background: var(--blue);
+  color: #fff;
+}
+
+/* ============================================================
+   3. FILTER TABS
+   ============================================================ */
+.concept-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.concept-filter {
+  background: transparent;
+  border: 1.5px solid var(--border);
+  color: var(--text2);
+  padding: 0.55rem 1.25rem;
+  border-radius: var(--radius-full);
+  font-family: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  letter-spacing: 0.01em;
+}
+
+.concept-filter:hover {
+  border-color: var(--coral);
+  color: var(--coral);
+}
+
+.concept-filter.active {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #fff;
+  box-shadow: 0 6px 16px rgba(31,76,143,0.25);
+}
+
+[data-theme="dark"] .concept-filter.active {
+  background: var(--coral);
+  border-color: var(--coral);
+  box-shadow: 0 6px 16px rgba(255,107,74,0.3);
+}
+
+/* ============================================================
+   4. GRID
+   ============================================================ */
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+/* ============================================================
+   5. CARD
+   ============================================================ */
+.concept-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.concept-card.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.concept-card.is-visible:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+
+.concept-card.is-hidden {
+  display: none;
+}
+
+.concept-card__link {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+}
+
+/* ---------- Visual ---------- */
+.concept-visual {
+  height: 240px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+}
+
+.concept-visual::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(0,0,0,0.35) 100%);
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Themes */
+.concept-visual[data-theme="oak"] {
+  background:
+    radial-gradient(circle at 30% 20%, rgba(201,169,110,0.35), transparent 55%),
+    linear-gradient(160deg, #2a1f16 0%, #1a1209 55%, #0d0805 100%);
+}
+.concept-visual[data-theme="velora"] {
+  background:
+    radial-gradient(circle at 70% 30%, rgba(212,180,255,0.25), transparent 55%),
+    linear-gradient(160deg, #1a1622 0%, #0f0d15 60%, #060508 100%);
+}
+.concept-visual[data-theme="haven"] {
+  background:
+    radial-gradient(circle at 30% 70%, rgba(255,180,140,0.25), transparent 55%),
+    linear-gradient(160deg, #2a1e18 0%, #1a120e 60%, #0d0705 100%);
+}
+.concept-visual[data-theme="nexa"] {
+  background:
+    radial-gradient(circle at 70% 20%, rgba(31,76,143,0.5), transparent 55%),
+    linear-gradient(160deg, #0B2244 0%, #1F4C8F 60%, #0a1a33 100%);
+}
+.concept-visual[data-theme="lumie"] {
+  background:
+    radial-gradient(circle at 30% 30%, rgba(201,196,184,0.3), transparent 55%),
+    radial-gradient(circle at 75% 75%, rgba(212,165,165,0.25), transparent 55%),
+    linear-gradient(160deg, #3D4A3D 0%, #2a3329 60%, #171d16 100%);
+}
+.concept-visual[data-theme="meridian"] {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(143,166,143,0.2), transparent 55%),
+    radial-gradient(circle at 80% 80%, rgba(201,169,110,0.25), transparent 55%),
+    linear-gradient(160deg, #1B2A4A 0%, #0F1419 60%, #06080c 100%);
+}
+
+/* Badge (top-left number) */
+.concept-badge {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  color: rgba(255,255,255,0.6);
+  padding: 0.25rem 0.6rem;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 40px;
+  background: rgba(0,0,0,0.25);
+  backdrop-filter: blur(6px);
+}
+
+/* Tag (bottom-right) */
+.concept-tag {
+  position: absolute;
+  bottom: 1rem;
+  right: 1rem;
+  z-index: 2;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 0.3rem 0.75rem;
+  border-radius: 40px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.2);
+  backdrop-filter: blur(8px);
+}
+
+/* ---------- Mockup ---------- */
+.concept-mockup {
+  width: 100%;
+  max-width: 220px;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  position: relative;
+}
+
+.mockup-bar {
+  height: 6px;
+  width: 40%;
+  background: rgba(255,255,255,0.2);
+  border-radius: 3px;
+  margin-bottom: 0.5rem;
+}
+
+.mockup-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.mockup-sub {
+  height: 4px;
+  width: 80%;
+  background: rgba(255,255,255,0.25);
+  border-radius: 2px;
+}
+
+.mockup-sub.short {
+  width: 55%;
+}
+
+.mockup-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.4rem;
+  margin-top: 0.5rem;
+}
+
+.mockup-grid > div {
+  height: 24px;
+  border-radius: 3px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.mockup-track {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+  align-items: center;
+}
+
+.mockup-track span {
+  height: 3px;
+  flex: 1;
+  border-radius: 2px;
+  background: rgba(255,255,255,0.15);
+}
+
+.mockup-track span.active {
+  background: var(--coral);
+  box-shadow: 0 0 8px rgba(255,107,74,0.6);
+}
+
+.mockup-routine {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.5);
+}
+
+.mockup-routine span {
+  padding: 0.25rem 0.5rem;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 4px;
+  background: rgba(255,255,255,0.05);
+}
+
+.mockup-routine span:first-child {
+  color: #fff;
+  border-color: rgba(255,255,255,0.4);
+  background: rgba(255,255,255,0.1);
+}
+
+.mockup-stats {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.mockup-stats span {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #C9A96E;
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Body ---------- */
+.concept-body {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 0.9rem;
+}
+
+.concept-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.concept-cat {
+  color: var(--coral);
+}
+
+.concept-index {
+  color: var(--text3);
+  font-family: 'Poppins', sans-serif;
+}
+
+.concept-title {
+  font-family: 'Poppins', sans-serif;
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--text);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.concept-problem {
+  font-size: 0.875rem;
+  color: var(--text2);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.concept-features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding-top: 0.9rem;
+  border-top: 1px dashed var(--border);
+}
+
+.concept-features li {
+  position: relative;
+  padding-left: 1rem;
+  font-size: 0.8rem;
+  color: var(--text2);
+  line-height: 1.4;
+}
+
+.concept-features li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.55rem;
+  width: 4px;
+  height: 4px;
+  background: var(--coral);
+  border-radius: 50%;
+}
+
+.concept-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--blue);
+  transition: all 0.3s ease;
+}
+
+[data-theme="dark"] .concept-cta {
+  color: #6FA0FF;
+}
+
+.concept-cta i {
+  font-size: 0.7rem;
+  transition: transform 0.3s ease;
+}
+
+.concept-card:hover .concept-cta {
+  color: var(--coral);
+  gap: 0.75rem;
+}
+
+.concept-card:hover .concept-cta i {
+  transform: translateX(3px);
+}
+
+/* ============================================================
+   6. CTA BAND BELOW GRID
+   ============================================================ */
+.concept-cta-band {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1.75rem 2rem;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(31,76,143,0.15), transparent 60%),
+    radial-gradient(ellipse at 80% 50%, rgba(255,107,74,0.1), transparent 60%),
+    var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  flex-wrap: wrap;
+}
+
+.concept-cta-band p {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text);
+  margin: 0;
+}
+
+[data-theme="dark"] .concept-cta-band {
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(31,76,143,0.35), transparent 60%),
+    radial-gradient(ellipse at 80% 50%, rgba(255,107,74,0.15), transparent 60%),
+    var(--bg-soft);
+}
+
+/* ============================================================
+   7. RESPONSIVE
+   ============================================================ */
+@media (max-width: 1024px) {
+  .concept-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .concept-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+
+  .concept-visual {
+    height: 200px;
+  }
+
+  .section-head-split {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .concept-filters {
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 1rem;
+    margin-bottom: 1.75rem;
+    scrollbar-width: none;
+  }
+
+  .concept-filters::-webkit-scrollbar {
+    display: none;
+  }
+
+  .concept-filter {
+    flex-shrink: 0;
+  }
+
+  .concept-cta-band {
+    flex-direction: column;
+    align-items: stretch;
+    text-align: center;
+    padding: 1.5rem;
+  }
+
+  .concept-cta-band .btn {
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .concept-title {
+    font-size: 1.2rem;
+  }
+
+  .concept-body {
+    padding: 1.25rem;
+  }
+
+  .concept-visual {
+    height: 180px;
+    padding: 1rem;
+  }
+
+  .mockup-title {
+    font-size: 0.8rem;
+  }
+}
+
+/* ============================================================
+   8. REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .concept-card,
+  .concept-cta,
+  .concept-cta i,
+  .concept-view-all,
+  .concept-view-all i,
+  .concept-filter {
+    transition: none !important;
+  }
+  .concept-card {
+    opacity: 1;
+    transform: none;
+  }
+}
