@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HAVEN 24 — Your private space in Ijebu‑Ode</title>
+  <meta name="description" content="Luxury serviced apartments in Ijebu‑Ode. Quiet, private, fully powered. From ₦40,000 / night.">
+  <meta property="og:title" content="HAVEN 24 — Your private space in Ijebu‑Ode">
+  <meta property="og:description" content="Luxury short‑let apartments designed for comfort, privacy and unforgettable stays.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=1200&h=630&fit=crop">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+  <style>
+    html.lenis, html.lenis body { height: auto; }
+    .lenis.lenis-smooth { scroll-behavior: auto !important; }
+    .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+    .lenis.lenis-stopped { overflow: hidden; }
+  </style>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%23F5F1E8'/%3E%3Ctext x='16' y='22' font-family='DM Sans, sans-serif' font-weight='500' font-size='16' text-anchor='middle' fill='%2314201C'%3EH24%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- PRELOADER -->
+  <div id="preloader" class="preloader" aria-hidden="true">
+    <div class="preloader__line"></div>
+    <div class="preloader__mark">
+      <span class="preloader__monogram">H24</span>
+      <span class="preloader__wordmark">HAVEN 24</span>
+    </div>
+  </div>
+
+  <!-- NAVIGATION -->
+  <header id="nav" class="nav">
+    <div class="nav__pill">
+      <a href="#" class="nav__logo">HAVEN 24</a>
+      <nav class="nav__links" aria-label="Main">
+        <a href="#apartments">Apartments</a>
+        <a href="#experience">Experience</a>
+        <a href="#amenities">Amenities</a>
+        <a href="#location">Location</a>
+        <a href="#reviews">Reviews</a>
+      </nav>
+      <div class="nav__actions">
+        <a href="#" class="nav__whatsapp" id="navWhatsApp">WhatsApp</a>
+        <a href="#book" class="btn btn--ink btn--sm nav__book">Book now <span class="btn__arrow">→</span></a>
+        <button class="nav__toggle" aria-label="Open menu" aria-expanded="false">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- MOBILE MENU -->
+  <div id="mobileMenu" class="mobile-menu" aria-hidden="true">
+    <nav class="mobile-menu__links" aria-label="Mobile">
+      <a href="#apartments">Apartments</a>
+      <a href="#experience">Experience</a>
+      <a href="#amenities">Amenities</a>
+      <a href="#location">Location</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#book" class="mobile-menu__book">Book now</a>
+    </nav>
+  </div>
+
+  <main>
+
+    <!-- HERO -->
+    <section id="hero" class="hero">
+      <div class="hero__container">
+        <div class="hero__bg" id="heroBg">
+          <img src="" alt="Haven 24 building exterior at dusk" loading="eager">
+        </div>
+        <div class="hero__wordmark-layer">
+          <span class="hero__label">Your private space in</span>
+          <h1 class="hero__wordmark" aria-label="HAVEN 24">
+            <span class="hero__letter" data-letter="H">H</span>
+            <span class="hero__letter" data-letter="A">A</span>
+            <span class="hero__letter" data-letter="V">V</span>
+            <span class="hero__letter" data-letter="E">E</span>
+            <span class="hero__letter" data-letter="N">N</span>
+            <span class="hero__letter hero__letter--space" aria-hidden="true">&nbsp;</span>
+            <span class="hero__letter" data-letter="2">2</span>
+            <span class="hero__letter" data-letter="4">4</span>
+          </h1>
+        </div>
+        <div class="hero__foreground" id="heroForeground"></div>
+      </div>
+
+      <!-- Docked Booking Panel -->
+      <div class="booking-panel" id="bookingPanel">
+        <div class="booking-panel__inner">
+          <div class="booking-panel__row booking-panel__row--tabs">
+            <div class="booking-panel__tabs" role="tablist" aria-label="Accommodation type">
+              <button class="type-tab is-active" data-type="all" role="tab" aria-selected="true">All accommodation</button>
+              <button class="type-tab" data-type="studio" role="tab" aria-selected="false">Studio</button>
+              <button class="type-tab" data-type="1" role="tab" aria-selected="false">1‑Bed</button>
+              <button class="type-tab" data-type="2" role="tab" aria-selected="false">2‑Bed</button>
+              <button class="type-tab" data-type="3" role="tab" aria-selected="false">Penthouse</button>
+            </div>
+            <div class="price-toggle" role="group" aria-label="Price view">
+              <button class="price-toggle__btn is-active" data-price="night">Per night</button>
+              <button class="price-toggle__btn" data-price="week">Per week</button>
+            </div>
+          </div>
+
+          <div class="booking-panel__row booking-panel__row--fields">
+            <div class="booking-field">
+              <span class="booking-field__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>
+              </span>
+              <div class="booking-field__text">
+                <label>Check‑in</label>
+                <button class="date-trigger" data-date-target="checkin" aria-label="Select check-in date">Add date</button>
+              </div>
+              <span class="booking-field__chevron">›</span>
+            </div>
+            <div class="booking-field">
+              <span class="booking-field__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>
+              </span>
+              <div class="booking-field__text">
+                <label>Check‑out</label>
+                <button class="date-trigger" data-date-target="checkout" aria-label="Select check-out date">Add date</button>
+              </div>
+              <span class="booking-field__chevron">›</span>
+            </div>
+            <div class="booking-field">
+              <span class="booking-field__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0114 0v1"/></svg>
+              </span>
+              <div class="booking-field__text">
+                <label>Guests</label>
+                <button class="guest-trigger" data-guests-trigger aria-label="Select number of guests">Add guests</button>
+              </div>
+              <span class="booking-field__chevron">›</span>
+            </div>
+            <button id="searchBtn" class="btn btn--ink booking-panel__search">
+              <span>Search</span>
+              <svg class="btn__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="11" cy="11" r="7"/><path d="M16.5 16.5L21 21"/></svg>
+            </button>
+          </div>
+        </div>
+        <p id="heroBarMessage" class="booking-panel__message" aria-live="polite"></p>
+      </div>
+
+      <button class="booking-panel__mobile-trigger" id="mobileBookingTrigger" aria-expanded="false">
+        <span>Search stays</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="16"><path d="M6 9l6 6 6-6"/></svg>
+      </button>
+    </section>
+
+    <!-- Mobile bottom sheet -->
+    <div class="bottom-sheet" id="bottomSheet" aria-hidden="true">
+      <div class="bottom-sheet__overlay"></div>
+      <div class="bottom-sheet__panel">
+        <div class="bottom-sheet__handle"></div>
+        <div class="bottom-sheet__content"></div>
+      </div>
+    </div>
+
+    <!-- STATEMENT -->
+    <section class="statement" id="statement">
+      <div class="statement__inner">
+        <h2 class="statement__headline" data-reveal-words>
+          Discover a standard <em>of private stays designed for comfort and calm.</em>
+        </h2>
+        <p class="statement__sub">Fully furnished apartments in Ijebu‑Ode with reliable power, fast Wi‑Fi and 24/7 security.</p>
+        <a href="#why" class="btn btn--ink btn--magnetic statement__btn">
+          Learn more about us
+          <span class="btn__circle">→</span>
+        </a>
+        <div class="statement__photos">
+          <div class="statement__photo statement__photo--1" data-parallax="0.04">
+            <img src="" alt="Living room interior with natural light" loading="lazy">
+          </div>
+          <div class="statement__photo statement__photo--2" data-parallax="0.07">
+            <img src="" alt="Bedroom with linen bedding and soft light" loading="lazy">
+          </div>
+          <div class="statement__photo statement__photo--3" data-parallax="0.05">
+            <img src="" alt="Kitchen detail with warm materials" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW BOOKING WORKS -->
+    <section class="how" id="how">
+      <div class="how__inner">
+        <div class="how__image">
+          <img src="" alt="Dusk terrace lounge at Haven 24" loading="lazy">
+          <a href="#book" class="btn btn--ink btn--sm how__cta">Book now</a>
+        </div>
+        <div class="how__frost">
+          <h2 class="how__title">Booking, kept <em>simple</em>.</h2>
+          <ol class="how__steps">
+            <li class="how__step" data-reveal>
+              <span class="how__step-num">01</span>
+              <div><h3>Choose your apartment</h3><p>Browse the four residences and pick the one that fits your stay.</p></div>
+            </li>
+            <li class="how__step" data-reveal>
+              <span class="how__step-num">02</span>
+              <div><h3>Confirm your dates and pay a deposit</h3><p>Select your dates, see the full price, and secure the booking with a deposit.</p></div>
+            </li>
+            <li class="how__step" data-reveal>
+              <span class="how__step-num">03</span>
+              <div><h3>Arrive and settle in</h3><p>Check in with a code, unpack, and let the quiet do the rest.</p></div>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- APARTMENTS -->
+    <section class="apartments" id="apartments">
+      <div class="apartments__inner">
+        <div class="apartments__header">
+          <span class="label">The Apartments</span>
+          <h2 class="apartments__title">Four ways <em>to stay</em></h2>
+          <div class="apartments__filters" role="tablist" aria-label="Filter apartments">
+            <button class="filter-btn is-active" data-filter="all" role="tab" aria-selected="true">All</button>
+            <button class="filter-btn" data-filter="studio" role="tab" aria-selected="false">Studio</button>
+            <button class="filter-btn" data-filter="1" role="tab" aria-selected="false">1 Bed</button>
+            <button class="filter-btn" data-filter="2" role="tab" aria-selected="false">2 Bed</button>
+            <button class="filter-btn" data-filter="3" role="tab" aria-selected="false">3 Bed</button>
+          </div>
+        </div>
+        <div class="apartments__grid" id="apartmentsGrid"></div>
+      </div>
+    </section>
+
+    <!-- COMFORT -->
+    <section class="comfort" id="amenities">
+      <div class="comfort__card">
+        <div class="comfort__left">
+          <h2 class="comfort__title">Your comfort <em>is our pride</em></h2>
+          <p class="comfort__text">Reliable power, fast Wi‑Fi, gated security and thoughtful housekeeping — so you can settle in without thinking about the basics.</p>
+        </div>
+        <div class="comfort__right">
+          <div class="comfort__item">
+            <div class="comfort__item-text"><h3>24/7 Power</h3><p>Solar and inverter backup, no generator noise.</p></div>
+            <span class="comfort__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2v8l4 4"/><circle cx="12" cy="14" r="8"/></svg></span>
+          </div>
+          <div class="comfort__item">
+            <div class="comfort__item-text"><h3>Wi‑Fi</h3><p>Starlink, work‑ready and reliable.</p></div>
+            <span class="comfort__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12a10 10 0 0114 0M8 15a6 6 0 018 0M12 18h.01"/></svg></span>
+          </div>
+          <div class="comfort__item">
+            <div class="comfort__item-text"><h3>Security</h3><p>Gated environment with CCTV throughout.</p></div>
+            <span class="comfort__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7l8-4z"/><path d="M9 12l2 2 4-4"/></svg></span>
+          </div>
+          <div class="comfort__item">
+            <div class="comfort__item-text"><h3>Parking</h3><p>Secure, on‑site parking for guests.</p></div>
+            <span class="comfort__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M9 17V7h4a3 3 0 010 6H9"/></svg></span>
+          </div>
+          <div class="comfort__item">
+            <div class="comfort__item-text"><h3>Housekeeping</h3><p>Daily on request, discreet and thorough.</p></div>
+            <span class="comfort__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21l9-9 9 9M12 3v6"/><circle cx="12" cy="12" r="2"/></svg></span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY -->
+    <section class="why" id="why">
+      <div class="why__card">
+        <div class="why__left">
+          <span class="label">Why choose Haven 24</span>
+          <h2 class="why__title">Small things,<br><em>done well.</em></h2>
+          <p class="why__text">Every apartment is set up the way we'd want our own home — quiet, functional and genuinely restful.</p>
+        </div>
+        <div class="why__grid">
+          <div class="why__tile" data-reveal>
+            <span class="why__tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 18h20M4 18V10a4 4 0 014-4h8a4 4 0 014 4v8"/><path d="M8 10V8a4 4 0 018 0v2"/></svg></span>
+            <h3>Comfortable beds</h3><p>Quality linen and mattresses for proper rest.</p>
+          </div>
+          <div class="why__tile" data-reveal>
+            <span class="why__tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="4"/><path d="M4 21v-1a7 7 0 0114 0v1"/></svg></span>
+            <h3>Attentive guest service</h3><p>A real person answers, day or night.</p>
+          </div>
+          <div class="why__tile" data-reveal>
+            <span class="why__tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3v18M5 8l7-5 7 5M5 16l7 5 7-5"/></svg></span>
+            <h3>Blackout curtains and cool air</h3><p>Total darkness and cool air for deep sleep.</p>
+          </div>
+          <div class="why__tile" data-reveal>
+            <span class="why__tile-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16v12H4zM2 20h20"/><path d="M8 8h8"/></svg></span>
+            <h3>Breakfast on request</h3><p>Simple, fresh and arranged the evening before.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section class="experience" id="experience">
+      <div class="experience__inner">
+        <div class="experience__visual">
+          <div class="experience__image-stage">
+            <img class="experience__img experience__img--day is-active" src="" alt="Living room in morning light" loading="lazy">
+            <img class="experience__img experience__img--night" src="" alt="Living room in evening light" loading="lazy">
+            <div class="experience__overlay"></div>
+          </div>
+          <div class="experience__toggle">
+            <button class="experience__toggle-btn is-active" data-time="day">Morning</button>
+            <button class="experience__toggle-btn" data-time="night">Evening</button>
+          </div>
+        </div>
+        <div class="experience__text">
+          <span class="label label--light">The stay</span>
+          <h2 class="experience__title">From first light <em>to last.</em></h2>
+          <div class="experience__lines">
+            <div class="experience__line" data-reveal><span class="experience__line-num">01</span><p>Check‑in is effortless — a code, a key, and the door is yours.</p></div>
+            <div class="experience__line" data-reveal><span class="experience__line-num">02</span><p>Comfort that adjusts to you: blackout curtains, cool air, soft linen.</p></div>
+            <div class="experience__line" data-reveal><span class="experience__line-num">03</span><p>Quiet nights. No generator hum, no street noise, just rest.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TOUR -->
+    <section class="tour" id="tour">
+      <div class="tour__inner">
+        <span class="label">Virtual tour</span>
+        <h2 class="tour__title">See the <em>space</em></h2>
+        <div class="tour__tabs" role="tablist" aria-label="Room tour">
+          <button class="tour__tab is-active" role="tab" aria-selected="true" data-room="living">Living Room</button>
+          <button class="tour__tab" role="tab" aria-selected="false" data-room="bedroom">Bedroom</button>
+          <button class="tour__tab" role="tab" aria-selected="false" data-room="kitchen">Kitchen</button>
+          <button class="tour__tab" role="tab" aria-selected="false" data-room="terrace">Terrace</button>
+          <button class="tour__tab" role="tab" aria-selected="false" data-room="bathroom">Bathroom</button>
+        </div>
+        <div class="tour__stage" id="tourStage">
+          <div class="tour__hotspots" id="tourHotspots"></div>
+        </div>
+        <div class="tour__controls">
+          <button id="tourPanToggle" class="btn btn--outline btn--sm" aria-pressed="false">Pause pan</button>
+          <p class="tour__caption">360° tour integration available on request.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- LOCATION -->
+    <section class="location" id="location">
+      <div class="location__inner">
+        <div class="location__map">
+          <iframe src="https://www.google.com/maps?q=Ijebu-Ode,+Ogun+State,+Nigeria&output=embed" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" title="Map of Ijebu-Ode"></iframe>
+        </div>
+        <div class="location__info">
+          <span class="label">Location</span>
+          <h2 class="location__title">7 Ibadan Road GRA,<br><em>Ijebu‑Ode</em></h2>
+          <ul class="location__list">
+            <li><span>Town centre</span><span>5 min</span></li>
+            <li><span>Popular restaurants</span><span>8 min</span></li>
+            <li><span>Markets</span><span>10 min</span></li>
+            <li><span>Major roads / highway</span><span>10 min</span></li>
+            <li><span>Lagos (by road)</span><span>Under 2 hrs</span></li>
+          </ul>
+          <a href="https://www.google.com/maps/dir/?api=1&destination=Ijebu-Ode,+Ogun+State,+Nigeria" target="_blank" rel="noopener" class="btn btn--ink btn--sm">Get directions</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- REVIEWS -->
+    <section class="reviews" id="reviews">
+      <div class="reviews__inner">
+        <span class="label">Guest reviews</span>
+        <h2 class="reviews__title">4.9 average · <em>120+ stays</em></h2>
+        <div class="reviews__layout">
+          <div class="reviews__score-col">
+            <div class="reviews__score">4.9</div>
+            <div class="reviews__breakdown">
+              <div class="review-bar"><span>Cleanliness</span><div class="review-bar__track"><div class="review-bar__fill" data-width="98"></div></div></div>
+              <div class="review-bar"><span>Comfort</span><div class="review-bar__track"><div class="review-bar__fill" data-width="97"></div></div></div>
+              <div class="review-bar"><span>Location</span><div class="review-bar__track"><div class="review-bar__fill" data-width="95"></div></div></div>
+              <div class="review-bar"><span>Value</span><div class="review-bar__track"><div class="review-bar__fill" data-width="96"></div></div></div>
+              <div class="review-bar"><span>Communication</span><div class="review-bar__track"><div class="review-bar__fill" data-width="99"></div></div></div>
+            </div>
+          </div>
+          <div class="reviews__cards-col">
+            <button class="reviews__arrow reviews__arrow--prev" aria-label="Previous reviews">‹</button>
+            <div class="reviews__scroller" id="reviewsScroller"></div>
+            <button class="reviews__arrow reviews__arrow--next" aria-label="Next reviews">›</button>
+          </div>
+        </div>
+        <p class="reviews__note">Based on 120+ guest stays.</p>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+      <div class="faq__inner">
+        <span class="label">FAQ</span>
+        <h2 class="faq__title">Good <em>to know</em></h2>
+        <div class="faq__list" id="faqList"></div>
+      </div>
+    </section>
+
+    <!-- BOOK -->
+    <section class="book" id="book">
+      <div class="book__inner">
+        <div class="book__left">
+          <span class="label label--light">Book your stay</span>
+          <h2 class="book__title">Your private space <em>is ready.</em></h2>
+          <form class="book__form" id="bookingForm" novalidate>
+            <div class="form-row">
+              <label for="book-name">Full name</label>
+              <input type="text" id="book-name" name="name" required placeholder="Adaeze Okafor">
+            </div>
+            <div class="form-row">
+              <label for="book-phone">Phone</label>
+              <input type="tel" id="book-phone" name="phone" required placeholder="+234 800 000 0000">
+            </div>
+            <div class="form-row">
+              <label for="book-email">Email <span class="optional">(optional)</span></label>
+              <input type="email" id="book-email" name="email" placeholder="you@example.com">
+            </div>
+            <div class="form-row">
+              <label for="book-apartment">Apartment</label>
+              <select id="book-apartment" name="apartment"></select>
+            </div>
+            <div class="form-row form-row--split">
+              <div class="field-wrap">
+                <label>Check‑in</label>
+                <button type="button" class="field-input date-trigger" data-date-target="checkin" aria-label="Select check-in date">
+                  <span class="field-input__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg></span>
+                  <span class="field-input__value">Add date</span>
+                  <span class="field-input__chevron">›</span>
+                </button>
+              </div>
+              <div class="field-wrap">
+                <label>Check‑out</label>
+                <button type="button" class="field-input date-trigger" data-date-target="checkout" aria-label="Select check-out date">
+                  <span class="field-input__icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg></span>
+                  <span class="field-input__value">Add date</span>
+                  <span class="field-input__chevron">›</span>
+                </button>
+              </div>
+            </div>
+            <div class="form-row">
+              <label>Guests</label>
+              <div class="stepper-field" data-stepper="guests">
+                <button type="button" class="stepper-field__btn" data-step="-1" aria-label="Decrease guests">−</button>
+                <span class="stepper-field__value" aria-live="polite">2</span>
+                <button type="button" class="stepper-field__btn" data-step="1" aria-label="Increase guests">+</button>
+              </div>
+            </div>
+            <div class="form-row">
+              <label for="book-requests">Special requests</label>
+              <textarea id="book-requests" name="requests" rows="3" placeholder="Early check‑in, extra towels…"></textarea>
+            </div>
+            <div class="book__actions">
+              <button type="submit" class="btn btn--brass btn--magnetic">Send booking request</button>
+              <a href="#" id="whatsappBtn" class="btn btn--outline btn--light btn--magnetic" target="_blank" rel="noopener">Book via WhatsApp</a>
+            </div>
+            <p class="book__success" id="bookSuccess" aria-live="polite"></p>
+          </form>
+        </div>
+        <div class="book__right">
+          <div class="price-summary" id="priceSummary">
+            <h3>Price summary</h3>
+            <div class="price-summary__row"><span>Nightly rate</span><span id="summaryRate">₦0</span></div>
+            <div class="price-summary__row"><span>Nights</span><span id="summaryNights">0</span></div>
+            <div class="price-summary__row"><span>Cleaning fee</span><span id="summaryCleaning">₦0</span></div>
+            <div class="price-summary__row price-summary__row--total"><span>Total</span><span id="summaryTotal">₦0</span></div>
+            <p class="price-summary__note">Prices in Nigerian Naira. Min. stay applies.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__wordmark">HAVEN 24</div>
+      <div class="footer__columns">
+        <div class="footer__col">
+          <h4>Explore</h4>
+          <a href="#apartments">Apartments</a>
+          <a href="#experience">Experience</a>
+          <a href="#amenities">Amenities</a>
+          <a href="#location">Location</a>
+        </div>
+        <div class="footer__col">
+          <h4>Contact</h4>
+          <p>7 Ibadan Road GRA,<br>Ijebu‑Ode, Ogun State</p>
+          <p><a href="tel:+2348000000000">+234 800 000 0000</a></p>
+          <p><a href="mailto:hello@haven24.example">hello@haven24.example</a></p>
+        </div>
+        <div class="footer__col">
+          <h4>Follow</h4>
+          <a href="#" data-placeholder>Instagram</a>
+          <a href="#" data-placeholder>TikTok</a>
+        </div>
+        <div class="footer__col footer__col--news">
+          <h4>Newsletter</h4>
+          <form id="newsletterForm" class="newsletter">
+            <input type="email" placeholder="Your email" aria-label="Email for newsletter" required>
+            <button type="submit" class="btn btn--outline btn--sm">Subscribe</button>
+            <p class="newsletter__success" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+      <div class="footer__bottom">
+        <span>© 2026 Haven 24</span>
+        <span>Designed & developed by <a href="https://duc21striker.github.io/dmad-website/" target="_blank" rel="noopener">DMAD</a></span>
+        <span class="footer__concept">Concept project — not a real property.</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- DRAWER -->
+  <div id="drawer" class="drawer" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Apartment details">
+    <div class="drawer__overlay"></div>
+    <div class="drawer__panel">
+      <button class="drawer__close" aria-label="Close details">×</button>
+      <div class="drawer__content" id="drawerContent"></div>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-modal="true">
+    <button class="lightbox__close" aria-label="Close image">×</button>
+    <img src="" alt="" class="lightbox__img">
+  </div>
+
+  <!-- DATE MODAL -->
+  <div id="datePickerModal" class="date-modal" aria-hidden="true" role="dialog" aria-modal="true">
+    <div class="date-modal__overlay"></div>
+    <div class="date-modal__panel">
+      <div class="date-modal__header">
+        <button class="date-modal__nav" data-month="-1" aria-label="Previous month">‹</button>
+        <span class="date-modal__month" id="dateModalMonth">Month</span>
+        <button class="date-modal__nav" data-month="1" aria-label="Next month">›</button>
+        <button class="date-modal__close" aria-label="Close date picker">×</button>
+      </div>
+      <div class="date-modal__grid" id="dateModalGrid"></div>
+      <p class="date-modal__message" id="dateModalMessage" aria-live="polite"></p>
+    </div>
+  </div>
+
+  <!-- GUEST SHEET -->
+  <div id="guestSheet" class="guest-sheet" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Select guests">
+    <div class="guest-sheet__overlay"></div>
+    <div class="guest-sheet__panel">
+      <div class="guest-sheet__handle"></div>
+      <h3>Guests</h3>
+      <div class="stepper stepper--lg" data-stepper="guests">
+        <button class="stepper__btn" data-step="-1" aria-label="Decrease guests">−</button>
+        <span class="stepper__value" aria-live="polite">2</span>
+        <button class="stepper__btn" data-step="1" aria-label="Increase guests">+</button>
+      </div>
+      <button class="btn btn--ink guest-sheet__done">Done</button>
+    </div>
+  </div>
+
+  <!-- TOAST -->
+  <div id="toast" class="toast" aria-live="polite"></div>
+
+  <!-- CURSOR -->
+  <div id="cursor" class="cursor" aria-hidden="true">
+    <div class="cursor__dot"></div>
+    <div class="cursor__ring"><span class="cursor__label"></span></div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html> 
