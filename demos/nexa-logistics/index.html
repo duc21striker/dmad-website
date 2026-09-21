@@ -1,0 +1,2446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+  <title>NEXA LOGISTICS — Moving Business Forward</title>
+  <style>
+    /* ---------- GLOBAL RESET & VARIABLES ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --navy: #0B1F3A;
+      --white: #FFFFFF;
+      --steel: #EDEFF3;
+      --orange: #FF6A1A;
+      --slate: #5B6472;
+      --shadow-sm: 0 4px 12px rgba(11, 31, 58, 0.06);
+      --shadow-md: 0 8px 24px rgba(11, 31, 58, 0.08);
+      --shadow-lg: 0 16px 40px rgba(11, 31, 58, 0.12);
+      --border-radius: 2px;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --max-width: 1280px;
+      --header-height: 72px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: var(--font);
+      background: var(--white);
+      color: var(--navy);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      padding-top: var(--header-height);
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button, input, select, textarea {
+      font-family: inherit;
+      font-size: inherit;
+      outline: none;
+      border: none;
+      background: none;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    /* ---------- UTILITY CLASSES ---------- */
+    .container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section-padding {
+      padding: 80px 0;
+    }
+
+    .section-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: var(--orange);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 2.25rem;
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+      color: var(--navy);
+    }
+
+    .section-subtitle {
+      font-size: 1.125rem;
+      color: var(--slate);
+      max-width: 680px;
+      margin-bottom: 48px;
+      line-height: 1.6;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 28px;
+      font-weight: 600;
+      font-size: 0.875rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border-radius: var(--border-radius);
+      transition: background 0.2s ease, color 0.2s ease, border-color 0.2s ease, transform 0.1s ease;
+      min-height: 48px;
+      white-space: nowrap;
+    }
+
+    .btn:active {
+      transform: scale(0.98);
+    }
+
+    .btn-primary {
+      background: var(--orange);
+      color: var(--white);
+    }
+
+    .btn-primary:hover {
+      background: #e55a0e;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--white);
+      border: 1.5px solid rgba(255, 255, 255, 0.5);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--white);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .btn-outline-dark {
+      background: transparent;
+      color: var(--navy);
+      border: 1.5px solid rgba(11, 31, 58, 0.3);
+    }
+
+    .btn-outline-dark:hover {
+      border-color: var(--navy);
+      background: rgba(11, 31, 58, 0.03);
+    }
+
+    .btn-white {
+      background: var(--white);
+      color: var(--navy);
+    }
+
+    .btn-white:hover {
+      background: var(--steel);
+    }
+
+    .btn-block {
+      width: 100%;
+    }
+
+    /* ---------- STICKY HEADER ---------- */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: var(--header-height);
+      background: var(--navy);
+      z-index: 1000;
+      transition: box-shadow 0.3s ease, background 0.3s ease;
+      display: flex;
+      align-items: center;
+    }
+
+    .header.scrolled {
+      box-shadow: var(--shadow-md);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .logo {
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      color: var(--white);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-mark {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      background: var(--orange);
+      border-radius: 50%;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      transition: color 0.2s ease;
+      padding: 8px 0;
+      position: relative;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--white);
+    }
+
+    .nav-links a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--orange);
+    }
+
+    .nav-cta {
+      margin-left: 8px;
+    }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: transparent;
+      padding: 8px;
+      z-index: 1100;
+    }
+
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .hamburger.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+
+    .hamburger.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+
+    /* Mobile menu overlay */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: var(--navy);
+      z-index: 1050;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .mobile-menu.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .mobile-menu a {
+      color: var(--white);
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .mobile-menu .btn {
+      margin-top: 16px;
+    }
+
+    /* ---------- HERO ---------- */
+    .hero {
+      position: relative;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      background: var(--navy);
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=2070&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.25;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(11, 31, 58, 0.92) 0%, rgba(11, 31, 58, 0.7) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      max-width: 720px;
+      padding: 80px 0;
+    }
+
+    .hero-title {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+      color: var(--white);
+      margin-bottom: 20px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.25rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 40px;
+      line-height: 1.6;
+      max-width: 560px;
+    }
+
+    .hero-ctas {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Animated route line */
+    .route-animation {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: transparent;
+      z-index: 3;
+    }
+
+    .route-line {
+      position: absolute;
+      bottom: 40px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: repeating-linear-gradient(90deg, transparent, transparent 10px, rgba(255, 106, 26, 0.3) 10px, rgba(255, 106, 26, 0.3) 20px);
+      overflow: hidden;
+    }
+
+    .route-dot {
+      position: absolute;
+      bottom: 34px;
+      width: 12px;
+      height: 12px;
+      background: var(--orange);
+      border-radius: 50%;
+      box-shadow: 0 0 12px rgba(255, 106, 26, 0.6);
+      animation: moveDot 6s linear infinite;
+    }
+
+    @keyframes moveDot {
+      0% { left: -2%; }
+      100% { left: 102%; }
+    }
+
+    /* ---------- TRUST BAR ---------- */
+    .trust-bar {
+      background: var(--steel);
+      padding: 40px 0;
+      border-bottom: 1px solid rgba(11, 31, 58, 0.06);
+    }
+
+    .trust-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.25rem;
+      font-weight: 700;
+      color: var(--navy);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--slate);
+      margin-top: 6px;
+    }
+
+    /* ---------- SERVICES CARDS ---------- */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border: 1px solid rgba(11, 31, 58, 0.08);
+      padding: 32px 24px;
+      border-radius: var(--border-radius);
+      transition: box-shadow 0.25s ease, transform 0.2s ease;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-card:hover {
+      box-shadow: var(--shadow-md);
+      transform: translateY(-4px);
+    }
+
+    .service-icon {
+      width: 48px;
+      height: 48px;
+      margin-bottom: 20px;
+      color: var(--orange);
+      font-size: 1.5rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+    }
+
+    .service-card h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--navy);
+    }
+
+    .service-card p {
+      color: var(--slate);
+      font-size: 0.9rem;
+      line-height: 1.6;
+      flex: 1;
+    }
+
+    .service-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--orange);
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-top: 20px;
+      transition: gap 0.2s ease;
+    }
+
+    .service-card:hover .service-link {
+      gap: 12px;
+    }
+
+    /* ---------- TRACKING WIDGET ---------- */
+    .tracking-section {
+      background: var(--navy);
+      color: var(--white);
+      padding: 80px 0;
+    }
+
+    .tracking-section .section-title {
+      color: var(--white);
+    }
+
+    .tracking-section .section-subtitle {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .tracking-form {
+      display: flex;
+      gap: 12px;
+      max-width: 640px;
+      margin-bottom: 40px;
+    }
+
+    .tracking-form input {
+      flex: 1;
+      padding: 16px 20px;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: var(--white);
+      border-radius: var(--border-radius);
+      font-size: 0.95rem;
+      transition: border-color 0.2s ease;
+      min-height: 56px;
+    }
+
+    .tracking-form input::placeholder {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    .tracking-form input:focus {
+      border-color: var(--orange);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .tracking-form .btn {
+      background: var(--orange);
+      color: var(--white);
+      min-width: 120px;
+    }
+
+    .tracking-result {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 32px;
+      border-radius: var(--border-radius);
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .tracking-result.visible {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .tracking-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .tracking-id {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .tracking-eta {
+      color: var(--orange);
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .tracking-location {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+    }
+
+    .status-stepper {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      margin: 40px 0 24px;
+    }
+
+    .status-stepper::before {
+      content: '';
+      position: absolute;
+      top: 12px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: rgba(255, 255, 255, 0.15);
+      z-index: 0;
+    }
+
+    .status-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      position: relative;
+      z-index: 1;
+      flex: 1;
+      text-align: center;
+    }
+
+    .step-dot {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.15);
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.6rem;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.4);
+      transition: all 0.3s ease;
+    }
+
+    .status-step.active .step-dot {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: var(--white);
+      box-shadow: 0 0 0 4px rgba(255, 106, 26, 0.2);
+    }
+
+    .status-step.completed .step-dot {
+      background: var(--orange);
+      border-color: var(--orange);
+      color: var(--white);
+    }
+
+    .step-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.4);
+      transition: color 0.3s ease;
+    }
+
+    .status-step.active .step-label {
+      color: var(--white);
+    }
+
+    .status-step.completed .step-label {
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    /* ---------- WHY NEXA ---------- */
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 32px;
+    }
+
+    .why-item {
+      text-align: center;
+    }
+
+    .why-icon {
+      width: 56px;
+      height: 56px;
+      margin: 0 auto 16px;
+      background: var(--steel);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--orange);
+    }
+
+    .why-item h4 {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--navy);
+    }
+
+    .why-item p {
+      font-size: 0.85rem;
+      color: var(--slate);
+      line-height: 1.5;
+    }
+
+    /* ---------- AUDIENCE SPLIT ---------- */
+    .audience-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .audience-panel {
+      padding: 48px 40px;
+      border-radius: var(--border-radius);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 320px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .audience-panel.individuals {
+      background: var(--steel);
+      color: var(--navy);
+    }
+
+    .audience-panel.businesses {
+      background: var(--navy);
+      color: var(--white);
+    }
+
+    .audience-panel h3 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .audience-panel p {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 32px;
+      opacity: 0.8;
+      max-width: 400px;
+    }
+
+    .audience-panel .btn {
+      align-self: flex-start;
+    }
+
+    /* ---------- PARTNER STRIP ---------- */
+    .partner-strip {
+      background: var(--orange);
+      color: var(--white);
+      padding: 48px 0;
+    }
+
+    .partner-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 32px;
+      flex-wrap: wrap;
+    }
+
+    .partner-text h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .partner-text p {
+      font-size: 0.95rem;
+      opacity: 0.9;
+    }
+
+    .partner-strip .btn-white {
+      background: var(--white);
+      color: var(--orange);
+      font-weight: 700;
+    }
+
+    .partner-strip .btn-white:hover {
+      background: var(--steel);
+    }
+
+    /* ---------- CLIENT LOGOS ---------- */
+    .logos-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      padding: 24px 0;
+      opacity: 0.6;
+    }
+
+    .logo-item {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: var(--slate);
+      text-transform: uppercase;
+    }
+
+    /* ---------- TESTIMONIALS ---------- */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .testimonial-card {
+      background: var(--steel);
+      padding: 32px 28px;
+      border-radius: var(--border-radius);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .testimonial-quote {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: var(--navy);
+      font-style: italic;
+      flex: 1;
+    }
+
+    .testimonial-author {
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--slate);
+    }
+
+    /* ---------- FOOTER ---------- */
+    .footer {
+      background: var(--navy);
+      color: rgba(255, 255, 255, 0.7);
+      padding: 64px 0 32px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+
+    .footer-brand {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .footer-desc {
+      font-size: 0.9rem;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      max-width: 320px;
+    }
+
+    .footer h4 {
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      margin-bottom: 20px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .footer-links a {
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+    }
+
+    .footer-contact-item {
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .newsletter-form {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      padding: 10px 14px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: var(--white);
+      border-radius: var(--border-radius);
+      font-size: 0.85rem;
+      min-height: 44px;
+    }
+
+    .newsletter-form input::placeholder {
+      color: rgba(255, 255, 255, 0.35);
+    }
+
+    .newsletter-form input:focus {
+      border-color: var(--orange);
+    }
+
+    .newsletter-form button {
+      background: var(--orange);
+      color: var(--white);
+      padding: 0 20px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      border-radius: var(--border-radius);
+      min-height: 44px;
+    }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255, 255, 255, 0.08);
+      padding-top: 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 0.8rem;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 16px;
+    }
+
+    .social-icons a {
+      color: rgba(255, 255, 255, 0.6);
+      transition: color 0.2s ease;
+      font-size: 0.9rem;
+    }
+
+    .social-icons a:hover {
+      color: var(--white);
+    }
+
+    .dmad-credit {
+      color: rgba(255, 255, 255, 0.4);
+    }
+
+    /* ---------- MODAL (QUOTE) ---------- */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(11, 31, 58, 0.7);
+      backdrop-filter: blur(4px);
+      z-index: 2000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: var(--white);
+      border-radius: var(--border-radius);
+      max-width: 560px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      padding: 40px;
+      position: relative;
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+
+    .modal-overlay.open .modal {
+      transform: translateY(0);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      font-size: 1.5rem;
+      color: var(--slate);
+      background: transparent;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      transition: background 0.2s ease;
+    }
+
+    .modal-close:hover {
+      background: var(--steel);
+    }
+
+    .modal h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      color: var(--navy);
+    }
+
+    .modal p {
+      color: var(--slate);
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid rgba(11, 31, 58, 0.15);
+      border-radius: var(--border-radius);
+      font-size: 0.95rem;
+      color: var(--navy);
+      background: var(--white);
+      transition: border-color 0.2s ease;
+      min-height: 48px;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--orange);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .quote-result {
+      background: var(--steel);
+      padding: 24px;
+      border-radius: var(--border-radius);
+      margin-top: 24px;
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+
+    .quote-result.visible {
+      display: block;
+    }
+
+    .quote-price {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    .quote-window {
+      font-size: 0.9rem;
+      color: var(--slate);
+    }
+
+    /* ---------- MOBILE STICKY CTA ---------- */
+    .mobile-sticky-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: var(--white);
+      padding: 12px 16px;
+      box-shadow: 0 -4px 16px rgba(11, 31, 58, 0.1);
+      z-index: 900;
+    }
+
+    /* ---------- SERVICES PAGE SECTIONS ---------- */
+    .service-detail {
+      padding: 80px 0;
+      border-bottom: 1px solid rgba(11, 31, 58, 0.06);
+    }
+
+    .service-detail:last-child {
+      border-bottom: none;
+    }
+
+    .service-detail-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .service-detail-grid.reverse {
+      direction: rtl;
+    }
+
+    .service-detail-grid.reverse > * {
+      direction: ltr;
+    }
+
+    .service-detail-image {
+      width: 100%;
+      height: 320px;
+      object-fit: cover;
+      border-radius: var(--border-radius);
+      background: var(--steel);
+    }
+
+    .service-detail h3 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      letter-spacing: -0.02em;
+    }
+
+    .service-detail p {
+      color: var(--slate);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 20px;
+    }
+
+    .process-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 24px 0;
+    }
+
+    .process-step {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.9rem;
+      color: var(--navy);
+    }
+
+    .step-num {
+      flex-shrink: 0;
+      width: 24px;
+      height: 24px;
+      background: var(--orange);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    /* ---------- FAQ ---------- */
+    .faq-item {
+      border-bottom: 1px solid rgba(11, 31, 58, 0.08);
+      padding: 20px 0;
+    }
+
+    .faq-question {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--navy);
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-answer {
+      font-size: 0.9rem;
+      color: var(--slate);
+      line-height: 1.6;
+      margin-top: 12px;
+      display: none;
+    }
+
+    .faq-answer.visible {
+      display: block;
+    }
+
+    /* ---------- BUSINESS PAGE ---------- */
+    .b2b-hero {
+      background: var(--steel);
+      padding: 80px 0;
+    }
+
+    .b2b-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .b2b-features {
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+      margin-top: 32px;
+    }
+
+    .b2b-feature {
+      display: flex;
+      gap: 16px;
+    }
+
+    .b2b-feature-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--white);
+      border-radius: var(--border-radius);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: var(--orange);
+      flex-shrink: 0;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .b2b-feature h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .b2b-feature p {
+      font-size: 0.85rem;
+      color: var(--slate);
+      line-height: 1.5;
+    }
+
+    .onboarding-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      margin-top: 32px;
+    }
+
+    .onboarding-step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .onboarding-num {
+      width: 32px;
+      height: 32px;
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+    }
+
+    .onboarding-step h4 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .onboarding-step p {
+      font-size: 0.85rem;
+      color: var(--slate);
+    }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1024px) {
+      .services-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .testimonials-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .hero-title {
+        font-size: 2.75rem;
+      }
+      .service-detail-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .service-detail-grid.reverse {
+        direction: ltr;
+      }
+      .b2b-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .header .nav-links,
+      .header .nav-cta {
+        display: none;
+      }
+
+      .hamburger {
+        display: flex;
+      }
+
+      .hero-title {
+        font-size: 2.25rem;
+      }
+
+      .hero-subtitle {
+        font-size: 1rem;
+      }
+
+      .trust-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 24px;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .audience-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .testimonials-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .tracking-form {
+        flex-direction: column;
+      }
+
+      .tracking-form .btn {
+        width: 100%;
+      }
+
+      .status-stepper {
+        flex-direction: column;
+        gap: 16px;
+        align-items: flex-start;
+      }
+
+      .status-stepper::before {
+        display: none;
+      }
+
+      .status-step {
+        flex-direction: row;
+        gap: 12px;
+        text-align: left;
+      }
+
+      .mobile-sticky-cta {
+        display: block;
+      }
+
+      .mobile-sticky-cta .btn {
+        width: 100%;
+      }
+
+      body {
+        padding-bottom: 72px;
+      }
+
+      .section-title {
+        font-size: 1.75rem;
+      }
+
+      .section-subtitle {
+        font-size: 1rem;
+        margin-bottom: 32px;
+      }
+
+      .partner-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .modal {
+        padding: 28px 20px;
+      }
+
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+
+      .logos-row {
+        gap: 24px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .container {
+        padding: 0 16px;
+      }
+
+      .hero {
+        min-height: 480px;
+      }
+
+      .hero-title {
+        font-size: 1.85rem;
+      }
+
+      .hero-ctas {
+        flex-direction: column;
+      }
+
+      .hero-ctas .btn {
+        width: 100%;
+      }
+
+      .trust-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .stat-number {
+        font-size: 1.5rem;
+      }
+
+      .why-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .audience-panel {
+        padding: 32px 24px;
+      }
+
+      .section-padding {
+        padding: 56px 0;
+      }
+    }
+
+    /* Focus states */
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible,
+    select:focus-visible,
+    textarea:focus-visible {
+      outline: 2px solid var(--orange);
+      outline-offset: 2px;
+    }
+
+    /* Reduced motion */
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="#" class="logo" aria-label="NEXA Logistics home">
+        <span class="logo-mark"></span>
+        NEXA LOGISTICS
+      </a>
+      <nav aria-label="Main navigation">
+        <ul class="nav-links">
+          <li><a href="#services">SERVICES</a></li>
+          <li><a href="#tracking">TRACK SHIPMENT</a></li>
+          <li><a href="#business">FOR BUSINESS</a></li>
+          <li><a href="#about">ABOUT</a></li>
+          <li><a href="#contact">CONTACT</a></li>
+        </ul>
+      </nav>
+      <a href="#" class="btn btn-primary nav-cta" id="quoteBtnNav">GET A QUOTE</a>
+      <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#services">SERVICES</a>
+    <a href="#tracking">TRACK SHIPMENT</a>
+    <a href="#business">FOR BUSINESS</a>
+    <a href="#about">ABOUT</a>
+    <a href="#contact">CONTACT</a>
+    <a href="#" class="btn btn-primary" id="mobileQuoteBtn">GET A QUOTE</a>
+  </div>
+
+  <!-- ========== HERO ========== -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="route-animation">
+      <div class="route-line"></div>
+      <div class="route-dot"></div>
+    </div>
+    <div class="container">
+      <div class="hero-content">
+        <p class="section-eyebrow" style="color: var(--orange);">NATIONWIDE LOGISTICS & DELIVERY</p>
+        <h1 class="hero-title">MOVING BUSINESS FORWARD.</h1>
+        <p class="hero-subtitle">Reliable logistics solutions connecting businesses and customers across Nigeria. From same-day urban delivery to interstate freight — we move what matters.</p>
+        <div class="hero-ctas">
+          <a href="#" class="btn btn-primary" id="heroQuoteBtn">GET A QUOTE</a>
+          <a href="#tracking" class="btn btn-outline">TRACK SHIPMENT</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TRUST BAR ========== -->
+  <section class="trust-bar" aria-label="Company statistics">
+    <div class="container">
+      <div class="trust-grid">
+        <div>
+          <div class="stat-number" data-target="500" data-suffix="+">0</div>
+          <div class="stat-label">Businesses Served</div>
+        </div>
+        <div>
+          <div class="stat-number" data-target="50000" data-suffix="+">0</div>
+          <div class="stat-label">Deliveries Completed</div>
+        </div>
+        <div>
+          <div class="stat-number" data-target="36" data-suffix="">0</div>
+          <div class="stat-label">States Covered</div>
+        </div>
+        <div>
+          <div class="stat-number" data-target="98" data-suffix="%">0</div>
+          <div class="stat-label">On-Time Rate</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES ========== -->
+  <section class="section-padding" id="services">
+    <div class="container">
+      <p class="section-eyebrow">OUR SERVICES</p>
+      <h2 class="section-title">Logistics built for speed and scale.</h2>
+      <p class="section-subtitle">Four core services designed to move your business forward — whether you're sending one package or ten thousand.</p>
+      <div class="services-grid">
+        <article class="service-card" tabindex="0">
+          <div class="service-icon">⚡</div>
+          <h3>Same-Day Delivery</h3>
+          <p>Urban same-day delivery across Lagos, Abuja, and Port Harcourt. Pickup within 2 hours, delivery by end of day.</p>
+          <span class="service-link">Learn more →</span>
+        </article>
+        <article class="service-card" tabindex="0">
+          <div class="service-icon">🛣️</div>
+          <h3>Interstate Logistics</h3>
+          <p>Reliable interstate freight connecting all 36 states. Scheduled routes, real-time tracking, and proof of delivery.</p>
+          <span class="service-link">Learn more →</span>
+        </article>
+        <article class="service-card" tabindex="0">
+          <div class="service-icon">🏢</div>
+          <h3>Business Logistics</h3>
+          <p>Dedicated account management, bulk shipping rates, and API integration for high-volume operations.</p>
+          <span class="service-link">Learn more →</span>
+        </article>
+        <article class="service-card" tabindex="0">
+          <div class="service-icon">🛒</div>
+          <h3>E-commerce Fulfilment</h3>
+          <p>Plug into your online store. Pick, pack, and ship — with inventory sync and returns management.</p>
+          <span class="service-link">Learn more →</span>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TRACKING SECTION ========== -->
+  <section class="tracking-section" id="tracking">
+    <div class="container">
+      <p class="section-eyebrow" style="color: var(--orange);">TRACK YOUR SHIPMENT</p>
+      <h2 class="section-title">Know where your package is. Always.</h2>
+      <p class="section-subtitle">Enter your tracking number to get real-time status updates, estimated delivery, and current location.</p>
+      <form class="tracking-form" id="trackingForm">
+        <input type="text" id="trackingInput" placeholder="Enter tracking number (e.g., NX-2847-1923)" aria-label="Tracking number" required>
+        <button type="submit" class="btn btn-primary">TRACK</button>
+      </form>
+      <div class="tracking-result" id="trackingResult">
+        <div class="tracking-meta">
+          <div>
+            <div class="tracking-id" id="displayTrackingId">NX-2847-1923</div>
+            <div class="tracking-location" id="displayLocation">📍 Lagos, Nigeria</div>
+          </div>
+          <div style="text-align: right;">
+            <div class="tracking-eta" id="displayEta">ETA: Today, 6:00 PM</div>
+          </div>
+        </div>
+        <div class="status-stepper" id="statusStepper">
+          <div class="status-step completed" data-step="0">
+            <div class="step-dot">✓</div>
+            <div class="step-label">Order Placed</div>
+          </div>
+          <div class="status-step completed" data-step="1">
+            <div class="step-dot">✓</div>
+            <div class="step-label">Picked Up</div>
+          </div>
+          <div class="status-step active" data-step="2">
+            <div class="step-dot">●</div>
+            <div class="step-label">In Transit</div>
+          </div>
+          <div class="status-step" data-step="3">
+            <div class="step-dot">4</div>
+            <div class="step-label">Out for Delivery</div>
+          </div>
+          <div class="status-step" data-step="4">
+            <div class="step-dot">5</div>
+            <div class="step-label">Delivered</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== WHY NEXA ========== -->
+  <section class="section-padding" id="about">
+    <div class="container">
+      <p class="section-eyebrow">WHY BUSINESSES CHOOSE NEXA</p>
+      <h2 class="section-title">Infrastructure you can depend on.</h2>
+      <p class="section-subtitle">We're not a lifestyle brand. We're the operational backbone that keeps your business moving.</p>
+      <div class="why-grid">
+        <div class="why-item">
+          <div class="why-icon">🔒</div>
+          <h4>Reliable</h4>
+          <p>98% on-time delivery rate. Every shipment tracked, every delivery confirmed.</p>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">⚡</div>
+          <h4>Fast</h4>
+          <p>Same-day urban delivery. 24–48 hour interstate. No excuses, no delays.</p>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">🗺️</div>
+          <h4>Nationwide</h4>
+          <p>All 36 states covered. From Lagos to Kano, Port Harcourt to Maiduguri.</p>
+        </div>
+        <div class="why-item">
+          <div class="why-icon">📊</div>
+          <h4>Transparent</h4>
+          <p>Real-time tracking, clear pricing, and proof of delivery. No surprises.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== AUDIENCE SPLIT ========== -->
+  <section class="section-padding" style="background: var(--steel);">
+    <div class="container">
+      <p class="section-eyebrow">WHO WE SERVE</p>
+      <h2 class="section-title">Built for individuals and enterprises alike.</h2>
+      <p class="section-subtitle" style="margin-bottom: 48px;">Whether you're sending a single package or running a nationwide operation, we have the infrastructure to handle it.</p>
+      <div class="audience-grid">
+        <div class="audience-panel individuals">
+          <div>
+            <h3>FOR INDIVIDUALS</h3>
+            <p>Send a package across town or across the country. Track it every step of the way. Simple, fast, and reliable.</p>
+          </div>
+          <a href="#" class="btn btn-outline-dark" id="individualQuoteBtn">GET A QUOTE</a>
+        </div>
+        <div class="audience-panel businesses">
+          <div>
+            <h3>FOR BUSINESSES</h3>
+            <p>Bulk shipping, API integration, dedicated account manager, and volume pricing. Scale without friction.</p>
+          </div>
+          <a href="#business" class="btn btn-white">LEARN MORE</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PARTNER STRIP ========== -->
+  <section class="partner-strip">
+    <div class="container partner-inner">
+      <div class="partner-text">
+        <h3>BECOME A PARTNER</h3>
+        <p>Riders, agents, and franchise partners — join our network and grow with NEXA.</p>
+      </div>
+      <a href="#" class="btn btn-white">APPLY NOW</a>
+    </div>
+  </section>
+
+  <!-- ========== CLIENT LOGOS ========== -->
+  <section class="section-padding" style="padding: 48px 0;">
+    <div class="container">
+      <p style="text-align: center; font-size: 0.75rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--slate); margin-bottom: 8px;">TRUSTED BY LEADING NIGERIAN BRANDS</p>
+      <div class="logos-row">
+        <span class="logo-item">Zuri Retail</span>
+        <span class="logo-item">PayFlow</span>
+        <span class="logo-item">GreenHarvest</span>
+        <span class="logo-item">Lagos Fashion Co.</span>
+        <span class="logo-item">MedPlus</span>
+        <span class="logo-item">BuildRight</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== TESTIMONIALS ========== -->
+  <section class="section-padding" style="background: var(--white);">
+    <div class="container">
+      <p class="section-eyebrow">CLIENT STORIES</p>
+      <h2 class="section-title">What our clients say.</h2>
+      <p class="section-subtitle">Real feedback from businesses that rely on NEXA every day.</p>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p class="testimonial-quote">"NEXA cut our delivery times in half. Our customers notice, and our repeat purchase rate is up 34% since we switched."</p>
+          <div class="testimonial-author">— Zuri Retail, E-commerce</div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-quote">"The API integration was seamless. We were shipping within 48 hours of signing up. Their dashboard gives us full visibility."</p>
+          <div class="testimonial-author">— PayFlow, Fintech</div>
+        </div>
+        <div class="testimonial-card">
+          <p class="testimonial-quote">"We move fragile medical supplies daily. NEXA's handling and tracking give us complete peace of mind. Zero incidents in 14 months."</p>
+          <div class="testimonial-author">— MedPlus, Healthcare</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SERVICES DETAIL (Expanded) ========== -->
+  <section class="section-padding" style="background: var(--steel);" id="services-detail">
+    <div class="container">
+      <p class="section-eyebrow">SERVICE DETAILS</p>
+      <h2 class="section-title">How we move your business forward.</h2>
+      <p class="section-subtitle">Every service is built around reliability, speed, and transparency. Here's what you get.</p>
+    </div>
+  </section>
+
+  <div class="service-detail">
+    <div class="container">
+      <div class="service-detail-grid">
+        <div>
+          <p class="section-eyebrow">SAME-DAY DELIVERY</p>
+          <h3>Urban delivery, done right.</h3>
+          <p>Perfect for businesses and individuals who need packages delivered within the same city — fast. We pick up within 2 hours and deliver by end of day. Available in Lagos, Abuja, and Port Harcourt.</p>
+          <div class="process-steps">
+            <div class="process-step"><span class="step-num">1</span> Book a pickup online or via API</div>
+            <div class="process-step"><span class="step-num">2</span> Rider dispatched within 2 hours</div>
+            <div class="process-step"><span class="step-num">3</span> Real-time tracking to destination</div>
+            <div class="process-step"><span class="step-num">4</span> Proof of delivery confirmed</div>
+          </div>
+          <a href="#" class="btn btn-primary" id="sameDayQuoteBtn">GET A QUOTE</a>
+        </div>
+        <img class="service-detail-image" src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?q=80&w=1000&auto=format&fit=crop" alt="Delivery van in Lagos traffic">
+      </div>
+    </div>
+  </div>
+
+  <div class="service-detail" style="background: var(--steel);">
+    <div class="container">
+      <div class="service-detail-grid reverse">
+        <div>
+          <p class="section-eyebrow">INTERSTATE LOGISTICS</p>
+          <h3>Nationwide route network.</h3>
+          <p>We connect all 36 states with scheduled routes and reliable transit times. Whether it's Lagos to Kano or Abuja to Port Harcourt, your cargo moves on time, every time.</p>
+          <div class="process-steps">
+            <div class="process-step"><span class="step-num">1</span> Drop off or schedule pickup</div>
+            <div class="process-step"><span class="step-num">2</span> Sorted at nearest hub</div>
+            <div class="process-step"><span class="step-num">3</span> In transit on scheduled route</div>
+            <div class="process-step"><span class="step-num">4</span> Delivered with proof</div>
+          </div>
+          <a href="#" class="btn btn-primary" id="interstateQuoteBtn">GET A QUOTE</a>
+        </div>
+        <img class="service-detail-image" src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=1000&auto=format&fit=crop" alt="Logistics truck on Nigerian highway">
+      </div>
+    </div>
+  </div>
+
+  <div class="service-detail">
+    <div class="container">
+      <div class="service-detail-grid">
+        <div>
+          <p class="section-eyebrow">BUSINESS LOGISTICS</p>
+          <h3>Scale without friction.</h3>
+          <p>Built for companies that ship at volume. Dedicated account manager, bulk rates, API integration, and custom SLAs. We become your logistics department.</p>
+          <div class="process-steps">
+            <div class="process-step"><span class="step-num">1</span> Onboarding & needs assessment</div>
+            <div class="process-step"><span class="step-num">2</span> API integration or dashboard setup</div>
+            <div class="process-step"><span class="step-num">3</span> Volume pricing & SLA agreement</div>
+            <div class="process-step"><span class="step-num">4</span> Dedicated account manager assigned</div>
+          </div>
+          <a href="#business" class="btn btn-primary">LEARN MORE</a>
+        </div>
+        <img class="service-detail-image" src="https://images.unsplash.com/photo-1553413077-190dd305871c?q=80&w=1000&auto=format&fit=crop" alt="Warehouse operations with packages">
+      </div>
+    </div>
+  </div>
+
+  <div class="service-detail" style="background: var(--steel);">
+    <div class="container">
+      <div class="service-detail-grid reverse">
+        <div>
+          <p class="section-eyebrow">E-COMMERCE FULFILMENT</p>
+          <h3>Plug in. Ship out.</h3>
+          <p>Integrate your online store with NEXA and we'll handle picking, packing, shipping, and returns. Inventory sync, order tracking, and customer notifications included.</p>
+          <div class="process-steps">
+            <div class="process-step"><span class="step-num">1</span> Connect your store (Shopify, WooCommerce, custom)</div>
+            <div class="process-step"><span class="step-num">2</span> Inventory synced to our warehouse</div>
+            <div class="process-step"><span class="step-num">3</span> Orders picked, packed, and shipped</div>
+            <div class="process-step"><span class="step-num">4</span> Returns processed & restocked</div>
+          </div>
+          <a href="#" class="btn btn-primary" id="ecomQuoteBtn">GET A QUOTE</a>
+        </div>
+        <img class="service-detail-image" src="https://images.unsplash.com/photo-1566576912321-d58ddd7a6088?q=80&w=1000&auto=format&fit=crop" alt="E-commerce packing station">
+      </div>
+    </div>
+  </div>
+
+  <!-- ========== FOR BUSINESS PAGE ========== -->
+  <section class="b2b-hero" id="business">
+    <div class="container">
+      <div class="b2b-grid">
+        <div>
+          <p class="section-eyebrow">FOR BUSINESS</p>
+          <h2 class="section-title">Your logistics department, outsourced.</h2>
+          <p class="section-subtitle">We handle the complexity so you can focus on growth. Bulk shipping, API integration, dedicated support, and volume pricing — all built for scale.</p>
+          <div class="b2b-features">
+            <div class="b2b-feature">
+              <div class="b2b-feature-icon">📦</div>
+              <div>
+                <h4>Bulk & API Shipping</h4>
+                <p>Ship thousands of packages with a single API call. Full documentation and sandbox available.</p>
+              </div>
+            </div>
+            <div class="b2b-feature">
+              <div class="b2b-feature-icon">👤</div>
+              <div>
+                <h4>Dedicated Account Manager</h4>
+                <p>One point of contact who knows your business. Proactive support, not a call center.</p>
+              </div>
+            </div>
+            <div class="b2b-feature">
+              <div class="b2b-feature-icon">💰</div>
+              <div>
+                <h4>Volume Pricing</h4>
+                <p>Rates that scale with your volume. The more you ship, the better your margins.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <h3 style="font-size: 1.25rem; font-weight: 700; margin-bottom: 16px;">Onboarding in 4 steps</h3>
+          <div class="onboarding-steps">
+            <div class="onboarding-step">
+              <div class="onboarding-num">1</div>
+              <div>
+                <h4>Request a callback</h4>
+                <p>Fill the form and we'll reach out within 1 business day.</p>
+              </div>
+            </div>
+            <div class="onboarding-step">
+              <div class="onboarding-num">2</div>
+              <div>
+                <h4>Needs assessment</h4>
+                <p>We understand your volume, routes, and integration needs.</p>
+              </div>
+            </div>
+            <div class="onboarding-step">
+              <div class="onboarding-num">3</div>
+              <div>
+                <h4>Integration & testing</h4>
+                <p>API setup, sandbox testing, and account configuration.</p>
+              </div>
+            </div>
+            <div class="onboarding-step">
+              <div class="onboarding-num">4</div>
+              <div>
+                <h4>Go live</h4>
+                <p>Start shipping with dedicated support from day one.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Business lead form -->
+  <section class="section-padding" style="background: var(--white);">
+    <div class="container" style="max-width: 720px;">
+      <p class="section-eyebrow">REQUEST A CALLBACK</p>
+      <h2 class="section-title">Let's talk logistics.</h2>
+      <p class="section-subtitle">Tell us about your business and we'll get back to you within 24 hours.</p>
+      <form id="businessForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="bizName">Business name *</label>
+            <input type="text" id="bizName" required placeholder="e.g., Zuri Retail">
+          </div>
+          <div class="form-group">
+            <label for="bizIndustry">Industry *</label>
+            <select id="bizIndustry" required>
+              <option value="">Select industry</option>
+              <option>E-commerce</option>
+              <option>Retail</option>
+              <option>Healthcare</option>
+              <option>Manufacturing</option>
+              <option>Technology</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="bizVolume">Monthly shipment volume *</label>
+            <select id="bizVolume" required>
+              <option value="">Select volume</option>
+              <option>1 – 100</option>
+              <option>101 – 500</option>
+              <option>501 – 2,000</option>
+              <option>2,001 – 10,000</option>
+              <option>10,000+</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="bizContact">Contact name *</label>
+            <input type="text" id="bizContact" required placeholder="Your full name">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="bizEmail">Work email *</label>
+            <input type="email" id="bizEmail" required placeholder="you@company.com">
+          </div>
+          <div class="form-group">
+            <label for="bizPhone">Phone number *</label>
+            <input type="tel" id="bizPhone" required placeholder="+234 800 000 0000">
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top: 8px;">REQUEST A CALLBACK</button>
+        <p id="businessFormStatus" style="margin-top: 12px; font-size: 0.85rem; color: var(--orange); display: none;">Thank you! We'll reach out within 24 hours.</p>
+      </form>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section class="section-padding" style="background: var(--steel);">
+    <div class="container" style="max-width: 800px;">
+      <p class="section-eyebrow">TRACKING FAQ</p>
+      <h2 class="section-title">Questions? Answered.</h2>
+      <div style="margin-top: 32px;">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Where do I find my tracking number?
+            <span>+</span>
+          </div>
+          <div class="faq-answer">Your tracking number is sent via SMS and email as soon as your shipment is created. It starts with "NX-" followed by a 8-digit code.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            How often is tracking updated?
+            <span>+</span>
+          </div>
+          <div class="faq-answer">Tracking status updates in real-time at every checkpoint: pickup, hub arrival, departure, out for delivery, and delivery confirmation.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            What if my tracking shows no movement?
+            <span>+</span>
+          </div>
+          <div class="faq-answer">Interstate shipments may show no movement for up to 12 hours while in transit between hubs. If it's been over 24 hours, contact support.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">
+            Can I change my delivery address after shipping?
+            <span>+</span>
+          </div>
+          <div class="faq-answer">Yes, if the shipment hasn't been dispatched for final delivery. Contact our support team with your tracking number as soon as possible.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer" id="contact">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <div class="footer-brand">
+            <span class="logo-mark"></span>
+            NEXA LOGISTICS
+          </div>
+          <p class="footer-desc">Moving business forward. Reliable logistics solutions connecting businesses and customers across Nigeria.</p>
+        </div>
+        <div>
+          <h4>SERVICES</h4>
+          <ul class="footer-links">
+            <li><a href="#services">Same-Day Delivery</a></li>
+            <li><a href="#services">Interstate Logistics</a></li>
+            <li><a href="#services">Business Logistics</a></li>
+            <li><a href="#services">E-commerce Fulfilment</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>COMPANY</h4>
+          <ul class="footer-links">
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#business">For Business</a></li>
+            <li><a href="#tracking">Track Shipment</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>CONTACT</h4>
+          <div class="footer-contact-item">📞 +234 700 NEXA (6392)</div>
+          <div class="footer-contact-item">✉️ hello@nexalogistics.ng</div>
+          <div class="footer-contact-item">📍 14 Adeola Odeku Street, Victoria Island, Lagos, Nigeria</div>
+          <form class="newsletter-form" id="newsletterForm">
+            <input type="email" placeholder="Email for updates" aria-label="Email for updates">
+            <button type="submit">→</button>
+          </form>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <div>© 2025 NEXA LOGISTICS. All rights reserved.</div>
+        <div class="social-icons">
+          <a href="#" aria-label="LinkedIn">in</a>
+          <a href="#" aria-label="Twitter">X</a>
+          <a href="#" aria-label="Instagram">ig</a>
+        </div>
+        <div class="dmad-credit">Designed & developed by DMAD</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile sticky CTA -->
+  <div class="mobile-sticky-cta">
+    <button class="btn btn-primary" id="mobileStickyQuote">GET A QUOTE</button>
+  </div>
+
+  <!-- ========== QUOTE MODAL ========== -->
+  <div class="modal-overlay" id="quoteModal">
+    <div class="modal">
+      <button class="modal-close" id="modalClose" aria-label="Close modal">×</button>
+      <h3>GET A QUOTE</h3>
+      <p>Tell us about your shipment and we'll estimate the cost instantly.</p>
+      <form id="quoteForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="pickupLocation">Pickup location *</label>
+            <input type="text" id="pickupLocation" required placeholder="e.g., Lekki, Lagos">
+          </div>
+          <div class="form-group">
+            <label for="destLocation">Destination *</label>
+            <input type="text" id="destLocation" required placeholder="e.g., Wuse, Abuja">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="packageType">Package type *</label>
+            <select id="packageType" required>
+              <option value="">Select type</option>
+              <option value="document">Document</option>
+              <option value="small">Small parcel (≤5kg)</option>
+              <option value="medium">Medium parcel (5–20kg)</option>
+              <option value="large">Large parcel (20–50kg)</option>
+              <option value="freight">Freight (50kg+)</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="deliverySpeed">Delivery speed *</label>
+            <select id="deliverySpeed" required>
+              <option value="">Select speed</option>
+              <option value="sameday">Same-Day (urban)</option>
+              <option value="standard">Standard (24–48h)</option>
+              <option value="interstate">Interstate (2–4 days)</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="quoteName">Your name *</label>
+            <input type="text" id="quoteName" required placeholder="Full name">
+          </div>
+          <div class="form-group">
+            <label for="quotePhone">Phone number *</label>
+            <input type="tel" id="quotePhone" required placeholder="+234 800 000 0000">
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="quoteEmail">Email address *</label>
+          <input type="email" id="quoteEmail" required placeholder="you@email.com">
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">GET QUOTE</button>
+      </form>
+      <div class="quote-result" id="quoteResult">
+        <div class="quote-price" id="quotePrice">₦4,800</div>
+        <div class="quote-window" id="quoteWindow">Estimated delivery: Today, 6:00 PM – 9:00 PM</div>
+        <p style="font-size: 0.8rem; color: var(--slate); margin-top: 12px;">This is a demo estimate. Final pricing may vary based on exact weight and dimensions.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      'use strict';
+
+      // ---------- DOM refs ----------
+      const header = document.getElementById('header');
+      const hamburger = document.getElementById('hamburger');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const quoteModal = document.getElementById('quoteModal');
+      const modalClose = document.getElementById('modalClose');
+      const trackingForm = document.getElementById('trackingForm');
+      const trackingResult = document.getElementById('trackingResult');
+      const trackingInput = document.getElementById('trackingInput');
+      const quoteForm = document.getElementById('quoteForm');
+      const quoteResult = document.getElementById('quoteResult');
+      const quotePrice = document.getElementById('quotePrice');
+      const quoteWindow = document.getElementById('quoteWindow');
+      const businessForm = document.getElementById('businessForm');
+      const businessFormStatus = document.getElementById('businessFormStatus');
+      const statNumbers = document.querySelectorAll('.stat-number[data-target]');
+
+      // ---------- Header scroll shadow ----------
+      window.addEventListener('scroll', () => {
+        header.classList.toggle('scrolled', window.scrollY > 20);
+      });
+
+      // ---------- Mobile menu toggle ----------
+      hamburger.addEventListener('click', () => {
+        const isOpen = mobileMenu.classList.toggle('open');
+        hamburger.classList.toggle('active');
+        hamburger.setAttribute('aria-expanded', isOpen);
+        document.body.style.overflow = isOpen ? 'hidden' : '';
+      });
+
+      // Close mobile menu on link click
+      mobileMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', () => {
+          mobileMenu.classList.remove('open');
+          hamburger.classList.remove('active');
+          hamburger.setAttribute('aria-expanded', 'false');
+          document.body.style.overflow = '';
+        });
+      });
+
+      // ---------- Modal open/close ----------
+      function openQuoteModal(e) {
+        if (e) e.preventDefault();
+        quoteModal.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeQuoteModal() {
+        quoteModal.classList.remove('open');
+        document.body.style.overflow = '';
+        quoteResult.classList.remove('visible');
+      }
+
+      // Attach quote triggers
+      const quoteTriggers = [
+        document.getElementById('quoteBtnNav'),
+        document.getElementById('heroQuoteBtn'),
+        document.getElementById('mobileQuoteBtn'),
+        document.getElementById('mobileStickyQuote'),
+        document.getElementById('individualQuoteBtn'),
+        document.getElementById('sameDayQuoteBtn'),
+        document.getElementById('interstateQuoteBtn'),
+        document.getElementById('ecomQuoteBtn')
+      ];
+
+      quoteTriggers.forEach(btn => {
+        if (btn) {
+          btn.addEventListener('click', (e) => {
+            e.preventDefault();
+            // Close mobile menu if open
+            if (mobileMenu.classList.contains('open')) {
+              mobileMenu.classList.remove('open');
+              hamburger.classList.remove('active');
+              hamburger.setAttribute('aria-expanded', 'false');
+              document.body.style.overflow = '';
+            }
+            openQuoteModal();
+          });
+        }
+      });
+
+      modalClose.addEventListener('click', closeQuoteModal);
+      quoteModal.addEventListener('click', (e) => {
+        if (e.target === quoteModal) closeQuoteModal();
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && quoteModal.classList.contains('open')) closeQuoteModal();
+      });
+
+      // ---------- Tracking widget (FIXED: ETA + location driven by stage) ----------
+      trackingForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const input = trackingInput.value.trim();
+        if (!input) return;
+
+        // Generate a mock tracking ID
+        const trackingId = input.startsWith('NX-')
+          ? input
+          : 'NX-' + (input.replace(/\D/g, '').slice(0, 8) || '2847-1923');
+
+        // Deterministic stage from a hash of the tracking ID.
+        // Same input → same stage → same ETA & location. No random drift.
+        let hash = 0;
+        for (let i = 0; i < trackingId.length; i++) {
+          hash = (hash * 31 + trackingId.charCodeAt(i)) >>> 0;
+        }
+        const currentStep = hash % 5; // 0–4
+
+        // Stage-indexed lookup tables — ETA and location are functions of stage.
+        // Stage index: 0=Order Placed, 1=Picked Up, 2=In Transit, 3=Out for Delivery, 4=Delivered
+        const etaByStage = [
+          'ETA: Awaiting pickup',              // 0 — Order Placed
+          'ETA: Today, 6:00 PM',               // 1 — Picked Up
+          'ETA: Tomorrow, 10:00 AM',           // 2 — In Transit
+          'ETA: Today, 2:00 PM – 5:00 PM',     // 3 — Out for Delivery
+          'Delivered'                          // 4 — Delivered
+        ];
+
+        const locationByStage = [
+          'Pickup scheduled',
+          'Picked up — Lagos hub',
+          'In transit — en route',
+          'Out for delivery',
+          'Delivered — Lagos, Nigeria'
+        ];
+
+        const eta = etaByStage[currentStep];
+        const location = locationByStage[currentStep];
+
+        document.getElementById('displayTrackingId').textContent = trackingId;
+        document.getElementById('displayLocation').textContent = '📍 ' + location;
+        document.getElementById('displayEta').textContent = eta;
+
+        // Update stepper
+        const steps = document.querySelectorAll('#statusStepper .status-step');
+        steps.forEach((step, idx) => {
+          step.classList.remove('active', 'completed');
+          if (idx < currentStep) {
+            step.classList.add('completed');
+            step.querySelector('.step-dot').textContent = '✓';
+          } else if (idx === currentStep) {
+            step.classList.add('active');
+            step.querySelector('.step-dot').textContent = '●';
+          } else {
+            step.querySelector('.step-dot').textContent = (idx + 1);
+          }
+        });
+
+        trackingResult.classList.add('visible');
+      });
+
+      // ---------- Quote form (FIXED: value-based multipliers) ----------
+      // Multiplier keys are semantic identifiers (values), not display strings.
+      // If <option> labels change, these maps don't break.
+      const typeMultiplier = {
+        document: 1,
+        small: 1.3,
+        medium: 1.8,
+        large: 2.5,
+        freight: 4.0
+      };
+      const speedMultiplier = {
+        sameday: 1.8,
+        standard: 1.0,
+        interstate: 1.4
+      };
+
+      quoteForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const pickup = document.getElementById('pickupLocation').value.trim();
+        const dest = document.getElementById('destLocation').value.trim();
+        const type = document.getElementById('packageType').value;       // e.g. "medium"
+        const speed = document.getElementById('deliverySpeed').value;     // e.g. "standard"
+
+        if (!pickup || !dest || !type || !speed) return;
+
+        // Guard: warn loudly if a key is ever missing, instead of silently
+        // falling back to the default multiplier.
+        if (!(type in typeMultiplier)) {
+          console.warn('Unknown package type key:', type);
+        }
+        if (!(speed in speedMultiplier)) {
+          console.warn('Unknown delivery speed key:', speed);
+        }
+
+        const basePrice = 2500;
+        const price = Math.round(
+          basePrice *
+          (typeMultiplier[type] ?? 1.3) *
+          (speedMultiplier[speed] ?? 1.0)
+        );
+        const formattedPrice = '₦' + price.toLocaleString();
+
+        let windowText = 'Estimated delivery: ';
+        if (speed === 'sameday') windowText += 'Today, 6:00 PM – 9:00 PM';
+        else if (speed === 'standard') windowText += 'Within 24–48 hours';
+        else windowText += '2–4 business days';
+
+        quotePrice.textContent = formattedPrice;
+        quoteWindow.textContent = windowText;
+        quoteResult.classList.add('visible');
+      });
+
+      // ---------- Business form ----------
+      businessForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        businessFormStatus.style.display = 'block';
+        businessForm.reset();
+        setTimeout(() => {
+          businessFormStatus.style.display = 'none';
+        }, 5000);
+      });
+
+      // ---------- Newsletter form ----------
+      document.getElementById('newsletterForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const input = e.target.querySelector('input');
+        if (input.value.trim()) {
+          input.value = '';
+          input.placeholder = 'Subscribed!';
+          setTimeout(() => {
+            input.placeholder = 'Email for updates';
+          }, 3000);
+        }
+      });
+
+      // ---------- FAQ toggle ----------
+      window.toggleFaq = function(el) {
+        const answer = el.nextElementSibling;
+        const isVisible = answer.classList.contains('visible');
+        // Close all others
+        document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('visible'));
+        document.querySelectorAll('.faq-question span').forEach(s => s.textContent = '+');
+        if (!isVisible) {
+          answer.classList.add('visible');
+          el.querySelector('span').textContent = '−';
+        }
+      };
+
+      // ---------- Stat counters ----------
+      let statsAnimated = false;
+      function animateStats() {
+        if (statsAnimated) return;
+        const trustBar = document.querySelector('.trust-bar');
+        if (!trustBar) return;
+        const rect = trustBar.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          statsAnimated = true;
+          statNumbers.forEach(el => {
+            const target = parseInt(el.dataset.target, 10);
+            const suffix = el.dataset.suffix || '';
+            const duration = 1800;
+            const start = performance.now();
+
+            function update(now) {
+              const progress = Math.min((now - start) / duration, 1);
+              const eased = 1 - Math.pow(1 - progress, 3);
+              const current = Math.round(eased * target);
+              el.textContent = current.toLocaleString() + suffix;
+              if (progress < 1) requestAnimationFrame(update);
+            }
+            requestAnimationFrame(update);
+          });
+        }
+      }
+
+      window.addEventListener('scroll', animateStats);
+      window.addEventListener('load', animateStats);
+
+      // ---------- Smooth scroll for anchor links ----------
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (href === '#') return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            const offset = 80;
+            const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+            window.scrollTo({ top, behavior: 'smooth' });
+          }
+        });
+      });
+
+    })();
+  </script>
+</body>
+</html>
