@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Fintech App Design — Product Design Case Study | DMAD</title>
+<meta name="description" content="End-to-end product design for a Nigerian fintech startup — 24 screens, design system, and interactive prototype." />
+
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
+<link rel="manifest" href="../site.webmanifest">
+<link rel="icon" href="../favicon.ico" type="image/x-icon">
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz@14..32&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+<link rel="stylesheet" href="css/case-study.css" />
+
+<style>
+  /* Fintech-specific hero mockup */
+  .fintech-hero-mockup {
+    display: flex;
+    gap: 1.25rem;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 2rem 3rem 0;
+    min-height: 400px;
+  }
+  .fintech-phone {
+    width: 140px;
+    height: 280px;
+    background: #0a0e1a;
+    border-radius: 22px;
+    padding: 8px;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+    position: relative;
+    flex-shrink: 0;
+    transition: transform 0.5s cubic-bezier(0.25,0.46,0.45,0.94);
+  }
+  .fintech-phone:nth-child(2) {
+    transform: translateY(-20px) rotate(-3deg);
+    z-index: 2;
+  }
+  .fintech-phone-notch {
+    position: absolute;
+    top: 10px; left: 50%;
+    transform: translateX(-50%);
+    width: 44px; height: 5px;
+    background: #0a0e1a;
+    border-radius: 4px;
+    z-index: 3;
+  }
+  .fintech-phone-screen {
+    width: 100%; height: 100%;
+    background: #f7f9fc;
+    border-radius: 16px;
+    padding: 16px 10px 10px;
+    overflow: hidden;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .fintech-phone-screen.dark { background: #0f1729; }
+
+  .ft-topbar { display: flex; justify-content: space-between; align-items: center; }
+  .ft-greeting { font-size: 9px; font-weight: 600; color: #14213D; }
+  .ft-avatar {
+    width: 16px; height: 16px; border-radius: 50%;
+    background: linear-gradient(135deg, #FF6B4A, #1F4C8F);
+  }
+  .ft-balance {
+    background: linear-gradient(135deg, #1F4C8F, #2a5fa8);
+    border-radius: 10px;
+    padding: 10px;
+    color: #fff;
+  }
+  .ft-balance-label { font-size: 6px; opacity: 0.7; margin-bottom: 3px; }
+  .ft-balance-amount { font-size: 14px; font-weight: 800; letter-spacing: -0.02em; }
+  .ft-balance-amount span { font-size: 8px; opacity: 0.7; }
+  .ft-actions { display: flex; gap: 5px; justify-content: space-between; }
+  .ft-action {
+    flex: 1; height: 24px; border-radius: 7px;
+    background: #fff; border: 1px solid #e1e7f0;
+    display: flex; align-items: center; justify-content: center;
+    color: #1F4C8F; font-size: 9px;
+  }
+  .ft-chart {
+    height: 40px;
+    background: linear-gradient(180deg, transparent 0%, rgba(255,107,74,0.2) 100%);
+    border-radius: 4px;
+    clip-path: polygon(0 70%, 15% 55%, 30% 65%, 45% 40%, 60% 50%, 75% 25%, 90% 35%, 100% 15%, 100% 100%, 0 100%);
+  }
+  .ft-tx { display: flex; align-items: center; gap: 6px; }
+  .ft-tx-icon { width: 18px; height: 18px; border-radius: 6px; flex-shrink: 0; }
+  .ft-tx-icon.coral { background: rgba(255,107,74,0.25); }
+  .ft-tx-icon.green { background: rgba(76,222,138,0.25); }
+  .ft-tx-lines { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+  .ft-tx-lines span { height: 4px; background: #d5dbe6; border-radius: 2px; }
+  .ft-tx-lines .short { width: 55%; }
+
+  .ft-card {
+    background: linear-gradient(135deg, #FF6B4A, #e85a3a);
+    border-radius: 10px; padding: 10px; color: #fff;
+    height: 60px;
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .ft-card-chip {
+    width: 14px; height: 10px;
+    border-radius: 2px;
+    background: linear-gradient(135deg, #FFD9A0, #D4A72C);
+  }
+  .ft-card-number { font-size: 10px; font-weight: 700; letter-spacing: 1px; }
+  .ft-card-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 6px; font-weight: 700; letter-spacing: 0.5px; opacity: 0.9;
+  }
+  .ft-quick { flex: 1; display: flex; flex-direction: column; gap: 6px; padding-top: 2px; }
+  .ft-quick-row { display: flex; gap: 5px; }
+  .ft-chip-btn {
+    flex: 1; font-size: 6px; text-align: center;
+    padding: 5px 0; border-radius: 6px;
+    background: rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.6);
+    font-weight: 600;
+  }
+  .ft-chip-btn.active { background: #FF6B4A; color: #fff; }
+  .ft-recipient {
+    display: flex; align-items: center; gap: 6px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 7px; padding: 5px 7px;
+  }
+  .ft-recipient-avatar {
+    width: 16px; height: 16px; border-radius: 50%;
+    background: linear-gradient(135deg, #6FA0FF, #1F4C8F);
+    flex-shrink: 0;
+  }
+  .ft-recipient-avatar.alt { background: linear-gradient(135deg, #FFD9A0, #FF6B4A); }
+  .ft-recipient .ft-tx-lines span { background: rgba(255,255,255,0.2); }
+  .ft-send-btn {
+    background: #FF6B4A; color: #fff;
+    font-size: 7px; font-weight: 700;
+    text-align: center; padding: 7px 0; border-radius: 6px;
+  }
+
+  @media (max-width: 640px) {
+    .fintech-hero-mockup { padding: 1.5rem 1rem 0; gap: 0.75rem; }
+    .fintech-phone { width: 110px; height: 220px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="navbar" id="navbar">
+  <div class="container">
+    <a href="../index.html">
+      <img src="../dmad-logo-blue.png" alt="DMAD" class="nav-logo nav-logo-light" />
+      <img src="../dmad-logo-white.png" alt="DMAD" class="nav-logo nav-logo-dark" />
+    </a>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme"><i class="fas fa-moon" id="themeIcon"></i></button>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu"><i class="fas fa-bars"></i></button>
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="../index.html#about">About</a></li>
+      <li><a href="../index.html#services">Services</a></li>
+      <li><a href="index.html">Work</a></li>
+      <li><a href="../index.html#pricing">Pricing</a></li>
+      <li><a href="../index.html#contact">Contact</a></li>
+      <li><a href="../index.html#contact" class="nav-cta">Free Consultation</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="case-hero">
+  <div class="container">
+    <nav class="case-crumbs" aria-label="Breadcrumb">
+      <a href="../index.html">Home</a><span aria-hidden="true">/</span>
+      <a href="index.html">Selected Work</a><span aria-hidden="true">/</span>
+      <span>Fintech App Design</span>
+    </nav>
+
+    <div class="case-meta">
+      <span>Delivered Work · Product Design</span>
+      <span class="dot" aria-hidden="true"></span>
+      <span>UI/UX · Mobile App</span>
+    </div>
+
+    <h1 class="case-title">
+      End-to-end product design for <span class="accent">a Nigerian payments startup.</span>
+    </h1>
+
+    <p class="case-lead">
+      Full UI/UX design for a Nigerian fintech — onboarding, dashboard,
+      transfers, and a virtual card system. 24 screens. Complete design
+      system. Interactive prototype ready for investors.
+    </p>
+
+    <div class="case-actions">
+      <a href="../index.html#contact" class="btn btn-coral">
+        Start a Similar Project <i class="fas fa-arrow-right"></i>
+      </a>
+      <a href="index.html" class="btn btn-outline">Back to Portfolio</a>
+    </div>
+
+    <div class="case-preview" data-theme="nexa" style="background:#0d1525;">
+      <div class="case-preview__browser-bar" aria-hidden="true"></div>
+      <div class="fintech-hero-mockup">
+        <div class="fintech-phone">
+          <div class="fintech-phone-notch"></div>
+          <div class="fintech-phone-screen">
+            <div class="ft-topbar">
+              <span class="ft-greeting">Hi, Ada</span>
+              <span class="ft-avatar"></span>
+            </div>
+            <div class="ft-balance">
+              <div class="ft-balance-label">Total balance</div>
+              <div class="ft-balance-amount">₦ 248,300<span>.50</span></div>
+            </div>
+            <div class="ft-actions">
+              <span class="ft-action"><i class="fas fa-paper-plane"></i></span>
+              <span class="ft-action"><i class="fas fa-plus"></i></span>
+              <span class="ft-action"><i class="fas fa-arrow-down"></i></span>
+            </div>
+            <div class="ft-chart"></div>
+            <div class="ft-tx">
+              <span class="ft-tx-icon coral"></span>
+              <div class="ft-tx-lines"><span></span><span class="short"></span></div>
+            </div>
+            <div class="ft-tx">
+              <span class="ft-tx-icon green"></span>
+              <div class="ft-tx-lines"><span></span><span class="short"></span></div>
+            </div>
+          </div>
+        </div>
+        <div class="fintech-phone">
+          <div class="fintech-phone-notch"></div>
+          <div class="fintech-phone-screen dark">
+            <div class="ft-card">
+              <div class="ft-card-chip"></div>
+              <div class="ft-card-number">•••• 4821</div>
+              <div class="ft-card-bottom">
+                <span>DMAD PAY</span>
+                <span>VISA</span>
+              </div>
+            </div>
+            <div class="ft-quick">
+              <div class="ft-quick-row">
+                <span class="ft-chip-btn active">Send</span>
+                <span class="ft-chip-btn">Request</span>
+              </div>
+              <div class="ft-recipient">
+                <span class="ft-recipient-avatar"></span>
+                <div class="ft-tx-lines"><span></span><span class="short"></span></div>
+              </div>
+              <div class="ft-recipient">
+                <span class="ft-recipient-avatar alt"></span>
+                <div class="ft-tx-lines"><span></span><span class="short"></span></div>
+              </div>
+            </div>
+            <div class="ft-send-btn">Send ₦ 45,000</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="container">
+    <div class="case-split">
+      <aside class="case-sidebar">
+        <div class="case-sidebar-block">
+          <div class="case-sidebar-label">Client</div>
+          <div class="case-sidebar-value">Nigerian Payments Startup</div>
+        </div>
+        <div class="case-sidebar-block">
+          <div class="case-sidebar-label">Industry</div>
+          <div class="case-sidebar-value">Fintech · Payments · Consumer App</div>
+        </div>
+        <div class="case-sidebar-block">
+          <div class="case-sidebar-label">Deliverables</div>
+          <div class="case-sidebar-value">
+            24 screens · Design system<br/>
+            Interactive prototype · Handoff specs
+          </div>
+        </div>
+        <div class="case-sidebar-block">
+          <div class="case-sidebar-label">Platforms</div>
+          <div class="case-sidebar-value">iOS · Android</div>
+        </div>
+        <div class="case-sidebar-block">
+          <div class="case-sidebar-label">Status</div>
+          <div class="case-sidebar-value"><span class="status-badge status-badge--live">Delivered</span></div>
+        </div>
+      </aside>
+
+      <div class="case-content">
+        <span class="case-section-num">01 — The Brief</span>
+        <h2>A product that needed to look as ready as it already was.</h2>
+
+        <p class="case-lead-paragraph">
+          The engineering was solid. The business model was proven with early users.
+          But the interface was still a working prototype — functional, but not
+          something you'd put in front of an investor or a paying customer.
+        </p>
+
+        <p>
+          We were brought in to take the product from "working MVP" to
+          "investor-ready app" — a full design system, a clean onboarding flow,
+          and a dashboard that felt confident the moment you opened it.
+        </p>
+
+        <p>
+          The result: 24 screens across onboarding, home, transfers, cards,
+          transactions, and settings. Every component documented. Every interaction
+          prototyped. Ready for handoff to the engineering team the same week.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="case-section case-section--alt">
+  <div class="container">
+    <header class="case-section-head">
+      <span class="case-section-num">02 — What We Delivered</span>
+      <h2>Six pieces of the product.</h2>
+      <p class="case-section-sub">
+        Every screen was designed with the same three principles: clarity,
+        confidence, and speed.
+      </p>
+    </header>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-user-plus"></i></div>
+        <h4>Onboarding Flow</h4>
+        <p>Sign up, phone verification, KYC, and account setup — in under 3 minutes.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-house"></i></div>
+        <h4>Home Dashboard</h4>
+        <p>Balance at a glance, quick actions, recent transactions. No clutter.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-paper-plane"></i></div>
+        <h4>Transfers</h4>
+        <p>Send to bank accounts, contacts, or recent recipients. Confirmation without anxiety.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-credit-card"></i></div>
+        <h4>Virtual Cards</h4>
+        <p>Create, freeze, and manage virtual cards for online payments — cleanly.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-list-ul"></i></div>
+        <h4>Transaction History</h4>
+        <p>Filterable, searchable, and clear. Every transaction has a receipt.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon"><i class="fas fa-layer-group"></i></div>
+        <h4>Design System</h4>
+        <p>Reusable components documented for the engineering team. No more ad-hoc styling.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="container">
+    <header class="case-section-head">
+      <span class="case-section-num">03 — Design System</span>
+      <h2>Navy, coral, and confident.</h2>
+      <p class="case-section-sub">
+        A palette that reads as both premium and approachable. The kind of
+        colours you trust with your money.
+      </p>
+    </header>
+
+    <div class="design-grid">
+      <div class="design-colors">
+        <h4>Palette</h4>
+        <div class="swatch-grid">
+          <div class="swatch">
+            <div class="swatch-color" style="background:#1F4C8F;"></div>
+            <div class="swatch-meta"><strong>Navy Blue</strong><span>#1F4C8F</span></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#0B2244;"></div>
+            <div class="swatch-meta"><strong>Deep Blue</strong><span>#0B2244</span></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#FF6B4A;"></div>
+            <div class="swatch-meta"><strong>Coral</strong><span>#FF6B4A</span></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#4CDE8A;"></div>
+            <div class="swatch-meta"><strong>Signal Green</strong><span>#4CDE8A</span></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#F7F9FC;"></div>
+            <div class="swatch-meta"><strong>Soft White</strong><span>#F7F9FC</span></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-color" style="background:#0F1729;"></div>
+            <div class="swatch-meta"><strong>Dark Mode</strong><span>#0F1729</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="design-type">
+        <h4>Typography</h4>
+        <div class="type-sample">
+          <div class="type-display">
+            <span class="type-label">Display · Inter Bold</span>
+            <div class="type-serif" style="font-family:Inter,sans-serif;">Your money, always with you.</div>
+          </div>
+          <div class="type-body">
+            <span class="type-label">Body · Inter</span>
+            <p>Fast, secure payments for everyday life. Send money, pay bills, and manage your finances — all in one app.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="case-section case-section--alt">
+  <div class="container">
+    <header class="case-section-head">
+      <span class="case-section-num">04 — The Approach</span>
+      <h2>Design for trust, then for speed.</h2>
+    </header>
+
+    <ol class="approach-timeline">
+      <li class="approach-step">
+        <div class="approach-step-num">01</div>
+        <div class="approach-step-body">
+          <h3>Map the money journey</h3>
+          <p>
+            We started by mapping every moment a user interacts with money —
+            from onboarding to sending to receiving. Every screen was placed
+            against that journey before a single pixel was designed.
+          </p>
+        </div>
+      </li>
+      <li class="approach-step">
+        <div class="approach-step-num">02</div>
+        <div class="approach-step-body">
+          <h3>Build the system, not the screens</h3>
+          <p>
+            Components first. Buttons, cards, list items, modals — all documented
+            in a system so the engineering team could build consistently without
+            coming back to design for every new page.
+          </p>
+        </div>
+      </li>
+      <li class="approach-step">
+        <div class="approach-step-num">03</div>
+        <div class="approach-step-body">
+          <h3>Prototype for the investor meeting</h3>
+          <p>
+            A clickable prototype that demonstrates the full product experience —
+            not just static screens. Something that could be handed to an investor
+            or a beta user and instantly understood.
+          </p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<section class="case-cta-band">
+  <div class="container">
+    <div class="case-cta-inner">
+      <div class="case-cta-text">
+        <span class="case-section-num">Want this for your product?</span>
+        <h2>Bring your app to investor-ready.</h2>
+        <p>We design full product experiences — not just screens. Ready for handoff, ready for the room.</p>
+      </div>
+      <a href="../index.html#contact" class="btn btn-coral btn-large">
+        Start Your Project <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="case-section">
+  <div class="container">
+    <header class="case-section-head">
+      <span class="case-section-num">More Work</span>
+      <h2>Explore the rest of the portfolio.</h2>
+    </header>
+
+    <div class="next-case-grid">
+      <a href="oak-and-oven.html" class="next-case">
+        <div class="next-case-meta"><span class="next-case-cat">Hospitality · Restaurant</span><span class="next-case-index">01 / 06</span></div>
+        <h3>OAK &amp; OVEN</h3>
+        <p>Menus locked in WhatsApp. Reservations taken by DM. No online presence.</p>
+        <span class="next-case-link">View case study <i class="fas fa-arrow-right"></i></span>
+      </a>
+      <a href="velora.html" class="next-case">
+        <div class="next-case-meta"><span class="next-case-cat">Commerce · Fashion</span><span class="next-case-index">02 / 06</span></div>
+        <h3>VELORA</h3>
+        <p>Selling through DMs. No catalogue. No checkout. No ability to scale.</p>
+        <span class="next-case-link">View case study <i class="fas fa-arrow-right"></i></span>
+      </a>
+      <a href="anides.html" class="next-case">
+        <div class="next-case-meta"><span class="next-case-cat">Brand Identity · Packaging</span><span class="next-case-index">Delivered</span></div>
+        <h3>Anides Yarn Studios</h3>
+        <p>Handmade crochet studio — full brand refresh with logo, packaging, and stickers.</p>
+        <span class="next-case-link">View case study <i class="fas fa-arrow-right"></i></span>
+      </a>
+      <a href="meridian-co.html" class="next-case">
+        <div class="next-case-meta"><span class="next-case-cat">Professional · Advisory</span><span class="next-case-index">06 / 06</span></div>
+        <h3>MERIDIAN &amp; CO.</h3>
+        <p>Expert firms with no credible online presence to win premium clients.</p>
+        <span class="next-case-link">View case study <i class="fas fa-arrow-right"></i></span>
+      </a>
+      <a href="index.html" class="next-case next-case--all">
+        <div class="next-case-meta"><span class="next-case-cat">Full portfolio</span></div>
+        <h3>View all work</h3>
+        <p>All delivered projects and concept sites in one place.</p>
+        <span class="next-case-link">Back to portfolio <i class="fas fa-arrow-right"></i></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="portfolio-cta">
+  <div class="container">
+    <h2>Want a product like this <span class="accent">for your business?</span></h2>
+    <p>Tell us about your product. We'll show you exactly what we'd design — before you commit.</p>
+    <a href="../index.html#contact" class="btn btn-coral">Start Your Project <i class="fas fa-arrow-right"></i></a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <img src="../dmad-logo-white.png" alt="DMAD" style="height:32px; margin-bottom:0.8rem;" />
+        <p>Start by growing your brand with DMAD — branding, web design, and media production under one roof.</p>
+      </div>
+      <ul class="footer-links">
+        <li><a href="../index.html#about">About</a></li>
+        <li><a href="../index.html#services">Services</a></li>
+        <li><a href="index.html">Work</a></li>
+        <li><a href="../index.html#pricing">Pricing</a></li>
+        <li><a href="../index.html#contact">Contact</a></li>
+      </ul>
+      <div>
+        <div style="font-size:0.8rem; text-transform:uppercase; letter-spacing:1.5px; color:rgba(255,255,255,0.4); font-weight:700; margin-bottom:0.8rem;">Social Media</div>
+        <div class="socials">
+          <a href="https://www.instagram.com/dmadgrps" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.tiktok.com/@dmad594" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+          <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+          <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 DMAD. All rights reserved. Built on proof, not promises.</div>
+  </div>
+</footer>
+
+<a href="https://wa.me/2349123767786" target="_blank" rel="noopener" class="whatsapp-float" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+<script src="js/case-study.js"></script>
+</body>
+</html>
