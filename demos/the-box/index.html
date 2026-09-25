@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>THE BOX LAGOS — Restaurant · Lounge · Grills · Car Wash</title>
   <meta name="description" content="Lagos' premier multi-experience venue. Restaurant, lounge, grills, and car wash under one roof.">
-  <meta name="theme-color" content="#1A2544">
+  <meta name="theme-color" content="#000000">
   <meta property="og:title" content="THE BOX LAGOS — Restaurant · Lounge · Grills · Car Wash">
   <meta property="og:type" content="website">
 
@@ -16,31 +16,27 @@
   <style>
     /* ============================================================
        THE BOX LAGOS — Menu-wall aesthetic
-       Matches the PDF: light bg, navy, bold sans, pill badges
+       Palette anchored to logo: black + white + amber
        Designed & developed by DMAD
        ============================================================ */
 
     /* ---------- 01. TOKENS ---------- */
     :root {
-      --navy: #1A2544;
-      --navy-2: #242F52;
-      --navy-3: #0F1830;
-      --ink: #0A0E18;
+      --black: #000000;
+      --black-2: #0A0A0A;
+      --black-3: #141414;
+      --ink: #050505;
 
-      --lavender: #C7D2F0;
-      --lavender-2: #DDE4F5;
-      --lavender-3: #E8EEF9;
+      --grey-1: #E8E8E8;
+      --grey-2: #F0F0F0;
+      --grey-3: #F7F7F7;
+      --grey-border: #E5E5E5;
 
       --amber: #FF6B1A;
       --amber-2: #E85A0E;
 
-      --sand: #F5F1E8;
-      --sand-2: #EDE7D9;
-      --cream: #FBF8F2;
-
       --white: #FFFFFF;
-      --grey: #E5E7EB;
-      --grey-2: #F3F4F6;
+      --cream: #FBF8F2;
 
       --font-sans: 'Inter', system-ui, sans-serif;
       --font-display: 'Manrope', system-ui, sans-serif;
@@ -54,8 +50,8 @@
     html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
     body {
       font-family: var(--font-sans);
-      background: var(--sand);
-      color: var(--navy);
+      background: var(--white);
+      color: var(--black);
       line-height: 1.55;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
@@ -105,12 +101,12 @@
       cursor: pointer;
       border: 1.5px solid transparent;
     }
-    .btn--navy { background: var(--navy); color: var(--cream); }
-    .btn--navy:hover { background: var(--navy-3); transform: translateY(-2px); box-shadow: 0 15px 35px -12px rgba(26,37,68,0.5); }
+    .btn--black { background: var(--black); color: var(--white); }
+    .btn--black:hover { background: var(--black-3); transform: translateY(-2px); box-shadow: 0 15px 35px -12px rgba(0,0,0,0.4); }
     .btn--amber { background: var(--amber); color: #fff; }
     .btn--amber:hover { background: var(--amber-2); transform: translateY(-2px); box-shadow: 0 15px 35px -10px rgba(255,107,26,0.5); }
-    .btn--outline { border-color: var(--navy); color: var(--navy); }
-    .btn--outline:hover { background: var(--navy); color: var(--cream); }
+    .btn--outline { border-color: var(--black); color: var(--black); }
+    .btn--outline:hover { background: var(--black); color: var(--white); }
     .btn__arrow { display: inline-block; transition: transform 0.3s var(--ease-out-soft); }
     .btn:hover .btn__arrow { transform: translateX(3px); }
 
@@ -122,35 +118,19 @@
       transition: all 0.35s var(--ease-out-soft);
     }
     .nav.scrolled {
-      background: rgba(245, 241, 232, 0.92);
+      background: rgba(255, 255, 255, 0.92);
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
-      box-shadow: 0 1px 0 rgba(26, 37, 68, 0.08);
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.08);
     }
     .nav__inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
-    .nav__logo {
-      font-family: var(--font-display);
-      font-size: 1.05rem;
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--navy);
-      display: inline-flex;
-      align-items: baseline;
-      gap: 0.4rem;
-      line-height: 1;
-    }
-    .nav__logo::after {
-      content: 'LAGOS';
-      font-size: 0.55rem;
-      letter-spacing: 0.35em;
-      color: var(--amber);
-      font-weight: 700;
-    }
+    .nav__logo { display: inline-flex; align-items: center; line-height: 1; }
+    .nav__logo img { height: 32px; width: auto; display: block; }
     .nav__links { display: none; gap: 2rem; align-items: center; }
     @media (min-width: 900px) { .nav__links { display: flex; } }
     .nav__link {
       font-size: 0.72rem; font-weight: 600; letter-spacing: 0.15em;
-      text-transform: uppercase; color: var(--navy);
+      text-transform: uppercase; color: var(--black);
       opacity: 0.7;
       transition: opacity 0.25s;
     }
@@ -159,14 +139,14 @@
     @media (min-width: 900px) { .nav__cta { display: inline-flex; } }
     .nav__toggle { display: flex; flex-direction: column; gap: 5px; padding: 8px; }
     @media (min-width: 900px) { .nav__toggle { display: none; } }
-    .nav__toggle span { display: block; width: 24px; height: 2px; background: var(--navy); transition: all 0.3s; }
+    .nav__toggle span { display: block; width: 24px; height: 2px; background: var(--black); transition: all 0.3s; }
     .nav__toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
     .nav__toggle.open span:nth-child(2) { opacity: 0; }
     .nav__toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     .nav__mobile {
       position: fixed; inset: 0;
-      background: var(--sand);
+      background: var(--white);
       z-index: 999;
       padding: 6rem 2rem 2rem;
       transform: translateX(100%);
@@ -180,7 +160,7 @@
       font-size: 2rem;
       font-weight: 800;
       letter-spacing: -0.02em;
-      color: var(--navy);
+      color: var(--black);
       transition: color 0.25s;
     }
     .nav__mobile a:hover { color: var(--amber); }
@@ -190,14 +170,12 @@
       position: relative;
       min-height: 100vh;
       min-height: 100svh;
-      background: var(--navy);
+      background: var(--black);
       overflow: hidden;
       display: flex;
       align-items: center;
       padding: 7rem 0 3rem;
     }
-
-    /* Big background gradient — matches their cover page overlay shape */
     .hero::before {
       content: '';
       position: absolute;
@@ -205,7 +183,7 @@
       right: -10%;
       width: 70%;
       height: 90%;
-      background: radial-gradient(circle at center, rgba(199, 210, 240, 0.15), transparent 60%);
+      background: radial-gradient(circle at center, rgba(255, 255, 255, 0.06), transparent 60%);
       border-radius: 50%;
       pointer-events: none;
     }
@@ -213,8 +191,7 @@
       content: '';
       position: absolute;
       inset: 0;
-      background:
-        radial-gradient(circle at 15% 85%, rgba(255, 107, 26, 0.12), transparent 45%);
+      background: radial-gradient(circle at 15% 85%, rgba(255, 107, 26, 0.15), transparent 45%);
       pointer-events: none;
     }
 
@@ -234,7 +211,16 @@
       .hero__inner { grid-template-columns: 1.1fr 1fr; gap: 4rem; padding: 0 2.5rem; }
     }
 
-    .hero__text { color: var(--cream); }
+    .hero__text { color: var(--white); }
+    .hero__logo {
+      height: 52px;
+      width: auto;
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.7s var(--ease-out-soft) 0.2s forwards;
+    }
+    @media (min-width: 768px) { .hero__logo { height: 64px; } }
+
     .hero__kicker {
       display: inline-flex;
       align-items: center;
@@ -243,10 +229,10 @@
       font-weight: 700;
       letter-spacing: 0.25em;
       text-transform: uppercase;
-      color: var(--lavender);
+      color: var(--grey-1);
       margin-bottom: 2rem;
       opacity: 0;
-      animation: fadeUp 0.7s var(--ease-out-soft) 0.2s forwards;
+      animation: fadeUp 0.7s var(--ease-out-soft) 0.3s forwards;
     }
     .hero__kicker .dot {
       width: 6px; height: 6px; border-radius: 50%;
@@ -264,14 +250,13 @@
       font-weight: 900;
       line-height: 0.92;
       letter-spacing: -0.04em;
-      color: var(--cream);
+      color: var(--white);
       margin-bottom: 1.75rem;
       opacity: 0;
-      animation: fadeUp 0.9s var(--ease-out-soft) 0.4s forwards;
+      animation: fadeUp 0.9s var(--ease-out-soft) 0.5s forwards;
     }
     .hero__title em {
       display: block;
-      font-family: inherit;
       font-style: normal;
       color: var(--amber);
       font-weight: 900;
@@ -279,12 +264,12 @@
 
     .hero__sub {
       font-size: 1rem;
-      color: rgba(251, 248, 242, 0.75);
+      color: rgba(255, 255, 255, 0.7);
       line-height: 1.65;
       max-width: 44ch;
       margin-bottom: 2.25rem;
       opacity: 0;
-      animation: fadeUp 0.8s var(--ease-out-soft) 0.6s forwards;
+      animation: fadeUp 0.8s var(--ease-out-soft) 0.7s forwards;
     }
 
     .hero__actions {
@@ -292,12 +277,11 @@
       flex-wrap: wrap;
       gap: 0.75rem;
       opacity: 0;
-      animation: fadeUp 0.8s var(--ease-out-soft) 0.8s forwards;
+      animation: fadeUp 0.8s var(--ease-out-soft) 0.9s forwards;
     }
-    .hero__actions .btn--outline { border-color: rgba(251,248,242,0.35); color: var(--cream); }
-    .hero__actions .btn--outline:hover { background: var(--cream); color: var(--navy); border-color: var(--cream); }
+    .hero__actions .btn--outline { border-color: rgba(255,255,255,0.35); color: var(--white); }
+    .hero__actions .btn--outline:hover { background: var(--white); color: var(--black); border-color: var(--white); }
 
-    /* Right-side visual — matches their cover page layout */
     .hero__visual {
       position: relative;
       opacity: 0;
@@ -310,14 +294,13 @@
     }
     @media (max-width: 999px) { .hero__visual { max-width: 380px; } }
 
-    /* Big rounded navy card with food image */
     .hero__card {
       position: absolute;
       inset: 0;
       border-radius: 32px 32px 32px 96px;
       overflow: hidden;
-      background: var(--navy-3);
-      box-shadow: 0 40px 80px -30px rgba(0,0,0,0.55);
+      background: var(--black-3);
+      box-shadow: 0 40px 80px -30px rgba(0,0,0,0.8);
     }
     .hero__card img {
       width: 100%;
@@ -329,16 +312,15 @@
       content: '';
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, transparent 55%, rgba(10,14,24,0.6) 100%);
+      background: linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.7) 100%);
     }
 
-    /* Floating info badge — like their menu price pill */
     .hero__badge {
       position: absolute;
       bottom: 1.5rem;
       left: 1.5rem;
       right: 1.5rem;
-      background: rgba(251, 248, 242, 0.95);
+      background: rgba(255, 255, 255, 0.95);
       backdrop-filter: blur(12px);
       border-radius: 20px;
       padding: 1rem 1.25rem;
@@ -361,7 +343,7 @@
       font-weight: 700;
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: var(--navy);
+      color: var(--black);
       opacity: 0.5;
       margin-bottom: 0.15rem;
     }
@@ -369,14 +351,14 @@
       font-family: var(--font-display);
       font-size: 0.95rem;
       font-weight: 800;
-      color: var(--navy);
+      color: var(--black);
       letter-spacing: -0.01em;
     }
 
     @keyframes fadeUp {
       to { opacity: 1; transform: translateY(0); }
     }
-    .hero__kicker, .hero__title, .hero__sub, .hero__actions, .hero__visual {
+    .hero__logo, .hero__kicker, .hero__title, .hero__sub, .hero__actions, .hero__visual {
       transform: translateY(30px);
     }
 
@@ -385,7 +367,6 @@
       background: var(--amber);
       padding: 2rem 0;
       overflow: hidden;
-      position: relative;
     }
     .services__inner {
       display: flex;
@@ -408,7 +389,7 @@
       font-size: 1.25rem;
       font-weight: 800;
       letter-spacing: -0.01em;
-      color: var(--navy);
+      color: var(--white);
       text-transform: uppercase;
       white-space: nowrap;
       justify-content: center;
@@ -416,7 +397,7 @@
     @media (min-width: 768px) { .services__item { font-size: 1.75rem; } }
     .services__item::after {
       content: '·';
-      color: var(--navy);
+      color: var(--white);
       opacity: 0.4;
     }
     .services__item:last-child::after { display: none; }
@@ -426,26 +407,22 @@
     @media (min-width: 1024px) { section { padding: 7rem 0; } }
 
     .section-head { max-width: 780px; margin-bottom: 3rem; }
-    .section-head h2 { margin-bottom: 1.25rem; color: var(--navy); }
+    .section-head h2 { margin-bottom: 1.25rem; color: var(--black); }
     .section-head h2 em { font-style: normal; color: var(--amber); }
 
     /* ---------- 09. THE FOUR ---------- */
-    .four {
-      background: var(--sand);
-      position: relative;
-    }
+    .four { background: var(--white); }
     .four__list {
       display: flex;
       flex-direction: column;
-      gap: 0;
-      border-top: 1px solid rgba(26, 37, 68, 0.15);
+      border-top: 1px solid var(--grey-border);
     }
     .four__row {
       display: grid;
       grid-template-columns: 1fr;
       gap: 1.25rem;
       padding: 2rem 0;
-      border-bottom: 1px solid rgba(26, 37, 68, 0.15);
+      border-bottom: 1px solid var(--grey-border);
       align-items: center;
       transition: all 0.3s var(--ease-out-soft);
       cursor: pointer;
@@ -456,7 +433,7 @@
     .four__row:hover {
       padding-left: 1rem;
       padding-right: 1rem;
-      background: rgba(199, 210, 240, 0.25);
+      background: var(--grey-3);
     }
     .four__num {
       font-family: var(--font-display);
@@ -471,11 +448,11 @@
       font-weight: 800;
       letter-spacing: -0.03em;
       line-height: 1;
-      color: var(--navy);
+      color: var(--black);
     }
     .four__desc {
       font-size: 0.95rem;
-      color: var(--navy);
+      color: var(--black);
       opacity: 0.7;
       line-height: 1.6;
       max-width: 48ch;
@@ -483,21 +460,21 @@
     .four__arrow {
       width: 48px; height: 48px;
       border-radius: 50%;
-      border: 1.5px solid var(--navy);
+      border: 1.5px solid var(--black);
       display: flex; align-items: center; justify-content: center;
       transition: all 0.3s var(--ease-out-soft);
       flex-shrink: 0;
       margin-left: auto;
     }
     .four__row:hover .four__arrow {
-      background: var(--navy);
-      color: var(--sand);
+      background: var(--black);
+      color: var(--white);
       transform: translateX(4px);
     }
 
     /* ---------- 10. MENU WALL ---------- */
     .menu-wall {
-      background: var(--navy);
+      background: var(--black);
       padding: 6rem 0;
       position: relative;
       overflow: hidden;
@@ -508,13 +485,11 @@
       top: 0; left: 50%;
       transform: translateX(-50%);
       width: 100%; height: 500px;
-      background: radial-gradient(ellipse 50% 60% at center, rgba(199, 210, 240, 0.08), transparent 70%);
+      background: radial-gradient(ellipse 50% 60% at center, rgba(255, 255, 255, 0.04), transparent 70%);
       pointer-events: none;
     }
-    .menu-wall .section-head { color: var(--cream); }
-    .menu-wall .section-head h2 { color: var(--cream); }
-    .menu-wall .section-head h2 em { color: var(--lavender); }
-    .menu-wall .kicker { color: var(--amber); }
+    .menu-wall .section-head h2 { color: var(--white); }
+    .menu-wall .section-head h2 em { color: var(--amber); }
 
     .menu-wall__grid {
       display: grid;
@@ -527,7 +502,7 @@
     @media (min-width: 1024px) { .menu-wall__grid { grid-template-columns: repeat(3, 1fr); } }
 
     .menu-card {
-      background: var(--lavender-3);
+      background: var(--grey-3);
       border-radius: 20px;
       padding: 1.75rem 1.5rem 1.5rem;
       transition: all 0.35s var(--ease-out-soft);
@@ -537,8 +512,8 @@
     }
     .menu-card:hover {
       transform: translateY(-6px);
-      box-shadow: 0 30px 60px -25px rgba(0,0,0,0.4);
-      background: var(--cream);
+      box-shadow: 0 30px 60px -25px rgba(0,0,0,0.5);
+      background: var(--white);
     }
     .menu-card__head {
       display: flex;
@@ -547,21 +522,21 @@
       gap: 1rem;
       margin-bottom: 1.25rem;
       padding-bottom: 1rem;
-      border-bottom: 1.5px solid rgba(26, 37, 68, 0.12);
+      border-bottom: 1.5px solid rgba(0, 0, 0, 0.12);
     }
     .menu-card__title {
       font-family: var(--font-display);
       font-size: 1.5rem;
       font-weight: 900;
       letter-spacing: -0.02em;
-      color: var(--navy);
+      color: var(--black);
       text-transform: uppercase;
     }
     .menu-card__num {
       font-size: 0.65rem;
       font-weight: 700;
       letter-spacing: 0.2em;
-      color: var(--navy);
+      color: var(--black);
       opacity: 0.4;
     }
     .menu-card__items {
@@ -578,18 +553,15 @@
       gap: 0.75rem;
       font-size: 0.85rem;
       line-height: 1.35;
-      color: var(--navy);
+      color: var(--black);
     }
-    .menu-card__item-name {
-      flex: 1;
-      font-weight: 500;
-    }
+    .menu-card__item-name { flex: 1; font-weight: 500; }
     .menu-card__item-price {
       font-family: var(--font-sans);
       font-size: 0.72rem;
       font-weight: 700;
-      color: var(--navy);
-      background: var(--lavender);
+      color: var(--black);
+      background: var(--grey-1);
       padding: 0.2rem 0.65rem;
       border-radius: 100px;
       white-space: nowrap;
@@ -600,11 +572,8 @@
       color: #fff;
     }
 
-    /* ---------- 11. SIGNATURE COLLAGE (9-grid) ---------- */
-    .collage {
-      background: var(--sand);
-      padding: 6rem 0;
-    }
+    /* ---------- 11. COLLAGE ---------- */
+    .collage { background: var(--white); padding: 6rem 0; }
     .collage__grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -615,7 +584,7 @@
       aspect-ratio: 1;
       border-radius: 16px;
       overflow: hidden;
-      background: var(--navy);
+      background: var(--black);
       position: relative;
     }
     .collage__tile img {
@@ -636,31 +605,22 @@
       font-size: clamp(1.25rem, 3vw, 2rem);
       font-weight: 900;
       letter-spacing: -0.03em;
-      color: var(--cream);
+      color: var(--white);
       line-height: 0.95;
       text-transform: uppercase;
     }
     .collage__tile--amber { background: var(--amber); }
-    .collage__tile--amber span { color: #fff; }
+    .collage__tile--amber span { color: var(--white); }
 
-    /* ---------- 12. DRINKS MARQUEE ---------- */
+    /* ---------- 12. DRINKS ---------- */
     .drinks {
-      background: var(--navy);
+      background: var(--black);
       padding: 5rem 0;
       overflow: hidden;
-      position: relative;
     }
-    .drinks__head {
-      display: flex;
-      align-items: flex-end;
-      justify-content: space-between;
-      gap: 2rem;
-      margin-bottom: 2.5rem;
-      flex-wrap: wrap;
-    }
-    .drinks__head h2 { color: var(--cream); }
-    .drinks__head h2 em { font-style: normal; color: var(--lavender); }
-    .drinks__head .kicker { color: var(--amber); }
+    .drinks__head { margin-bottom: 2.5rem; }
+    .drinks__head h2 { color: var(--white); }
+    .drinks__head h2 em { font-style: normal; color: var(--amber); }
     .drinks__scroller {
       display: flex;
       gap: 1rem;
@@ -674,7 +634,7 @@
     .drink-card {
       flex: 0 0 220px;
       scroll-snap-align: start;
-      background: var(--lavender-3);
+      background: var(--grey-3);
       border-radius: 16px;
       padding: 1.25rem;
       display: flex;
@@ -694,1018 +654,3 @@
       font-size: 1.05rem;
       font-weight: 800;
       letter-spacing: -0.02em;
-      color: var(--navy);
-      line-height: 1.15;
-      flex: 1;
-    }
-    .drink-card__price {
-      font-family: var(--font-sans);
-      font-size: 0.8rem;
-      font-weight: 700;
-      color: var(--navy);
-      background: var(--lavender);
-      padding: 0.3rem 0.75rem;
-      border-radius: 100px;
-      align-self: flex-start;
-    }
-
-    /* ---------- 13. EVENTS ---------- */
-    .events {
-      background: var(--amber);
-      color: var(--navy);
-      padding: 5rem 0;
-      position: relative;
-      overflow: hidden;
-    }
-    .events__inner {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-      align-items: center;
-      position: relative;
-      z-index: 1;
-    }
-    @media (min-width: 900px) {
-      .events__inner { grid-template-columns: 1.3fr 1fr; gap: 4rem; }
-    }
-    .events__label {
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      color: var(--navy);
-      opacity: 0.65;
-      margin-bottom: 1rem;
-    }
-    .events__title {
-      font-family: var(--font-display);
-      font-size: clamp(2.5rem, 6vw, 5rem);
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      line-height: 0.92;
-      color: var(--navy);
-      margin-bottom: 1.5rem;
-    }
-    .events__title em {
-      display: block;
-      font-style: normal;
-      opacity: 0.7;
-      font-size: 0.55em;
-      margin-top: 0.3em;
-      font-weight: 800;
-    }
-    .events__sub {
-      font-size: 1rem;
-      color: var(--navy);
-      opacity: 0.85;
-      line-height: 1.65;
-      max-width: 44ch;
-      margin-bottom: 2rem;
-    }
-    .events__meta {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      padding: 1.75rem;
-      background: rgba(26, 37, 68, 0.08);
-      border: 1.5px solid rgba(26, 37, 68, 0.15);
-      border-radius: 20px;
-    }
-    .events__meta-label {
-      font-size: 0.6rem;
-      font-weight: 700;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--navy);
-      opacity: 0.55;
-      margin-bottom: 0.3rem;
-      display: block;
-    }
-    .events__meta-value {
-      font-family: var(--font-display);
-      font-size: 1.15rem;
-      font-weight: 800;
-      color: var(--navy);
-      letter-spacing: -0.02em;
-    }
-    .events__btn {
-      background: var(--navy);
-      color: var(--cream);
-    }
-    .events__btn:hover { background: var(--navy-3); }
-
-    /* ---------- 14. CARWASH ---------- */
-    .carwash {
-      background: var(--lavender-3);
-      padding: 6rem 0;
-    }
-    .carwash__inner {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-    @media (min-width: 900px) {
-      .carwash__inner { grid-template-columns: 1fr 1.1fr; gap: 5rem; }
-    }
-    .carwash h2 { color: var(--navy); margin-bottom: 1.5rem; }
-    .carwash h2 em { font-style: normal; color: var(--amber); }
-    .carwash p {
-      font-size: 1rem;
-      color: var(--navy);
-      opacity: 0.75;
-      line-height: 1.7;
-      margin-bottom: 1.75rem;
-      max-width: 50ch;
-    }
-    .carwash__list {
-      list-style: none;
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 0.75rem 1.5rem;
-      margin-bottom: 2rem;
-      padding-top: 1.5rem;
-      border-top: 1.5px solid rgba(26, 37, 68, 0.12);
-    }
-    .carwash__list li {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      font-size: 0.9rem;
-      color: var(--navy);
-      font-weight: 500;
-    }
-    .carwash__list li::before {
-      content: '';
-      width: 6px; height: 6px;
-      background: var(--amber);
-      border-radius: 50%;
-      flex-shrink: 0;
-    }
-    .carwash__visual {
-      aspect-ratio: 4/3;
-      border-radius: 24px;
-      background: var(--navy);
-      position: relative;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 30px 60px -25px rgba(26, 37, 68, 0.4);
-    }
-    .carwash__visual::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 30% 30%, rgba(255, 107, 26, 0.25), transparent 55%),
-        radial-gradient(circle at 70% 70%, rgba(199, 210, 240, 0.15), transparent 55%);
-    }
-    .carwash__mockup {
-      position: relative;
-      z-index: 1;
-      text-align: center;
-      color: var(--cream);
-      padding: 2rem;
-    }
-    .carwash__mockup-icon {
-      font-size: 3.5rem;
-      color: var(--amber);
-      margin-bottom: 1rem;
-    }
-    .carwash__mockup-title {
-      font-family: var(--font-display);
-      font-size: clamp(1.75rem, 3vw, 2.5rem);
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      color: var(--cream);
-      text-transform: uppercase;
-      line-height: 0.95;
-    }
-    .carwash__mockup-sub {
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--lavender);
-      margin-top: 0.75rem;
-    }
-
-    /* ---------- 15. LOCATION ---------- */
-    .location {
-      background: var(--sand);
-      padding: 6rem 0;
-    }
-    .location__inner {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 3rem;
-      align-items: start;
-    }
-    @media (min-width: 900px) {
-      .location__inner { grid-template-columns: 1fr 1.2fr; gap: 4rem; }
-    }
-    .location h2 { color: var(--navy); margin-bottom: 2rem; }
-    .location h2 em { font-style: normal; color: var(--amber); }
-    .location__blocks {
-      display: flex;
-      flex-direction: column;
-      gap: 1.75rem;
-    }
-    .location__block h4 {
-      font-family: var(--font-sans);
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 0.6rem;
-    }
-    .location__block p {
-      font-family: var(--font-display);
-      font-size: 1.15rem;
-      font-weight: 700;
-      color: var(--navy);
-      line-height: 1.5;
-      letter-spacing: -0.01em;
-    }
-    .location__block a {
-      color: var(--navy);
-      border-bottom: 1.5px solid rgba(26, 37, 68, 0.2);
-      padding-bottom: 1px;
-      transition: all 0.25s;
-    }
-    .location__block a:hover { color: var(--amber); border-color: var(--amber); }
-    .location__map {
-      aspect-ratio: 4/3;
-      border-radius: 20px;
-      overflow: hidden;
-      background: var(--lavender-3);
-      box-shadow: 0 30px 60px -25px rgba(26, 37, 68, 0.3);
-    }
-    .location__map iframe {
-      width: 100%;
-      height: 100%;
-      border: 0;
-    }
-
-    /* ---------- 16. RESERVE ---------- */
-    .reserve {
-      background: var(--navy);
-      padding: 7rem 0;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-    .reserve::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(circle at 50% 100%, rgba(255, 107, 26, 0.2), transparent 55%);
-      pointer-events: none;
-    }
-    .reserve__inner { max-width: 780px; margin: 0 auto; position: relative; z-index: 1; }
-    .reserve__title {
-      font-family: var(--font-display);
-      font-size: clamp(2.75rem, 7vw, 6rem);
-      font-weight: 900;
-      letter-spacing: -0.04em;
-      line-height: 0.92;
-      color: var(--cream);
-      margin-bottom: 1.5rem;
-    }
-    .reserve__title em {
-      display: block;
-      font-style: normal;
-      color: var(--amber);
-    }
-    .reserve__sub {
-      font-size: 1.0625rem;
-      color: rgba(251, 248, 242, 0.7);
-      line-height: 1.7;
-      margin-bottom: 2.5rem;
-      max-width: 52ch;
-      margin-left: auto;
-      margin-right: auto;
-    }
-    .reserve__actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.75rem;
-      justify-content: center;
-    }
-    .reserve__note {
-      margin-top: 2rem;
-      font-size: 0.8rem;
-      color: rgba(251, 248, 242, 0.5);
-    }
-
-    /* ---------- 17. FOOTER ---------- */
-    .footer {
-      background: var(--navy-3);
-      padding: 4rem 0 2rem;
-      color: rgba(251, 248, 242, 0.7);
-    }
-    .footer__top {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 2.5rem;
-      padding-bottom: 3rem;
-      border-bottom: 1px solid rgba(251, 248, 242, 0.1);
-    }
-    @media (min-width: 768px) { .footer__top { grid-template-columns: 1.5fr 1fr 1fr 1fr; } }
-    .footer__brand {
-      font-family: var(--font-display);
-      font-size: 1.5rem;
-      font-weight: 900;
-      letter-spacing: -0.03em;
-      color: var(--cream);
-      text-transform: uppercase;
-      margin-bottom: 1rem;
-    }
-    .footer__brand small {
-      display: block;
-      font-size: 0.6rem;
-      letter-spacing: 0.35em;
-      color: var(--amber);
-      margin-top: 0.35rem;
-      font-weight: 700;
-    }
-    .footer__tagline {
-      font-size: 0.9rem;
-      line-height: 1.65;
-      max-width: 32ch;
-    }
-    .footer h4 {
-      font-family: var(--font-sans);
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--amber);
-      margin-bottom: 1.25rem;
-    }
-    .footer ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.7rem;
-    }
-    .footer ul a {
-      font-size: 0.88rem;
-      transition: color 0.25s;
-    }
-    .footer ul a:hover { color: var(--amber); }
-    .footer__bottom {
-      padding-top: 2rem;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      gap: 1rem;
-      font-size: 0.75rem;
-      color: rgba(251, 248, 242, 0.45);
-    }
-    .footer__bottom a {
-      color: var(--amber);
-      border-bottom: 1px solid rgba(255, 107, 26, 0.4);
-      transition: all 0.25s;
-    }
-    .footer__bottom a:hover { border-color: var(--amber); }
-
-    /* ---------- 18. WHATSAPP FLOAT ---------- */
-    .whatsapp {
-      position: fixed;
-      bottom: 1.25rem;
-      right: 1.25rem;
-      z-index: 998;
-      width: 54px; height: 54px;
-      border-radius: 50%;
-      background: #25D366;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 10px 25px rgba(37,211,102,0.4);
-      transition: all 0.3s var(--ease-out-soft);
-    }
-    .whatsapp:hover { transform: scale(1.08); }
-    .whatsapp svg { width: 26px; height: 26px; fill: #fff; }
-
-    /* ---------- 19. REVEAL ---------- */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.8s var(--ease-out-soft), transform 0.8s var(--ease-out-soft);
-    }
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        transition-duration: 0.01ms !important;
-      }
-      .reveal { opacity: 1; transform: none; }
-      .hero__kicker, .hero__title, .hero__sub, .hero__actions, .hero__visual {
-        opacity: 1; transform: none;
-      }
-    }
-  </style>
-</head>
-<body>
-
-<!-- ========== NAV ========== -->
-<nav class="nav" id="nav">
-  <div class="container nav__inner">
-    <a href="#" class="nav__logo">THE BOX</a>
-    <div class="nav__links">
-      <a href="#services" class="nav__link">Services</a>
-      <a href="#menu" class="nav__link">Menu</a>
-      <a href="#events" class="nav__link">Events</a>
-      <a href="#carwash" class="nav__link">Car Wash</a>
-      <a href="#location" class="nav__link">Location</a>
-    </div>
-    <a href="#reserve" class="btn btn--amber nav__cta">
-      Reserve <span class="btn__arrow">→</span>
-    </a>
-    <button class="nav__toggle" id="navToggle" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</nav>
-
-<div class="nav__mobile" id="navMobile">
-  <ul>
-    <li><a href="#services">Services</a></li>
-    <li><a href="#menu">Menu</a></li>
-    <li><a href="#events">Events</a></li>
-    <li><a href="#carwash">Car Wash</a></li>
-    <li><a href="#location">Location</a></li>
-    <li><a href="#reserve">Reserve</a></li>
-  </ul>
-</div>
-
-<!-- ========== HERO ========== -->
-<section class="hero">
-  <div class="hero__inner">
-    <div class="hero__text">
-      <div class="hero__kicker">
-        <span class="dot"></span>
-        Open 24 hours · Magodo Phase 2
-      </div>
-      <h1 class="hero__title">
-        Restaurant.<br>
-        Lounge.<br>
-        Grills.<br>
-        <em>Car wash.</em>
-      </h1>
-      <p class="hero__sub">
-        Four experiences under one roof. Lagos' premier multi-service venue — from a ₦100k signature platter to a full car detail while you dine.
-      </p>
-      <div class="hero__actions">
-        <a href="#reserve" class="btn btn--amber">
-          Reserve a Table <span class="btn__arrow">→</span>
-        </a>
-        <a href="#menu" class="btn btn--outline">
-          See the Menu
-        </a>
-      </div>
-    </div>
-
-    <div class="hero__visual">
-      <div class="hero__card">
-        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=900&q=80" alt="Signature grills at The Box Lagos">
-        <div class="hero__badge">
-          <div class="hero__badge-icon">✦</div>
-          <div>
-            <div class="hero__badge-label">Today's Special</div>
-            <div class="hero__badge-value">The Box Platter — ₦100,000</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== SERVICES STRIP ========== -->
-<div class="services">
-  <div class="container services__inner">
-    <div class="services__item">Restaurant</div>
-    <div class="services__item">Lounge</div>
-    <div class="services__item">Grills</div>
-    <div class="services__item">Car Wash</div>
-  </div>
-</div>
-
-<!-- ========== THE FOUR ========== -->
-<section class="four" id="services">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="kicker">What we do</span>
-      <h2>Four services. <em>One address.</em></h2>
-    </div>
-    <div class="four__list">
-
-      <div class="four__row reveal">
-        <div class="four__num">01</div>
-        <h3 class="four__title">Restaurant</h3>
-        <p class="four__desc">
-          Full menu from breakfast platters to signature grills. Open 24 hours, every day.
-        </p>
-        <div class="four__arrow">→</div>
-      </div>
-
-      <div class="four__row reveal">
-        <div class="four__num">02</div>
-        <h3 class="four__title">Lounge</h3>
-        <p class="four__desc">
-          Premium spirits, signature cocktails, live music nights. The rooftop that never closes.
-        </p>
-        <div class="four__arrow">→</div>
-      </div>
-
-      <div class="four__row reveal">
-        <div class="four__num">03</div>
-        <h3 class="four__title">Grills</h3>
-        <p class="four__desc">
-          Charcoal-fired croaker, peppered goat, whole grilled tilapia. Cooked to order, served hot.
-        </p>
-        <div class="four__arrow">→</div>
-      </div>
-
-      <div class="four__row reveal">
-        <div class="four__num">04</div>
-        <h3 class="four__title">Car Wash</h3>
-        <p class="four__desc">
-          Detailing, washing, and interior care. While you eat, we handle the car.
-        </p>
-        <div class="four__arrow">→</div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ========== MENU WALL ========== -->
-<section class="menu-wall" id="menu">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="kicker">The Menu</span>
-      <h2>Everything we <em>serve.</em></h2>
-    </div>
-
-    <div class="menu-wall__grid">
-
-      <!-- Breakfast -->
-      <div class="menu-card reveal">
-        <div class="menu-card__head">
-          <h3 class="menu-card__title">Breakfast</h4>
-          <span class="menu-card__num">01</span>
-        </div>
-        <ul class="menu-card__items">
-          <li class="menu-card__item"><span class="menu-card__item-name">Akara & Pap</span><span class="menu-card__item-price">₦8,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Breakfast Platter</span><span class="menu-card__item-price">₦25,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Continental</span><span class="menu-card__item-price">₦10,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Homegrown Delight</span><span class="menu-card__item-price">₦8,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Healthy Breakfast</span><span class="menu-card__item-price">₦12,000</span></li>
-        </ul>
-      </div>
-
-      <!-- Salads & Starters -->
-      <div class="menu-card reveal">
-        <div class="menu-card__head">
-          <h3 class="menu-card__title">Starters</h4>
-          <span class="menu-card__num">02</span>
-        </div>
-        <ul class="menu-card__items">
-          <li class="menu-card__item"><span class="menu-card__item-name">Caesar Salad</span><span class="menu-card__item-price">₦12,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Greek Salad</span><span class="menu-card__item-price">₦12,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Seafood Noodles</span><span class="menu-card__item-price">₦10,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Chicken Wrap</span><span class="menu-card__item-price">₦10,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Chicken Sandwich</span><span class="menu-card__item-price">₦10,000</span></li>
-        </ul>
-      </div>
-
-      <!-- Grills -->
-      <div class="menu-card reveal">
-        <div class="menu-card__head">
-          <h3 class="menu-card__title">Grills</h4>
-          <span class="menu-card__num">03</span>
-        </div>
-        <ul class="menu-card__items">
-          <li class="menu-card__item"><span class="menu-card__item-name">Grilled Croaker</span><span class="menu-card__item-price">₦20,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Grilled Tilapia</span><span class="menu-card__item-price">₦15,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Grilled Catfish</span><span class="menu-card__item-price">₦25,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Peppered Turkey</span><span class="menu-card__item-price">₦10,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Peppered Snail</span><span class="menu-card__item-price">₦15,000</span></li>
-        </ul>
-      </div>
-
-      <!-- Peppersoups -->
-      <div class="menu-card reveal">
-        <div class="menu-card__head">
-          <h3 class="menu-card__title">Peppersoups</h4>
-          <span class="menu-card__num">04</span>
-        </div>
-        <ul class="menu-card__items">
-          <li class="menu-card__item"><span class="menu-card__item-name">Catfish</span><span class="menu-card__item-price">₦20,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Goat Meat</span><span class="menu-card__item-price">₦10,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Croaker</span><span class="menu-card__item-price">₦20,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Chicken</span><span class="menu-card__item-price">₦10,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Seafood</span><span class="menu-card__item-price">₦30,000</span></li>
-        </ul>
-      </div>
-
-      <!-- Soups -->
-      <div class="menu-card reveal">
-        <div class="menu-card__head">
-          <h3 class="menu-card__title">Soups</h4>
-          <span class="menu-card__num">05</span>
-        </div>
-        <ul class="menu-card__items">
-          <li class="menu-card__item"><span class="menu-card__item-name">Seafood Okro</span><span class="menu-card__item-price">₦25,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Fisherman Soup</span><span class="menu-card__item-price">₦25,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Afang</span><span class="menu-card__item-price">₦14,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">White Soup</span><span class="menu-card__item-price">₦18,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Ogbono</span><span class="menu-card__item-price">₦14,000</span></li>
-        </ul>
-      </div>
-
-      <!-- Grains -->
-      <div class="menu-card reveal">
-        <div class="menu-card__head">
-          <h3 class="menu-card__title">Grains</h4>
-          <span class="menu-card__num">06</span>
-        </div>
-        <ul class="menu-card__items">
-          <li class="menu-card__item"><span class="menu-card__item-name">Seafood Alfredo</span><span class="menu-card__item-price">₦15,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Special Fried Rice</span><span class="menu-card__item-price">₦25,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Village Rice</span><span class="menu-card__item-price">₦20,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Jambalaya Rice</span><span class="menu-card__item-price">₦12,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Turkey Rice</span><span class="menu-card__item-price">₦13,000</span></li>
-        </ul>
-      </div>
-
-      <!-- Platters -->
-      <div class="menu-card reveal">
-        <div class="menu-card__head">
-          <h3 class="menu-card__title">Platters</h4>
-          <span class="menu-card__num">07</span>
-        </div>
-        <ul class="menu-card__items">
-          <li class="menu-card__item"><span class="menu-card__item-name">The Box Platter</span><span class="menu-card__item-price">₦100,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Grill Platter</span><span class="menu-card__item-price">₦50,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Chicken Rice Royal</span><span class="menu-card__item-price">₦60,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Pastries Platter</span><span class="menu-card__item-price">₦15,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">SeaFood Boil</span><span class="menu-card__item-price">₦30,000</span></li>
-        </ul>
-      </div>
-
-      <!-- Buffets -->
-      <div class="menu-card reveal">
-        <div class="menu-card__head">
-          <h3 class="menu-card__title">Buffets</h4>
-          <span class="menu-card__num">08</span>
-        </div>
-        <ul class="menu-card__items">
-          <li class="menu-card__item"><span class="menu-card__item-name">Classic Buffet</span><span class="menu-card__item-price">₦25,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Premium Buffet</span><span class="menu-card__item-price">₦32,000</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Luxury Buffet</span><span class="menu-card__item-price">₦40,000</span></li>
-        </ul>
-      </div>
-
-      <!-- Whiskey -->
-      <div class="menu-card reveal">
-        <div class="menu-card__head">
-          <h3 class="menu-card__title">Whiskey</h4>
-          <span class="menu-card__num">09</span>
-        </div>
-        <ul class="menu-card__items">
-          <li class="menu-card__item"><span class="menu-card__item-name">Johnnie Walker Blue</span><span class="menu-card__item-price">₦595,950</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Glenfiddich 18yr</span><span class="menu-card__item-price">₦262,811</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Jameson Black Barrel</span><span class="menu-card__item-price">₦78,750</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Monkey Shoulder</span><span class="menu-card__item-price">₦83,737</span></li>
-          <li class="menu-card__item"><span class="menu-card__item-name">Jack Daniel No. 7</span><span class="menu-card__item-price">₦55,984</span></li>
-        </ul>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- ========== SIGNATURE COLLAGE ========== -->
-<section class="collage">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="kicker">Signature spreads</span>
-      <h2>From the <em>kitchen.</em></h2>
-    </div>
-    <div class="collage__grid">
-      <div class="collage__tile reveal"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80" alt=""></div>
-      <div class="collage__tile reveal"><img src="https://images.unsplash.com/photo-1559737558-2f5a35f4523b?w=600&q=80" alt=""></div>
-      <div class="collage__tile reveal"><img src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=600&q=80" alt=""></div>
-      <div class="collage__tile reveal"><img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=600&q=80" alt=""></div>
-      <div class="collage__tile collage__tile--text collage__tile--amber reveal">
-        <span>Food<br>Menu</span>
-      </div>
-      <div class="collage__tile reveal"><img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=600&q=80" alt=""></div>
-      <div class="collage__tile reveal"><img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=600&q=80" alt=""></div>
-      <div class="collage__tile reveal"><img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600&q=80" alt=""></div>
-      <div class="collage__tile reveal"><img src="https://images.unsplash.com/photo-1482049016688-2d3e1b311543?w=600&q=80" alt=""></div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== DRINKS MARQUEE ========== -->
-<section class="drinks">
-  <div class="container">
-    <div class="drinks__head reveal">
-      <div>
-        <span class="kicker">From the bar</span>
-        <h2>Bottles <em>& cocktails.</em></h2>
-      </div>
-    </div>
-    <div class="drinks__scroller">
-      <div class="drink-card">
-        <span class="drink-card__cat">Whiskey</span>
-        <div class="drink-card__name">Johnnie Walker Blue Label</div>
-        <span class="drink-card__price">₦595,950</span>
-      </div>
-      <div class="drink-card">
-        <span class="drink-card__cat">Whiskey</span>
-        <div class="drink-card__name">Glenfiddich 18 Years</div>
-        <span class="drink-card__price">₦262,811</span>
-      </div>
-      <div class="drink-card">
-        <span class="drink-card__cat">Tequila</span>
-        <div class="drink-card__name">Don Julio Reposado</div>
-        <span class="drink-card__price">₦242,512</span>
-      </div>
-      <div class="drink-card">
-        <span class="drink-card__cat">Cognac</span>
-        <div class="drink-card__name">Hennessy VSOP</div>
-        <span class="drink-card__price">₦197,561</span>
-      </div>
-      <div class="drink-card">
-        <span class="drink-card__cat">Vodka</span>
-        <div class="drink-card__name">Ciroc Red Berry</div>
-        <span class="drink-card__price">₦85,186</span>
-      </div>
-      <div class="drink-card">
-        <span class="drink-card__cat">Rum</span>
-        <div class="drink-card__name">Bacardi Carta Blanca</div>
-        <span class="drink-card__price">₦42,000</span>
-      </div>
-      <div class="drink-card">
-        <span class="drink-card__cat">Gin</span>
-        <div class="drink-card__name">Tanqueray</div>
-        <span class="drink-card__price">₦1,000,729</span>
-      </div>
-      <div class="drink-card">
-        <span class="drink-card__cat">Champagne</span>
-        <div class="drink-card__name">Moët & Chandon Imperial</div>
-        <span class="drink-card__price">₦185,000</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== EVENTS ========== -->
-<section class="events" id="events">
-  <div class="container">
-    <div class="events__inner">
-      <div class="reveal">
-        <div class="events__label">Next Event</div>
-        <h2 class="events__title">
-          Jungle Sounds<br>Live
-          <em>December 26, 2026</em>
-        </h2>
-        <p class="events__sub">
-          Live performances, games, merchandise, pop-ups, and a full takeover of The Box rooftop. Doors open 8pm. The night goes until we say so.
-        </p>
-        <a href="#" class="btn events__btn" onclick="event.preventDefault(); alert('Tickets coming soon — follow @theboxlagos for updates.');">
-          Get on the List <span class="btn__arrow">→</span>
-        </a>
-      </div>
-      <div class="events__meta reveal">
-        <div>
-          <span class="events__meta-label">Date</span>
-          <span class="events__meta-value">Dec 26, 2026</span>
-        </div>
-        <div>
-          <span class="events__meta-label">Doors</span>
-          <span class="events__meta-value">8:00 PM</span>
-        </div>
-        <div>
-          <span class="events__meta-label">Venue</span>
-          <span class="events__meta-value">The Box</span>
-        </div>
-        <div>
-          <span class="events__meta-label">Entry</span>
-          <span class="events__meta-value">Guestlist</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== CAR WASH ========== -->
-<section class="carwash" id="carwash">
-  <div class="container">
-    <div class="carwash__inner">
-      <div class="reveal">
-        <span class="kicker">New Service</span>
-        <h2>Leave with <em>a clean car.</em></h2>
-        <p>
-          Pull up, hand over the keys, and sit down for lunch. By the time you're finished, your car is detailed — inside and out.
-        </p>
-        <ul class="carwash__list">
-          <li>Exterior wash</li>
-          <li>Interior detailing</li>
-          <li>Tyre shine</li>
-          <li>Engine bay cleaning</li>
-          <li>Wax & polish</li>
-          <li>Undercarriage wash</li>
-        </ul>
-        <a href="#reserve" class="btn btn--navy">
-          Book a Slot <span class="btn__arrow">→</span>
-        </a>
-      </div>
-      <div class="carwash__visual reveal">
-        <div class="carwash__mockup">
-          <div class="carwash__mockup-icon">✦</div>
-          <div class="carwash__mockup-title">Car Wash</div>
-          <div class="carwash__mockup-sub">While You Dine</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== LOCATION ========== -->
-<section class="location" id="location">
-  <div class="container">
-    <div class="location__inner">
-      <div class="reveal">
-        <span class="kicker">Visit us</span>
-        <h2>Magodo <em>Phase 2.</em></h2>
-        <div class="location__blocks">
-          <div class="location__block">
-            <h4>Address</h4>
-            <p>63, Adekunle Banjo Avenue<br>Magodo Phase 2, Lagos</p>
-          </div>
-          <div class="location__block">
-            <h4>Hours</h4>
-            <p>Open 24 hours<br>Every day of the week</p>
-          </div>
-          <div class="location__block">
-            <h4>Reservations</h4>
-            <p>
-              <a href="tel:+2348060140334">+234 806 014 0334</a><br>
-              <a href="https://wa.me/2348060140334" target="_blank" rel="noopener">WhatsApp</a>
-            </p>
-          </div>
-          <div class="location__block">
-            <h4>Instagram</h4>
-            <p><a href="https://instagram.com/theboxlagos" target="_blank" rel="noopener">@theboxlagos</a></p>
-          </div>
-        </div>
-      </div>
-
-      <div class="location__map reveal">
-        <iframe
-          src="https://www.google.com/maps?q=63+Adekunle+Banjo+Avenue+Magodo+Phase+2+Lagos&output=embed"
-          loading="lazy"
-          referrerpolicy="no-referrer-when-downgrade"
-          title="The Box Lagos location"></iframe>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========== RESERVE ========== -->
-<section class="reserve" id="reserve">
-  <div class="container">
-    <div class="reserve__inner">
-      <h2 class="reserve__title">
-        Reserve
-        <em>your table.</em>
-      </h2>
-      <p class="reserve__sub">
-        Whether it's dinner for two, a corporate buffet, or an event booking — message us on WhatsApp and we'll confirm within the hour.
-      </p>
-      <div class="reserve__actions">
-        <a href="https://wa.me/2348060140334?text=Hi%20The%20Box%2C%20I'd%20like%20to%20reserve%20a%20table." target="_blank" rel="noopener" class="btn btn--amber">
-          Book via WhatsApp <span class="btn__arrow">→</span>
-        </a>
-        <a href="tel:+2348060140334" class="btn btn--outline" style="border-color: rgba(251,248,242,0.35); color: var(--cream);">
-          Call Us
-        </a>
-      </div>
-      <p class="reserve__note">Buffets from ₦25,000 per person. Events and corporate bookings welcome.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ========== FOOTER ========== -->
-<footer class="footer">
-  <div class="container">
-    <div class="footer__top">
-      <div>
-        <div class="footer__brand">
-          The Box
-          <small>Lagos</small>
-        </div>
-        <p class="footer__tagline">
-          Restaurant. Lounge. Grills. Car Wash. Everything under one roof — on Magodo Phase 2, open 24 hours.
-        </p>
-      </div>
-      <div>
-        <h4>Experience</h4>
-        <ul>
-          <li><a href="#services">Restaurant</a></li>
-          <li><a href="#services">Lounge</a></li>
-          <li><a href="#services">Grills</a></li>
-          <li><a href="#carwash">Car Wash</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Visit</h4>
-        <ul>
-          <li><a href="#location">Location</a></li>
-          <li><a href="#menu">Menu</a></li>
-          <li><a href="#events">Events</a></li>
-          <li><a href="#reserve">Reservations</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4>Contact</h4>
-        <ul>
-          <li><a href="tel:+2348060140334">+234 806 014 0334</a></li>
-          <li><a href="https://wa.me/2348060140334" target="_blank" rel="noopener">WhatsApp</a></li>
-          <li><a href="https://instagram.com/theboxlagos" target="_blank" rel="noopener">@theboxlagos</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="footer__bottom">
-      <div>© 2026 The Box Lagos. Concept site by <a href="https://duc21striker.github.io/dmad-website/" target="_blank" rel="noopener">DMAD</a>.</div>
-      <div>Concept project — not a real booking platform.</div>
-    </div>
-  </div>
-</footer>
-
-<a href="https://wa.me/2348060140334" target="_blank" rel="noopener" class="whatsapp" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-</a>
-
-<script>
-  const nav = document.getElementById('nav');
-  window.addEventListener('scroll', () => {
-    nav.classList.toggle('scrolled', window.scrollY > 60);
-  }, { passive: true });
-
-  const navToggle = document.getElementById('navToggle');
-  const navMobile = document.getElementById('navMobile');
-  navToggle.addEventListener('click', () => {
-    navToggle.classList.toggle('open');
-    navMobile.classList.toggle('open');
-    document.body.style.overflow = navMobile.classList.contains('open') ? 'hidden' : '';
-  });
-  navMobile.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      navToggle.classList.remove('open');
-      navMobile.classList.remove('open');
-      document.body.style.overflow = '';
-    });
-  });
-
-  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (prefersReduced) {
-    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-  } else {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const siblings = entry.target.parentElement.querySelectorAll('.reveal');
-          const idx = Array.from(siblings).indexOf(entry.target);
-          entry.target.style.transitionDelay = `${Math.min(idx, 4) * 0.08}s`;
-          entry.target.classList.add('visible');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
-    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-  }
-
-  document.querySelectorAll('a[href^="#"]').forEach(a => {
-    a.addEventListener('click', (e) => {
-      const href = a.getAttribute('href');
-      if (href === '#' || href.length < 2) return;
-      const target = document.querySelector(href);
-      if (!target) return;
-      e.preventDefault();
-      const top = target.getBoundingClientRect().top + window.pageYOffset - 80;
-      window.scrollTo({ top, behavior: prefersReduced ? 'auto' : 'smooth' });
-    });
-  });
-</script>
-
-</body>
-</html>
