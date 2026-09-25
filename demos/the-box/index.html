@@ -1,0 +1,1659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>THE BOX LAGOS — Restaurant · Lounge · Grills · Car Wash</title>
+  <meta name="description" content="Lagos' premier multi-experience venue. Restaurant, lounge, grills, and car wash under one roof. Magodo Phase 2.">
+  <meta name="theme-color" content="#0B1426">
+  <meta property="og:title" content="THE BOX LAGOS — Restaurant · Lounge · Grills · Car Wash">
+  <meta property="og:description" content="Premium dining, cocktails, live events, and a rooftop that never stops.">
+  <meta property="og:type" content="website">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* ============================================================
+       THE BOX LAGOS — Single-file build
+       Designed & developed by DMAD
+       ============================================================ */
+
+    /* ---------- 01. TOKENS ---------- */
+    :root {
+      --navy: #0B1426;
+      --navy-2: #111E36;
+      --navy-3: #1A2942;
+      --navy-deep: #060B16;
+      --coral: #FF6B4A;
+      --coral-soft: #FF8563;
+      --coral-deep: #E85433;
+      --gold: #C9A96E;
+      --gold-soft: #D9BF8F;
+      --cream: #F5F1E8;
+      --cream-65: rgba(245, 241, 232, 0.65);
+      --cream-40: rgba(245, 241, 232, 0.40);
+      --cream-15: rgba(245, 241, 232, 0.15);
+      --cream-08: rgba(245, 241, 232, 0.08);
+
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-serif: 'Cormorant Garamond', Georgia, serif;
+      --font-sans: 'Inter', system-ui, sans-serif;
+
+      --ease-out-expo: cubic-bezier(0.19, 1, 0.22, 1);
+      --ease-out-soft: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* ---------- 02. RESET ---------- */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--navy-deep);
+      color: var(--cream);
+      line-height: 1.6;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    img, svg { display: block; max-width: 100%; }
+    a { color: inherit; text-decoration: none; }
+    button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
+
+    /* Subtle grain overlay */
+    body::after {
+      content: '';
+      position: fixed; inset: 0;
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.035;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+      mix-blend-mode: overlay;
+    }
+
+    .container { width: 100%; max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+    @media (min-width: 768px) { .container { padding: 0 2.5rem; } }
+
+    /* ---------- 03. TYPOGRAPHY ---------- */
+    h1, h2, h3, h4 { font-family: var(--font-display); font-weight: 400; line-height: 1; letter-spacing: 0.02em; }
+    h1 { font-size: clamp(3rem, 9vw, 7.5rem); }
+    h2 { font-size: clamp(2.25rem, 6vw, 4.5rem); }
+    h3 { font-size: clamp(1.5rem, 3vw, 2.25rem); }
+
+    .serif { font-family: var(--font-serif); font-style: italic; font-weight: 400; letter-spacing: 0; text-transform: none; }
+
+    .label {
+      display: inline-block;
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--coral);
+      margin-bottom: 1.25rem;
+    }
+    .label::before {
+      content: '';
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background: var(--coral);
+      vertical-align: middle;
+      margin-right: 0.75rem;
+      transform: translateY(-2px);
+    }
+
+    .lead { font-size: 1.0625rem; color: var(--cream-65); max-width: 55ch; line-height: 1.7; }
+
+    /* ---------- 04. BUTTONS ---------- */
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem;
+      padding: 1rem 1.75rem;
+      font-family: var(--font-sans);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      border-radius: 100px;
+      transition: all 0.3s var(--ease-out-soft);
+      white-space: nowrap;
+      cursor: pointer;
+      border: 1.5px solid transparent;
+    }
+    .btn--primary { background: var(--coral); color: #fff; }
+    .btn--primary:hover { background: var(--coral-deep); transform: translateY(-2px); box-shadow: 0 15px 35px -10px rgba(255,107,74,0.6); }
+    .btn--ghost { border-color: var(--cream-40); color: var(--cream); }
+    .btn--ghost:hover { border-color: var(--coral); color: var(--coral); }
+    .btn--white { background: var(--cream); color: var(--navy-deep); }
+    .btn--white:hover { background: var(--gold); }
+    .btn__arrow { display: inline-block; transition: transform 0.3s var(--ease-out-soft); }
+    .btn:hover .btn__arrow { transform: translateX(3px); }
+
+    /* ---------- 05. NAV ---------- */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1.25rem 0;
+      transition: all 0.35s var(--ease-out-soft);
+    }
+    .nav.scrolled {
+      background: rgba(6, 11, 22, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 1px 0 rgba(201, 169, 110, 0.1);
+      padding: 0.875rem 0;
+    }
+    .nav__inner { display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
+    .nav__logo {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 0.15em;
+      color: var(--cream);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      line-height: 1;
+    }
+    .nav__logo::after {
+      content: 'LAGOS';
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      align-self: flex-end;
+      margin-bottom: 0.3rem;
+    }
+    .nav__links { display: none; gap: 2.5rem; align-items: center; }
+    @media (min-width: 900px) { .nav__links { display: flex; } }
+    .nav__link {
+      font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--cream-65);
+      transition: color 0.25s;
+    }
+    .nav__link:hover { color: var(--coral); }
+    .nav__cta { display: none; }
+    @media (min-width: 900px) { .nav__cta { display: inline-flex; } }
+    .nav__toggle {
+      display: flex; flex-direction: column; gap: 5px; padding: 8px;
+    }
+    @media (min-width: 900px) { .nav__toggle { display: none; } }
+    .nav__toggle span { display: block; width: 24px; height: 2px; background: var(--cream); transition: all 0.3s; }
+    .nav__toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav__toggle.open span:nth-child(2) { opacity: 0; }
+    .nav__toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .nav__mobile {
+      position: fixed; inset: 0;
+      background: var(--navy-deep);
+      z-index: 999;
+      padding: 6rem 2rem 2rem;
+      transform: translateX(100%);
+      transition: transform 0.5s var(--ease-out-soft);
+    }
+    .nav__mobile.open { transform: translateX(0); }
+    .nav__mobile ul { list-style: none; display: flex; flex-direction: column; gap: 1.5rem; }
+    .nav__mobile a {
+      font-family: var(--font-display);
+      font-size: 2.5rem;
+      letter-spacing: 0.05em;
+      color: var(--cream);
+      transition: color 0.25s;
+    }
+    .nav__mobile a:hover { color: var(--coral); }
+
+    /* ---------- 06. HERO ---------- */
+    .hero {
+      position: relative;
+      min-height: 100vh; min-height: 100svh;
+      display: flex;
+      align-items: flex-end;
+      padding: 8rem 0 4rem;
+      overflow: hidden;
+      background: var(--navy-deep);
+    }
+    .hero__bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 70% 30%, rgba(255,107,74,0.22), transparent 60%),
+        radial-gradient(ellipse 70% 50% at 20% 80%, rgba(201,169,110,0.15), transparent 55%),
+        linear-gradient(180deg, #060B16 0%, #0B1426 40%, #111E36 100%);
+    }
+    .hero__grid-overlay {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(245,241,232,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(245,241,232,0.03) 1px, transparent 1px);
+      background-size: 80px 80px;
+      mask-image: radial-gradient(ellipse at center, #000 20%, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse at center, #000 20%, transparent 70%);
+      pointer-events: none;
+    }
+    .hero__container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    @media (min-width: 768px) { .hero__container { padding: 0 2.5rem; } }
+
+    .hero__tag {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      font-size: 0.68rem; font-weight: 600; letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      padding: 0.5rem 1rem;
+      border: 1px solid rgba(201,169,110,0.3);
+      border-radius: 100px;
+      background: rgba(11, 20, 38, 0.6);
+      backdrop-filter: blur(8px);
+      margin-bottom: 2rem;
+      opacity: 0;
+      animation: fadeUp 0.8s var(--ease-out-soft) 0.3s forwards;
+    }
+    .hero__tag .dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--coral);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.4); }
+    }
+
+    .hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(3.5rem, 11vw, 8.5rem);
+      line-height: 0.92;
+      letter-spacing: 0.01em;
+      color: var(--cream);
+      margin-bottom: 1.75rem;
+      opacity: 0;
+      animation: fadeUp 1s var(--ease-out-soft) 0.5s forwards;
+    }
+    .hero__title em {
+      display: block;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.4em;
+      letter-spacing: 0;
+      color: var(--coral);
+      text-transform: none;
+      margin-top: 0.5rem;
+    }
+
+    .hero__sub {
+      font-size: clamp(1rem, 1.4vw, 1.125rem);
+      color: var(--cream-65);
+      max-width: 48ch;
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      opacity: 0;
+      animation: fadeUp 0.9s var(--ease-out-soft) 0.7s forwards;
+    }
+
+    .hero__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.875rem;
+      margin-bottom: 4rem;
+      opacity: 0;
+      animation: fadeUp 0.9s var(--ease-out-soft) 0.9s forwards;
+    }
+
+    .hero__stats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--cream-15);
+      opacity: 0;
+      animation: fadeUp 0.9s var(--ease-out-soft) 1.1s forwards;
+    }
+    @media (min-width: 640px) { .hero__stats { grid-template-columns: repeat(4, 1fr); gap: 2rem; } }
+    .hero__stat-num {
+      font-family: var(--font-display);
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      color: var(--gold);
+      line-height: 1;
+      margin-bottom: 0.35rem;
+    }
+    .hero__stat-label {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cream-40);
+    }
+
+    @keyframes fadeUp {
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero__tag, .hero__title, .hero__sub, .hero__actions, .hero__stats {
+      transform: translateY(30px);
+    }
+
+    /* ---------- 07. MARQUEE STRIP ---------- */
+    .strip {
+      background: var(--coral);
+      padding: 1.25rem 0;
+      overflow: hidden;
+      border-top: 1px solid var(--navy-deep);
+      border-bottom: 1px solid var(--navy-deep);
+    }
+    .strip__track {
+      display: flex;
+      gap: 3rem;
+      width: max-content;
+      animation: marquee 30s linear infinite;
+    }
+    .strip__item {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      letter-spacing: 0.1em;
+      color: var(--navy-deep);
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+      white-space: nowrap;
+    }
+    .strip__item::after {
+      content: '★';
+      font-size: 0.8rem;
+      color: rgba(11,20,38,0.6);
+    }
+    @keyframes marquee {
+      to { transform: translateX(-50%); }
+    }
+
+    /* ---------- 08. SECTION BASE ---------- */
+    section { padding: 6rem 0; }
+    @media (min-width: 1024px) { section { padding: 8rem 0; } }
+
+    .section-head { max-width: 720px; margin-bottom: 3.5rem; }
+    .section-head h2 { margin-bottom: 1.25rem; }
+    .section-head .serif { color: var(--coral); }
+
+    /* ---------- 09. EXPERIENCES (4 services) ---------- */
+    .experiences { background: var(--navy); }
+    .experiences__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.25rem;
+    }
+    @media (min-width: 640px) { .experiences__grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .experiences__grid { grid-template-columns: repeat(4, 1fr); } }
+
+    .exp-card {
+      position: relative;
+      padding: 2.5rem 2rem;
+      background: var(--navy-2);
+      border: 1px solid var(--cream-08);
+      border-radius: 24px;
+      overflow: hidden;
+      transition: all 0.4s var(--ease-out-soft);
+      min-height: 340px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .exp-card::before {
+      content: '';
+      position: absolute;
+      top: -50%; right: -30%;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(255,107,74,0.18), transparent 70%);
+      border-radius: 50%;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    .exp-card:hover {
+      border-color: rgba(201,169,110,0.35);
+      transform: translateY(-6px);
+      background: var(--navy-3);
+    }
+    .exp-card:hover::before { opacity: 1; }
+
+    .exp-card__num {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+    .exp-card__icon {
+      width: 52px; height: 52px;
+      border-radius: 14px;
+      background: rgba(255,107,74,0.12);
+      color: var(--coral);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.35rem;
+      margin-bottom: 1.25rem;
+      position: relative;
+      z-index: 1;
+    }
+    .exp-card__title {
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      letter-spacing: 0.05em;
+      color: var(--cream);
+      margin-bottom: 0.75rem;
+      position: relative;
+      z-index: 1;
+    }
+    .exp-card__desc {
+      font-size: 0.9rem;
+      color: var(--cream-65);
+      line-height: 1.6;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* ---------- 10. SIGNATURE MENU ---------- */
+    .signature { background: var(--navy-deep); }
+
+    .signature__grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+    @media (min-width: 768px) { .signature__grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 1024px) { .signature__grid { grid-template-columns: repeat(3, 1fr); } }
+
+    .dish-card {
+      position: relative;
+      background: var(--navy-2);
+      border: 1px solid var(--cream-08);
+      border-radius: 20px;
+      overflow: hidden;
+      transition: all 0.4s var(--ease-out-soft);
+    }
+    .dish-card:hover {
+      border-color: rgba(201,169,110,0.35);
+      transform: translateY(-6px);
+      box-shadow: 0 30px 60px -20px rgba(0,0,0,0.6);
+    }
+    .dish-card__image {
+      height: 220px;
+      background: var(--navy-3);
+      position: relative;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .dish-card__image img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s var(--ease-out-soft);
+    }
+    .dish-card:hover .dish-card__image img { transform: scale(1.06); }
+    .dish-card__image::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(6,11,22,0.7) 100%);
+      pointer-events: none;
+    }
+    .dish-card__badge {
+      position: absolute;
+      top: 1rem; left: 1rem;
+      z-index: 2;
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--navy-deep);
+      background: var(--gold);
+      padding: 0.3rem 0.7rem;
+      border-radius: 4px;
+    }
+    .dish-card__body {
+      padding: 1.5rem 1.75rem 1.75rem;
+    }
+    .dish-card__title {
+      font-family: var(--font-display);
+      font-size: 1.5rem;
+      letter-spacing: 0.03em;
+      color: var(--cream);
+      margin-bottom: 0.4rem;
+    }
+    .dish-card__desc {
+      font-size: 0.85rem;
+      color: var(--cream-65);
+      line-height: 1.55;
+      margin-bottom: 1.25rem;
+      min-height: 2.7em;
+    }
+    .dish-card__price {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 1.4rem;
+      color: var(--gold);
+    }
+
+    .signature__note {
+      text-align: center;
+      margin-top: 3rem;
+      padding-top: 2.5rem;
+      border-top: 1px solid var(--cream-08);
+      font-size: 0.85rem;
+      color: var(--cream-40);
+      letter-spacing: 0.05em;
+    }
+    .signature__note a {
+      color: var(--coral);
+      border-bottom: 1px solid rgba(255,107,74,0.3);
+      padding-bottom: 1px;
+      transition: all 0.25s;
+    }
+    .signature__note a:hover { border-color: var(--coral); }
+
+    /* ---------- 11. EDITORIAL / ABOUT ---------- */
+    .editorial {
+      background: linear-gradient(180deg, var(--navy) 0%, var(--navy-2) 100%);
+      padding: 8rem 0;
+    }
+    .editorial__inner {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    @media (min-width: 1024px) {
+      .editorial__inner { grid-template-columns: 1fr 1.1fr; gap: 5rem; }
+    }
+    .editorial__visual {
+      aspect-ratio: 4/5;
+      border-radius: 24px;
+      overflow: hidden;
+      background: var(--navy-3);
+      position: relative;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .editorial__visual img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+    .editorial__visual::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 50%, rgba(6,11,22,0.4) 100%);
+      pointer-events: none;
+    }
+    .editorial__content h2 {
+      margin-bottom: 1.75rem;
+      color: var(--cream);
+    }
+    .editorial__content h2 .serif {
+      display: block;
+      font-size: 0.55em;
+      color: var(--coral);
+      margin-top: 0.5rem;
+    }
+    .editorial__content p {
+      font-size: 0.95rem;
+      color: var(--cream-65);
+      line-height: 1.75;
+      margin-bottom: 1.25rem;
+    }
+    .editorial__features {
+      list-style: none;
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .editorial__features li {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+      font-size: 0.92rem;
+      color: var(--cream-65);
+    }
+    .editorial__features li::before {
+      content: '';
+      width: 8px; height: 8px;
+      background: var(--coral);
+      border-radius: 50%;
+      flex-shrink: 0;
+      margin-top: 0.5rem;
+    }
+
+    /* ---------- 12. EVENTS BANNER ---------- */
+    .events {
+      background: var(--coral);
+      color: var(--navy-deep);
+      padding: 6rem 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .events::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(11,20,38,0.15), transparent 40%),
+        radial-gradient(circle at 80% 70%, rgba(11,20,38,0.1), transparent 40%);
+      pointer-events: none;
+    }
+    .events__inner {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    @media (min-width: 900px) {
+      .events__inner { grid-template-columns: 1.2fr 1fr; gap: 4rem; }
+    }
+    .events__label {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--navy-deep);
+      opacity: 0.65;
+      margin-bottom: 1rem;
+    }
+    .events__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 0.95;
+      color: var(--navy-deep);
+      margin-bottom: 1.5rem;
+    }
+    .events__title em {
+      display: block;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.45em;
+      margin-top: 0.4rem;
+      text-transform: none;
+      letter-spacing: 0;
+    }
+    .events__sub {
+      font-size: 1.05rem;
+      color: var(--navy-deep);
+      opacity: 0.8;
+      line-height: 1.65;
+      max-width: 42ch;
+      margin-bottom: 2rem;
+    }
+    .events__meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      padding: 2rem;
+      background: rgba(11,20,38,0.08);
+      border: 1px solid rgba(11,20,38,0.15);
+      border-radius: 20px;
+    }
+    .events__meta-item {
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+    .events__meta-label {
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--navy-deep);
+      opacity: 0.55;
+    }
+    .events__meta-value {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      letter-spacing: 0.03em;
+      color: var(--navy-deep);
+    }
+
+    /* ---------- 13. CAR WASH ---------- */
+    .carwash {
+      background: var(--navy-deep);
+      padding: 6rem 0;
+    }
+    .carwash__inner {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      align-items: center;
+    }
+    @media (min-width: 900px) {
+      .carwash__inner { grid-template-columns: 1fr 1.1fr; gap: 5rem; }
+      .carwash__visual { order: 2; }
+      .carwash__content { order: 1; }
+    }
+    .carwash__visual {
+      aspect-ratio: 4/3;
+      border-radius: 24px;
+      background: linear-gradient(135deg, var(--navy-2), var(--navy-3));
+      position: relative;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .carwash__visual::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(255,107,74,0.2), transparent 55%),
+        radial-gradient(circle at 70% 70%, rgba(201,169,110,0.15), transparent 55%);
+    }
+    .carwash__mockup {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      color: var(--cream);
+    }
+    .carwash__mockup-icon {
+      font-size: 5rem;
+      color: var(--coral);
+      margin-bottom: 1rem;
+    }
+    .carwash__mockup-label {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: 0.1em;
+      color: var(--cream);
+    }
+    .carwash__mockup-sub {
+      font-size: 0.75rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-top: 0.5rem;
+    }
+    .carwash__content h2 {
+      margin-bottom: 1.5rem;
+      color: var(--cream);
+    }
+    .carwash__content h2 .serif {
+      display: block;
+      font-size: 0.55em;
+      color: var(--coral);
+      margin-top: 0.4rem;
+    }
+    .carwash__content p {
+      font-size: 0.95rem;
+      color: var(--cream-65);
+      line-height: 1.75;
+      margin-bottom: 1.5rem;
+    }
+    .carwash__list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 2rem;
+    }
+    @media (min-width: 480px) { .carwash__list { grid-template-columns: repeat(2, 1fr); } }
+    .carwash__list li {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 0.88rem;
+      color: var(--cream-65);
+    }
+    .carwash__list li::before {
+      content: '✓';
+      color: var(--coral);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* ---------- 14. GALLERY ---------- */
+    .gallery { background: var(--navy); padding: 8rem 0 0; }
+    .gallery .container { padding-bottom: 4rem; }
+    .gallery__grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0.75rem;
+      padding-bottom: 8rem;
+    }
+    @media (min-width: 768px) {
+      .gallery__grid { grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    }
+    .gallery__item {
+      aspect-ratio: 3/4;
+      border-radius: 16px;
+      overflow: hidden;
+      background: var(--navy-3);
+      position: relative;
+    }
+    .gallery__item:nth-child(2) { aspect-ratio: 3/5; margin-top: 2rem; }
+    .gallery__item:nth-child(5) { aspect-ratio: 3/5; }
+    .gallery__item:nth-child(7) { margin-top: 2rem; }
+    .gallery__item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s var(--ease-out-soft);
+    }
+    .gallery__item:hover img { transform: scale(1.08); }
+    .gallery__item::after {
+      content: '';
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, transparent 60%, rgba(6,11,22,0.4) 100%);
+      pointer-events: none;
+    }
+
+    /* ---------- 15. LOCATION ---------- */
+    .location { background: var(--navy-2); padding: 8rem 0; }
+    .location__inner {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+    @media (min-width: 900px) {
+      .location__inner { grid-template-columns: 1fr 1.2fr; gap: 5rem; align-items: start; }
+    }
+    .location__info h2 { margin-bottom: 2rem; color: var(--cream); }
+    .location__info h2 .serif {
+      display: block;
+      font-size: 0.5em;
+      color: var(--coral);
+      margin-top: 0.4rem;
+    }
+    .location__blocks {
+      display: flex;
+      flex-direction: column;
+      gap: 1.75rem;
+    }
+    .location__block h4 {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.6rem;
+    }
+    .location__block p {
+      font-size: 1rem;
+      color: var(--cream-65);
+      line-height: 1.7;
+    }
+    .location__block a {
+      color: var(--cream);
+      border-bottom: 1px solid var(--cream-40);
+      padding-bottom: 1px;
+      transition: all 0.25s;
+    }
+    .location__block a:hover { color: var(--coral); border-color: var(--coral); }
+
+    .location__map {
+      aspect-ratio: 4/3;
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid var(--cream-08);
+      background: var(--navy-3);
+      position: relative;
+    }
+    .location__map iframe {
+      width: 100%; height: 100%;
+      border: 0;
+      filter: invert(0.9) hue-rotate(180deg) saturate(0.4) brightness(0.85);
+    }
+
+    /* ---------- 16. RESERVE ---------- */
+    .reserve {
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 100%, rgba(255,107,74,0.15), transparent 70%),
+        var(--navy-deep);
+      padding: 8rem 0;
+      text-align: center;
+    }
+    .reserve__inner { max-width: 720px; margin: 0 auto; }
+    .reserve__title {
+      font-family: var(--font-display);
+      font-size: clamp(3rem, 8vw, 6rem);
+      line-height: 0.95;
+      color: var(--cream);
+      margin-bottom: 1.5rem;
+    }
+    .reserve__title em {
+      display: block;
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-size: 0.4em;
+      color: var(--coral);
+      margin-top: 0.5rem;
+      text-transform: none;
+    }
+    .reserve__sub {
+      font-size: 1.0625rem;
+      color: var(--cream-65);
+      line-height: 1.7;
+      margin-bottom: 2.5rem;
+      max-width: 48ch;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .reserve__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.875rem;
+      justify-content: center;
+    }
+    .reserve__note {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: var(--cream-40);
+      letter-spacing: 0.05em;
+    }
+
+    /* ---------- 17. FOOTER ---------- */
+    .footer {
+      background: var(--navy-deep);
+      padding: 5rem 0 2rem;
+      border-top: 1px solid var(--cream-08);
+    }
+    .footer__top {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--cream-08);
+    }
+    @media (min-width: 768px) { .footer__top { grid-template-columns: 1.5fr 1fr 1fr 1fr; } }
+    .footer__brand {
+      font-family: var(--font-display);
+      font-size: 2rem;
+      letter-spacing: 0.15em;
+      color: var(--cream);
+      margin-bottom: 1rem;
+    }
+    .footer__brand small {
+      display: block;
+      font-family: var(--font-sans);
+      font-size: 0.6rem;
+      letter-spacing: 0.3em;
+      color: var(--gold);
+      margin-top: 0.25rem;
+    }
+    .footer__tagline {
+      font-size: 0.9rem;
+      color: var(--cream-40);
+      line-height: 1.7;
+      max-width: 32ch;
+    }
+    .footer h4 {
+      font-family: var(--font-sans);
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.25rem;
+    }
+    .footer ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+    }
+    .footer ul a {
+      font-size: 0.88rem;
+      color: var(--cream-65);
+      transition: color 0.25s;
+    }
+    .footer ul a:hover { color: var(--coral); }
+    .footer__bottom {
+      padding-top: 2rem;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 1rem;
+      font-size: 0.75rem;
+      color: var(--cream-40);
+    }
+    .footer__bottom a {
+      color: var(--gold);
+      border-bottom: 1px solid rgba(201,169,110,0.3);
+      transition: all 0.25s;
+    }
+    .footer__bottom a:hover { border-color: var(--gold); }
+
+    /* ---------- 18. WHATSAPP FLOAT ---------- */
+    .whatsapp {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 998;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: #25D366;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 12px 30px rgba(37,211,102,0.35);
+      transition: all 0.3s var(--ease-out-soft);
+    }
+    .whatsapp:hover {
+      transform: scale(1.08);
+      box-shadow: 0 16px 40px rgba(37,211,102,0.5);
+    }
+    .whatsapp svg {
+      width: 28px; height: 28px;
+      fill: #fff;
+    }
+
+    /* ---------- 19. REVEAL ---------- */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s var(--ease-out-soft), transform 0.8s var(--ease-out-soft);
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+      .hero__tag, .hero__title, .hero__sub, .hero__actions, .hero__stats {
+        opacity: 1; transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ========== NAV ========== -->
+<nav class="nav" id="nav">
+  <div class="container nav__inner">
+    <a href="#" class="nav__logo">THE BOX</a>
+    <div class="nav__links">
+      <a href="#experiences" class="nav__link">Experiences</a>
+      <a href="#menu" class="nav__link">Menu</a>
+      <a href="#events" class="nav__link">Events</a>
+      <a href="#carwash" class="nav__link">Car Wash</a>
+      <a href="#location" class="nav__link">Location</a>
+    </div>
+    <a href="#reserve" class="btn btn--primary nav__cta">
+      Reserve <span class="btn__arrow">→</span>
+    </a>
+    <button class="nav__toggle" id="navToggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<div class="nav__mobile" id="navMobile">
+  <ul>
+    <li><a href="#experiences">Experiences</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#events">Events</a></li>
+    <li><a href="#carwash">Car Wash</a></li>
+    <li><a href="#location">Location</a></li>
+    <li><a href="#reserve">Reserve</a></li>
+  </ul>
+</div>
+
+<!-- ========== HERO ========== -->
+<section class="hero">
+  <div class="hero__bg"></div>
+  <div class="hero__grid-overlay"></div>
+  <div class="hero__container">
+    <div class="hero__tag">
+      <span class="dot"></span>
+      Open 24 hours · Magodo Phase 2
+    </div>
+    <h1 class="hero__title">
+      Everything<br>
+      Under <em>One Roof.</em>
+    </h1>
+    <p class="hero__sub">
+      Restaurant. Lounge. Grills. Car Wash. Lagos' premier multi-experience venue — 
+      from a ₦100k signature platter to a rooftop cocktail at midnight.
+    </p>
+    <div class="hero__actions">
+      <a href="#reserve" class="btn btn--primary">
+        Reserve a Table <span class="btn__arrow">→</span>
+      </a>
+      <a href="#menu" class="btn btn--ghost">
+        View the Menu
+      </a>
+    </div>
+    <div class="hero__stats">
+      <div>
+        <div class="hero__stat-num">4.7★</div>
+        <div class="hero__stat-label">Google Rating</div>
+      </div>
+      <div>
+        <div class="hero__stat-num">24/7</div>
+        <div class="hero__stat-label">Open Every Day</div>
+      </div>
+      <div>
+        <div class="hero__stat-num">4</div>
+        <div class="hero__stat-label">Experiences</div>
+      </div>
+      <div>
+        <div class="hero__stat-num">100k+</div>
+        <div class="hero__stat-label">Signature Platter</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== MARQUEE STRIP ========== -->
+<div class="strip">
+  <div class="strip__track">
+    <span class="strip__item">RESTAURANT</span>
+    <span class="strip__item">LOUNGE</span>
+    <span class="strip__item">GRILLS</span>
+    <span class="strip__item">CAR WASH</span>
+    <span class="strip__item">RESTAURANT</span>
+    <span class="strip__item">LOUNGE</span>
+    <span class="strip__item">GRILLS</span>
+    <span class="strip__item">CAR WASH</span>
+  </div>
+</div>
+
+<!-- ========== EXPERIENCES ========== -->
+<section class="experiences" id="experiences">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="label">What we do</span>
+      <h2>Four experiences. <span class="serif">One address.</span></h2>
+      <p class="lead">
+        The Box isn't just a restaurant. It's four different nights out — depending on what you're in the mood for.
+      </p>
+    </div>
+    <div class="experiences__grid">
+
+      <div class="exp-card reveal">
+        <div>
+          <div class="exp-card__num">— 01</div>
+          <div class="exp-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 21V8a3 3 0 013-3h12a3 3 0 013 3v13"/><path d="M3 14h18"/><path d="M8 5v9"/><path d="M16 5v9"/></svg>
+          </div>
+        </div>
+        <div>
+          <h3 class="exp-card__title">Restaurant</h3>
+          <p class="exp-card__desc">
+            Full menu from breakfast platters to signature grills. Open 24 hours, every day.
+          </p>
+        </div>
+      </div>
+
+      <div class="exp-card reveal">
+        <div>
+          <div class="exp-card__num">— 02</div>
+          <div class="exp-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M8 22h8"/><path d="M12 11v11"/><path d="M5 3h14l-1.5 6a6 6 0 01-11 0L5 3z"/></svg>
+          </div>
+        </div>
+        <div>
+          <h3 class="exp-card__title">Lounge</h3>
+          <p class="exp-card__desc">
+            Premium spirits, signature cocktails, live music nights. The rooftop that never closes.
+          </p>
+        </div>
+      </div>
+
+      <div class="exp-card reveal">
+        <div>
+          <div class="exp-card__num">— 03</div>
+          <div class="exp-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3v18"/><path d="M3 12h18"/></svg>
+          </div>
+        </div>
+        <div>
+          <h3 class="exp-card__title">Grills</h3>
+          <p class="exp-card__desc">
+            Charcoal-fired croaker, peppered goat, whole grilled tilapia. Cooked to order, served hot.
+          </p>
+        </div>
+      </div>
+
+      <div class="exp-card reveal">
+        <div>
+          <div class="exp-card__num">— 04</div>
+          <div class="exp-card__icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 17h14l-1.5-6h-11L5 17z"/><circle cx="7" cy="19" r="1.5"/><circle cx="17" cy="19" r="1.5"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+          </div>
+        </div>
+        <div>
+          <h3 class="exp-card__title">Car Wash</h3>
+          <p class="exp-card__desc">
+            Detailing, washing, and interior care. While you eat, we handle the car.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========== SIGNATURE MENU ========== -->
+<section class="signature" id="menu">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="label">From the kitchen</span>
+      <h2>Signature plates <span class="serif">&amp; what we're known for.</span></h2>
+      <p class="lead">
+        Every dish is cooked to order. Every platter is built for sharing. This is Lagos eating at its best.
+      </p>
+    </div>
+
+    <div class="signature__grid">
+
+      <div class="dish-card reveal">
+        <div class="dish-card__image">
+          <span class="dish-card__badge">Signature</span>
+          <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80" alt="The Box Platter">
+        </div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">The Box Platter</h3>
+          <p class="dish-card__desc">
+            Prawns, snails, potato wedges, grilled croaker, sweet corn, calamari, shrimps, jollof, fried rice, tilapia, fried yam. Feeds 4–6.
+          </p>
+          <div class="dish-card__price">₦100,000</div>
+        </div>
+      </div>
+
+      <div class="dish-card reveal">
+        <div class="dish-card__image">
+          <span class="dish-card__badge">Chef's Pick</span>
+          <img src="https://images.unsplash.com/photo-1559737558-2f5a35f4523b?w=800&q=80" alt="SeaFood Boil">
+        </div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">SeaFood Boil</h3>
+          <p class="dish-card__desc">
+            Prawns, shrimps, crab, calamari, sausage, boiled eggs, sweet corn, Irish potatoes. Served in the shell.
+          </p>
+          <div class="dish-card__price">₦30,000</div>
+        </div>
+      </div>
+
+      <div class="dish-card reveal">
+        <div class="dish-card__image">
+          <span class="dish-card__badge">Best Seller</span>
+          <img src="https://images.unsplash.com/photo-1432139555190-58524dae6a55?w=800&q=80" alt="Chicken Rice Royal Platter">
+        </div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Chicken Rice Royal</h3>
+          <p class="dish-card__desc">
+            Roasted chicken, jollof rice, plantain, moin moin, coleslaw. The classic Lagos plate.
+          </p>
+          <div class="dish-card__price">₦60,000</div>
+        </div>
+      </div>
+
+      <div class="dish-card reveal">
+        <div class="dish-card__image">
+          <span class="dish-card__badge">Grills</span>
+          <img src="https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?w=800&q=80" alt="Whole Grilled Croaker">
+        </div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Grilled Croaker</h3>
+          <p class="dish-card__desc">
+            Whole charcoal-grilled croaker with pepper sauce, fried plantain, and roasted potato wedges.
+          </p>
+          <div class="dish-card__price">₦20,000</div>
+        </div>
+      </div>
+
+      <div class="dish-card reveal">
+        <div class="dish-card__image">
+          <span class="dish-card__badge">Breakfast</span>
+          <img src="https://images.unsplash.com/photo-1533089860892-a7c6f0a88666?w=800&q=80" alt="Breakfast Platter">
+        </div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Breakfast Platter</h3>
+          <p class="dish-card__desc">
+            Bacon, sausage, Irish potato, fried egg, waffles, baked beans, pancakes. Served all day.
+          </p>
+          <div class="dish-card__price">₦25,000</div>
+        </div>
+      </div>
+
+      <div class="dish-card reveal">
+        <div class="dish-card__image">
+          <span class="dish-card__badge">Peppersoup</span>
+          <img src="https://images.unsplash.com/photo-1547592180-85f173990554?w=800&q=80" alt="Seafood Peppersoup">
+        </div>
+        <div class="dish-card__body">
+          <h3 class="dish-card__title">Seafood Peppersoup</h3>
+          <p class="dish-card__desc">
+            Prawns, calamari, shrimps, snail, crab, corn. Options of catfish or croaker.
+          </p>
+          <div class="dish-card__price">₦30,000</div>
+        </div>
+      </div>
+
+    </div>
+
+    <p class="signature__note reveal">
+      Full menu available on request — <a href="#reserve">reserve a table</a> or message us on WhatsApp.
+    </p>
+  </div>
+</section>
+
+<!-- ========== EDITORIAL / ABOUT ========== -->
+<section class="editorial">
+  <div class="container">
+    <div class="editorial__inner">
+      <div class="editorial__visual reveal">
+        <img src="https://images.unsplash.com/photo-1552566626-52f8b828add9?w=900&q=80" alt="The Box Lagos rooftop at dusk">
+      </div>
+      <div class="editorial__content reveal">
+        <span class="label">The Box Lagos</span>
+        <h2>
+          A Lagos that doesn't <span class="serif">slow down.</span>
+        </h2>
+        <p>
+          The Box was built for a city that moves. Open 24 hours, seven days a week, 
+          on Adekunle Banjo Avenue in Magodo Phase 2. Whether you're closing a business 
+          deal at 2pm or starting an evening at 2am — the door is open.
+        </p>
+        <p>
+          Our kitchen runs all day. Our grills run all night. Our bar never empties. 
+          And unlike most Lagos venues, you can park, eat, drink, and pick up a clean car 
+          before you leave.
+        </p>
+        <ul class="editorial__features">
+          <li>Open 24 hours, every day of the week</li>
+          <li>Rooftop seating with city views</li>
+          <li>Live events, DJs, and themed nights</li>
+          <li>Car wash while you dine</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== EVENTS ========== -->
+<section class="events" id="events">
+  <div class="container">
+    <div class="events__inner">
+      <div class="reveal">
+        <div class="events__label">Next event</div>
+        <h2 class="events__title">
+          Jungle Sounds Live
+          <em>December 26, 2026</em>
+        </h2>
+        <p class="events__sub">
+          Live performances, games, merchandise, pop-ups, and a full takeover of 
+          The Box rooftop. Doors open 8pm. The night goes until we say so.
+        </p>
+        <a href="#" class="btn btn--white" onclick="event.preventDefault(); alert('Tickets coming soon — follow @theboxlagos for updates.');">
+          Get on the List <span class="btn__arrow">→</span>
+        </a>
+      </div>
+      <div class="events__meta reveal">
+        <div class="events__meta-item">
+          <span class="events__meta-label">Date</span>
+          <span class="events__meta-value">Dec 26, 2026</span>
+        </div>
+        <div class="events__meta-item">
+          <span class="events__meta-label">Doors</span>
+          <span class="events__meta-value">8:00 PM</span>
+        </div>
+        <div class="events__meta-item">
+          <span class="events__meta-label">Venue</span>
+          <span class="events__meta-value">The Box Lagos</span>
+        </div>
+        <div class="events__meta-item">
+          <span class="events__meta-label">Entry</span>
+          <span class="events__meta-value">Guestlist</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== CAR WASH ========== -->
+<section class="carwash" id="carwash">
+  <div class="container">
+    <div class="carwash__inner">
+      <div class="carwash__visual reveal">
+        <div class="carwash__mockup">
+          <div class="carwash__mockup-icon">✦</div>
+          <div class="carwash__mockup-label">CAR WASH</div>
+          <div class="carwash__mockup-sub">While You Dine</div>
+        </div>
+      </div>
+      <div class="carwash__content reveal">
+        <span class="label">New Service</span>
+        <h2>
+          Leave with <span class="serif">a clean car.</span>
+        </h2>
+        <p>
+          Pull up, hand over the keys, and sit down for lunch. By the time you're 
+          finished, your car is detailed — inside and out. Exterior wash, interior 
+          cleaning, tyre shine, engine bay. All handled on site.
+        </p>
+        <ul class="carwash__list">
+          <li>Exterior wash</li>
+          <li>Interior detailing</li>
+          <li>Tyre shine</li>
+          <li>Engine bay cleaning</li>
+          <li>Wax & polish</li>
+          <li>Undercarriage wash</li>
+        </ul>
+        <a href="#reserve" class="btn btn--ghost">
+          Book a Slot <span class="btn__arrow">→</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== GALLERY ========== -->
+<section class="gallery">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="label">From the room</span>
+      <h2>Nights we <span class="serif">don't forget.</span></h2>
+    </div>
+  </div>
+  <div class="container">
+    <div class="gallery__grid">
+      <div class="gallery__item reveal"><img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=600&q=80" alt=""></div>
+      <div class="gallery__item reveal"><img src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=600&q=80" alt=""></div>
+      <div class="gallery__item reveal"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80" alt=""></div>
+      <div class="gallery__item reveal"><img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=600&q=80" alt=""></div>
+      <div class="gallery__item reveal"><img src="https://images.unsplash.com/photo-1560624052-449f5ddf0c31?w=600&q=80" alt=""></div>
+      <div class="gallery__item reveal"><img src="https://images.unsplash.com/photo-1546171753-97d7676e4602?w=600&q=80" alt=""></div>
+      <div class="gallery__item reveal"><img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=600&q=80" alt=""></div>
+      <div class="gallery__item reveal"><img src="https://images.unsplash.com/photo-1544148103-0773bf10d330?w=600&q=80" alt=""></div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LOCATION ========== -->
+<section class="location" id="location">
+  <div class="container">
+    <div class="location__inner">
+      <div class="location__info reveal">
+        <span class="label">Visit us</span>
+        <h2>
+          Magodo <span class="serif">Phase 2.</span>
+        </h2>
+
+        <div class="location__blocks">
+          <div class="location__block">
+            <h4>Address</h4>
+            <p>63, Adekunle Banjo Avenue<br>Magodo Phase 2, Lagos</p>
+          </div>
+          <div class="location__block">
+            <h4>Hours</h4>
+            <p>Open 24 hours<br>Every day of the week</p>
+          </div>
+          <div class="location__block">
+            <h4>Reservations</h4>
+            <p>
+              <a href="tel:+2348060140334">+234 806 014 0334</a><br>
+              <a href="https://wa.me/2348060140334" target="_blank" rel="noopener">WhatsApp</a>
+            </p>
+          </div>
+          <div class="location__block">
+            <h4>Instagram</h4>
+            <p>
+              <a href="https://instagram.com/theboxlagos" target="_blank" rel="noopener">@theboxlagos</a>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="location__map reveal">
+        <iframe
+          src="https://www.google.com/maps?q=63+Adekunle+Banjo+Avenue+Magodo+Phase+2+Lagos&output=embed"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="The Box Lagos location"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== RESERVE ========== -->
+<section class="reserve" id="reserve">
+  <div class="container">
+    <div class="reserve__inner">
+      <h2 class="reserve__title">
+        Reserve <em>your table.</em>
+      </h2>
+      <p class="reserve__sub">
+        Whether it's dinner for two, a corporate buffet, or an event booking — 
+        message us on WhatsApp and we'll confirm within the hour.
+      </p>
+      <div class="reserve__actions">
+        <a href="https://wa.me/2348060140334?text=Hi%20The%20Box%2C%20I'd%20like%20to%20reserve%20a%20table." target="_blank" rel="noopener" class="btn btn--primary">
+          Book via WhatsApp <span class="btn__arrow">→</span>
+        </a>
+        <a href="tel:+2348060140334" class="btn btn--ghost">
+          Call Us
+        </a>
+      </div>
+      <p class="reserve__note">
+        Buffets available from ₦25,000 per person. Events and corporate bookings welcome.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer__top">
+      <div>
+        <div class="footer__brand">
+          THE BOX
+          <small>LAGOS</small>
+        </div>
+        <p class="footer__tagline">
+          Restaurant. Lounge. Grills. Car Wash. Everything under one roof — 
+          on Magodo Phase 2, open 24 hours.
+        </p>
+      </div>
+
+      <div>
+        <h4>Experience</h4>
+        <ul>
+          <li><a href="#experiences">Restaurant</a></li>
+          <li><a href="#experiences">Lounge</a></li>
+          <li><a href="#experiences">Grills</a></li>
+          <li><a href="#carwash">Car Wash</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li><a href="#location">Location</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#events">Events</a></li>
+          <li><a href="#reserve">Reservations</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="tel:+2348060140334">+234 806 014 0334</a></li>
+          <li><a href="https://wa.me/2348060140334" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="https://instagram.com/theboxlagos" target="_blank" rel="noopener">@theboxlagos</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer__bottom">
+      <div>© 2026 The Box Lagos. Concept site by <a href="https://duc21striker.github.io/dmad-website/" target="_blank" rel="noopener">DMAD</a>.</div>
+      <div>Concept project — not a real booking platform.</div>
+    </div>
+  </div>
+</footer>
+
+<!-- ========== WHATSAPP FLOAT ========== -->
+<a href="https://wa.me/2348060140334?text=Hi%20The%20Box%2C%20I'd%20like%20to%20enquire." target="_blank" rel="noopener" class="whatsapp" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+  // ============================================================
+  // THE BOX — interactions
+  // ============================================================
+
+  // Nav scroll state
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, { passive: true });
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navMobile = document.getElementById('navMobile');
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('open');
+    navMobile.classList.toggle('open');
+    document.body.style.overflow = navMobile.classList.contains('open') ? 'hidden' : '';
+  });
+  navMobile.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navToggle.classList.remove('open');
+      navMobile.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+
+  // Reveal on scroll
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (prefersReduced) {
+    document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
+  } else {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          const siblings = entry.target.parentElement.querySelectorAll('.reveal');
+          const idx = Array.from(siblings).indexOf(entry.target);
+          entry.target.style.transitionDelay = `${Math.min(idx, 4) * 0.1}s`;
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  }
+
+  // Smooth anchor scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', (e) => {
+      const href = a.getAttribute('href');
+      if (href === '#' || href.length < 2) return;
+      const target = document.querySelector(href);
+      if (!target) return;
+      e.preventDefault();
+      const top = target.getBoundingClientRect().top + window.pageYOffset - 80;
+      window.scrollTo({ top, behavior: prefersReduced ? 'auto' : 'smooth' });
+    });
+  });
+</script>
+
+</body>
+</html>
