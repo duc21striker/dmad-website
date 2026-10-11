@@ -1,6 +1,7 @@
 /* ============================================================
-   DMAD — Apple-Design applied
-   Visual identity: unchanged. Motion & craft: rebuilt.
+   DMAD — Apple-Design with real springs (Motion)
+   Visual identity: unchanged.
+   Motion: driven by JS springs (see script.js).
    ============================================================ */
 
 /* ---------- Tokens ---------- */
@@ -33,11 +34,6 @@
 
   --font-display: 'Fraunces', Georgia, serif;
   --font-ui: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-
-  /* Apple-design springs expressed as motion tokens */
-  --spring-reposition: 400ms cubic-bezier(0.22, 1, 0.36, 1);
-  --spring-reveal: 600ms cubic-bezier(0.22, 1, 0.36, 1);
-  --spring-press: 180ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 [data-theme="dark"] {
@@ -134,7 +130,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
 @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 @keyframes drawLine { to { width: 100px; } }
 
-/* ---------- Nav — translucent floating material ---------- */
+/* ---------- Nav ---------- */
 .nav {
   position: fixed;
   top: 0;
@@ -155,7 +151,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   gap: 1rem;
   padding: 0.625rem 0.875rem 0.625rem 1.25rem;
   border-radius: var(--radius-full);
-  /* Translucent material: light catching a surface */
   background: rgba(255, 255, 255, 0.72);
   border: 1px solid rgba(255, 255, 255, 0.6);
   box-shadow:
@@ -163,8 +158,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     0 8px 32px rgba(20, 33, 61, 0.06);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
-  transition: background 300ms cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .nav.scrolled .nav__inner {
@@ -182,7 +175,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
     0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
-.nav__logo { display: block; }
 .nav__logo img { height: 32px; width: auto; }
 .nav__logo-dark { display: none; }
 [data-theme="dark"] .nav__logo-light { display: none; }
@@ -210,17 +202,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   padding: 0.5rem 1.25rem;
   border-radius: var(--radius-full);
   font-weight: 600;
-  transition: background 180ms cubic-bezier(0.22, 1, 0.36, 1),
-              transform 180ms cubic-bezier(0.22, 1, 0.36, 1);
 }
-.nav__cta:hover { background: var(--coral-dark); transform: translateY(-1px); }
+.nav__cta:hover { background: var(--coral-dark); }
 
 .nav__toggle {
   display: flex;
   flex-direction: column;
   gap: 5px;
   padding: 0.5rem;
-  border-radius: var(--radius-full);
 }
 @media (min-width: 900px) { .nav__toggle { display: none; } }
 .nav__toggle span {
@@ -249,15 +238,14 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   justify-content: center;
   font-size: 0.95rem;
   color: var(--text);
-  transition: all 180ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: color 180ms, border-color 180ms;
 }
 .theme-toggle:hover {
   color: var(--coral);
   border-color: var(--coral);
-  transform: rotate(-15deg);
 }
 
-/* ---------- Buttons — respond on press ---------- */
+/* ---------- Buttons ---------- */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -271,15 +259,13 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border: 2px solid transparent;
   cursor: pointer;
   white-space: nowrap;
-  /* Press response: transform is the only animated property */
-  transition: transform 180ms cubic-bezier(0.22, 1, 0.36, 1),
-              background-color 200ms,
+  background-color: transparent;
+  transition: background-color 200ms,
               border-color 200ms,
               color 200ms,
               box-shadow 200ms;
   will-change: transform;
 }
-.btn:active { transform: scale(0.97); }
 
 .btn--primary { background: var(--blue); color: #fff; }
 .btn--primary:hover { background: var(--blue-dark); box-shadow: 0 8px 24px rgba(31,76,143,0.25); }
@@ -433,10 +419,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border-bottom: 1px solid var(--border);
   overflow: hidden;
 }
-.strip__inner {
-  text-align: center;
-  margin-bottom: 1.25rem;
-}
+.strip__inner { text-align: center; margin-bottom: 1.25rem; }
 .strip__label {
   font-size: 0.75rem;
   font-weight: 500;
@@ -457,12 +440,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   padding: 0.5rem 0;
   will-change: transform;
 }
-@media (prefers-reduced-motion: no-preference) {
-  .strip__track { animation: marquee 40s linear infinite; }
-}
-@keyframes marquee {
-  to { transform: translateX(-50%); }
-}
 .strip__track span {
   font-family: var(--font-display);
   font-optical-sizing: auto;
@@ -471,7 +448,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   color: var(--text);
   opacity: 0.5;
   white-space: nowrap;
-  transition: opacity 200ms;
+  transition: opacity 200ms, color 200ms;
 }
 .strip__track span:hover { opacity: 1; color: var(--coral); }
 
@@ -545,15 +522,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 2rem;
-  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1),
+  transition: box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1),
               border-color 200ms;
   will-change: transform;
-}
-.info-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-  border-color: transparent;
 }
 .info-card__icon {
   width: 52px;
@@ -566,14 +537,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   justify-content: center;
   font-size: 1.25rem;
   margin-bottom: 1.25rem;
-  transition: all 250ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: background 250ms, color 250ms, transform 250ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 [data-theme="dark"] .info-card__icon { color: #6FA0FF; }
-.info-card:hover .info-card__icon {
-  background: var(--coral);
-  color: #fff;
-  transform: rotate(-6deg) scale(1.05);
-}
 .info-card h3 {
   font-family: var(--font-display);
   font-optical-sizing: auto;
@@ -678,15 +644,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 1.5rem;
-  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1),
+  transition: box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1),
               border-color 200ms;
   will-change: transform;
-}
-.service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-md);
-  border-color: transparent;
 }
 .service-card__icon {
   width: 44px;
@@ -699,14 +659,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   justify-content: center;
   font-size: 1.1rem;
   margin-bottom: 1rem;
-  transition: all 250ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: background 250ms, color 250ms, transform 250ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 [data-theme="dark"] .service-card__icon { color: #6FA0FF; }
-.service-card:hover .service-card__icon {
-  background: var(--coral);
-  color: #fff;
-  transform: rotate(-6deg);
-}
 .service-card h4 {
   font-family: var(--font-display);
   font-optical-sizing: auto;
@@ -749,13 +704,12 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border-radius: var(--radius-full);
   background: var(--card);
   border: 1.5px solid var(--border);
-  transition: all 200ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: background 200ms, color 200ms, border-color 200ms;
 }
 .concept__view-all:hover {
   background: var(--blue);
   color: #fff;
   border-color: var(--blue);
-  transform: translateY(-2px);
 }
 [data-theme="dark"] .concept__view-all { color: #6FA0FF; }
 
@@ -765,15 +719,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border: 1px solid var(--border);
   border-radius: var(--radius);
   overflow: hidden;
-  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 400ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: box-shadow 400ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
 }
-.concept-featured:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--shadow-lg);
-}
-
 .concept-featured__inner {
   display: grid;
   grid-template-columns: 1fr;
@@ -950,13 +898,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
-              background 200ms;
-}
-.concept-featured__secondary:hover .concept-featured__secondary-arrow {
-  background: var(--coral);
-  color: #fff;
-  transform: translateX(4px);
+  transition: background 200ms, color 200ms;
 }
 
 /* ---------- Pricing ---------- */
@@ -1009,11 +951,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   padding: 2rem 1.75rem;
   display: flex;
   flex-direction: column;
-  transition: transform 400ms cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 400ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: box-shadow 400ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
 }
-.plan-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); }
 
 .plan-card--featured {
   background:
@@ -1189,10 +1129,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 2rem;
-  transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: box-shadow 300ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
 }
-.step-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
 .step-card__num {
   font-size: 0.6875rem;
   font-weight: 800;
@@ -1213,7 +1152,6 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-bottom: 1rem;
   transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1);
 }
-.step-card:hover .step-card__icon { transform: rotate(-6deg) scale(1.05); }
 .step-card h4 {
   font-family: var(--font-display);
   font-optical-sizing: auto;
@@ -1230,8 +1168,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   content: '';
   position: absolute;
   top: 10%; left: -10%;
-  width: 500px;
-  height: 500px;
+  width: 500px; height: 500px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(31,76,143,0.12), transparent 70%);
   pointer-events: none;
@@ -1240,8 +1177,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   content: '';
   position: absolute;
   bottom: 5%; right: -10%;
-  width: 500px;
-  height: 500px;
+  width: 500px; height: 500px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(255,107,74,0.1), transparent 70%);
   pointer-events: none;
@@ -1335,9 +1271,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   border: 1px solid var(--border);
   border-radius: 14px;
   outline: none;
-  transition: border-color 200ms cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 200ms cubic-bezier(0.22, 1, 0.36, 1),
-              background 200ms;
+  transition: border-color 200ms, box-shadow 200ms, background 200ms;
 }
 .form-group input:focus,
 .form-group textarea:focus {
@@ -1377,11 +1311,7 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   margin-bottom: 2rem;
 }
 .footer__brand img { height: 32px; margin-bottom: 1rem; }
-.footer__brand p {
-  font-size: 0.875rem;
-  max-width: 320px;
-  line-height: 1.6;
-}
+.footer__brand p { font-size: 0.875rem; max-width: 320px; line-height: 1.6; }
 .footer__links {
   display: flex;
   gap: 2rem;
@@ -1417,12 +1347,9 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   align-items: center;
   justify-content: center;
   color: #fff;
-  transition: all 200ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: background 200ms;
 }
-.footer__socials a:hover {
-  background: var(--coral);
-  transform: translateY(-2px);
-}
+.footer__socials a:hover { background: var(--coral); }
 
 .footer__bottom {
   text-align: center;
@@ -1446,42 +1373,30 @@ button { font-family: inherit; cursor: pointer; border: none; background: none; 
   justify-content: center;
   font-size: 1.6rem;
   box-shadow: 0 12px 32px rgba(37,211,102,0.35);
-  transition: transform 250ms cubic-bezier(0.22, 1, 0.36, 1),
-              box-shadow 250ms cubic-bezier(0.22, 1, 0.36, 1);
+  transition: box-shadow 250ms;
+  will-change: transform;
 }
-.whatsapp-float:hover {
-  transform: scale(1.08);
-  box-shadow: 0 16px 40px rgba(37,211,102,0.5);
-}
-.whatsapp-float:active { transform: scale(0.96); }
+.whatsapp-float:hover { box-shadow: 0 16px 40px rgba(37,211,102,0.5); }
 
-/* ---------- Reveal — spring-based, interruptible ---------- */
+/* ---------- Reveal baseline ----------
+   Motion animates these in JS.
+   Initial state set here so nothing flashes before JS runs. */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(24px);
-  transition: opacity 700ms cubic-bezier(0.22, 1, 0.36, 1),
-              transform 700ms cubic-bezier(0.22, 1, 0.36, 1);
   will-change: opacity, transform;
 }
-[data-reveal].is-visible {
-  opacity: 1;
-  transform: translateY(0);
-}
 
-/* ---------- Reduced motion & reduced transparency ---------- */
+/* If JS fails to load, reveal everything after 2s as a fallback */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  [data-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
   }
-  [data-reveal] { opacity: 1; transform: none; }
-  .hero__aura { animation: none; }
-  .strip__track { animation: none; }
-  .hero__badge-dot { animation: none; }
+  .hero__aura,
+  .hero__badge-dot,
+  .strip__track {
+    animation: none !important;
+  }
 }
 
 @media (prefers-reduced-transparency: reduce) {
