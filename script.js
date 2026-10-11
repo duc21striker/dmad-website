@@ -1,12 +1,18 @@
 /* ============================================================
    DMAD — Motion & interaction layer
-   Apple-design skill applied.
+   Apple-design skill: real springs via Motion.
    ============================================================ */
 
 (function () {
   'use strict';
 
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Wait for Motion to be available (loaded via module script in HTML) */
+  function onMotionReady(cb) {
+    if (window.__motion) return cb(window.__motion);
+    window.addEventListener('motion:ready', () => cb(window.__motion), { once: true });
+  }
 
   /* ---------- Preloader ---------- */
   function initPreloader() {
@@ -21,7 +27,7 @@
     setTimeout(hide, 3500);
   }
 
-  /* ---------- Nav state on scroll ---------- */
+  /* ---------- Nav scroll state ---------- */
   function initNavScroll() {
     const nav = document.getElementById('nav');
     if (!nav) return;
@@ -86,47 +92,36 @@
     });
   }
 
-  /* ---------- Reveal on scroll ---------- */
-  function initReveal() {
-    const els = document.querySelectorAll('[data-reveal]');
-    if (!els.length) return;
-    if (reduceMotion) {
-      els.forEach((el) => el.classList.add('is-visible'));
-      return;
-    }
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        const parent = entry.target.parentElement;
-        if (parent) {
-          const sibs = Array.from(parent.querySelectorAll(':scope > [data-reveal]'));
-          const idx = sibs.indexOf(entry.target);
-          entry.target.style.transitionDelay = `${Math.min(idx * 70, 350)}ms`;
-        }
-        entry.target.classList.add('is-visible');
-        observer.unobserve(entry.target);
-      });
-    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
-    els.forEach((el) => observer.observe(el));
-  }
-
-  /* ---------- Word-by-word hero title reveal ---------- */
-  function initWordsReveal() {
-    const title = document.querySelector('[data-reveal-words]');
-    if (!title || reduceMotion) return;
-    // The hero title has inline <em> tags; only wrap top-level text nodes
-    title.style.opacity = '1';
-  }
-
-  /* ---------- Responsive press feedback (pointer-down, not click) ---------- */
-  function initSpringPress() {
+  /* ---------- Responsive press on buttons (real spring) ---------- */
+  function initSpringPress(motion) {
+    if (reduceMotion) return;
     const pressables = document.querySelectorAll('[data-spring-press]');
-    if (!pressables.length || reduceMotion) return;
+    if (!pressables.length) return;
+
+    const { animate, spring } = motion;
 
     pressables.forEach((el) => {
-      // Highlight on pointerdown, matching Apple's "respond on touch" rule
-      const press = () => { el.style.transform = 'scale(0.97)'; };
-      const release = () => { el.style.transform = ''; };
+      // Store the current scale in a data attr so we can interrupt cleanly
+      let releaseTimer = null;
+
+      const press = () => {
+        if (releaseTimer) { clearTimeout(releaseTimer); releaseTimer = null; }
+        animate(el, { scale: 0.96 }, {
+          type: 'spring',
+          stiffness: 600,
+          damping: 30,
+          mass: 0.6
+        });
+      };
+
+      const release = () => {
+        animate(el, { scale: 1 }, {
+          type: 'spring',
+          stiffness: 400,
+          damping: 22,
+          mass: 0.6
+        });
+      };
 
       el.addEventListener('pointerdown', press, { passive: true });
       el.addEventListener('pointerup', release);
@@ -135,17 +130,99 @@
     });
   }
 
-  /* ---------- Spring hover for cards ---------- */
-  function initSpringHover() {
+  /* ---------- Reveal on scroll (spring stagger) ---------- */
+  function initReveal(motion) {
+    const els = document.querySelectorAll('[data-reveal]');
+    if (!els.length) return;
+
+    if (reduceMotion) {
+      els.forEach((el) => {
+        el.style.opacity = '1';
+        el.style.transform = 'none';
+      });
+      return;
+    }
+
+    const { animate, spring } = motion;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+
+        // Group siblings for stagger
+        const parent = entry.target.parentElement;
+        let delay = 0;
+        if (parent) {
+          const sibs = Array.from(parent.querySelectorAll(':scope > [data-reveal]'));
+          const idx = sibs.indexOf(entry.target);
+          delay = Math.min(idx * 0.06, 0.3);
+        }
+
+        setTimeout(() => {
+          animate(
+            entry.target,
+            { opacity: 1, y: [24, 0] },
+            {
+              type: 'spring',
+              stiffness: 220,
+              damping: 28,
+              mass: 0.8
+            }
+          );
+        }, delay * 1000);
+
+        observer.unobserve(entry.target);
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -50px 0px' });
+
+    els.forEach((el) => observer.observe(el));
+  }
+
+  /* ---------- Card hover springs ---------- */
+  function initSpringHover(motion) {
     if (reduceMotion) return;
     const hoverables = document.querySelectorAll('[data-spring-hover]');
+    if (!hoverables.length) return;
+
+    const { animate, spring } = motion;
+
     hoverables.forEach((el) => {
-      el.style.transform = '';
-      // CSS handles the transition; this just prepares state
+      el.addEventListener('mouseenter', () => {
+        animate(el, { y: -4 }, {
+          type: 'spring',
+          stiffness: 350,
+          damping: 25,
+          mass: 0.7
+        });
+      });
+      el.addEventListener('mouseleave', () => {
+        animate(el, { y: 0 }, {
+          type: 'spring',
+          stiffness: 350,
+          damping: 25,
+          mass: 0.7
+        });
+      });
     });
   }
 
-  /* ---------- Smooth anchor scroll (native — Apple uses default behavior) ---------- */
+  /* ---------- Icon rotation on card hover ---------- */
+  function initIconRotation() {
+    if (reduceMotion) return;
+    document.querySelectorAll('[data-spring-hover]').forEach((card) => {
+      const icon = card.querySelector('.info-card__icon, .service-card__icon, .step-card__icon');
+      if (!icon) return;
+
+      card.addEventListener('mouseenter', () => {
+        icon.style.transform = 'rotate(-6deg) scale(1.06)';
+      });
+      card.addEventListener('mouseleave', () => {
+        icon.style.transform = '';
+      });
+    });
+  }
+
+  /* ---------- Smooth anchor scroll ---------- */
   function initAnchors() {
     document.querySelectorAll('a[href^="#"]').forEach((a) => {
       a.addEventListener('click', (e) => {
@@ -160,7 +237,7 @@
     });
   }
 
-  /* ---------- Contact form (Formspree) ---------- */
+  /* ---------- Contact form ---------- */
   function initForm() {
     const form = document.getElementById('dmadContactForm');
     if (!form) return;
@@ -217,22 +294,22 @@
   }
 
   /* ---------- Init ---------- */
-  function init() {
+  function init(motion) {
     initPreloader();
     initNavScroll();
     initMobileNav();
     initTheme();
-    initReveal();
-    initWordsReveal();
-    initSpringPress();
-    initSpringHover();
+    initReveal(motion);
+    initSpringPress(motion);
+    initSpringHover(motion);
+    initIconRotation();
     initAnchors();
     initForm();
   }
 
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', () => onMotionReady(init));
   } else {
-    init();
+    onMotionReady(init);
   }
 })();
